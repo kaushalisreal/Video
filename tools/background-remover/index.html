@@ -56,7 +56,7 @@ main{display:grid;grid-template-columns:190px 1fr 270px;height:calc(100% - 48px)
 .row output{width:40px;text-align:right;color:var(--muted)}
 .swatch{width:26px;height:22px;border-radius:4px;border:1px solid var(--line)}
 .hint{color:var(--muted);font-size:12px;margin:6px 0}
-.hint .pink{color:#ff5fd2;font-weight:600}
+.hint .pink{color:#ff5fd2;font-weight:600}.hint .blue{color:#4fa3ff;font-weight:600}
 .btns{display:flex;flex-wrap:wrap;gap:6px}
 .btns button{flex:1;white-space:nowrap}
 .seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
@@ -102,11 +102,12 @@ main{display:grid;grid-template-columns:190px 1fr 270px;height:calc(100% - 48px)
     <div class="row"><label>Background color</label><span class="swatch" id="bgSwatch"></span><button id="bgAuto" title="Detect the background color from the image border">Auto</button></div>
     <div class="row"><label title="Anti-aliased outline pixels are un-mixed from the background, so no white halo is left">Edge smoothing</label>
       <select id="edge"><option value="0">Hard</option><option value="1" selected>Smooth 1px</option><option value="2">Smooth 2px</option><option value="3">Smooth 3px</option></select></div>
+    <div class="row"><label title="Removes white areas seen between bars, rails and other thin parts. Uses the drawing's outline thickness to tell a gap from a white face."><input type="checkbox" id="smart" checked> Smart gaps: remove background seen between bars</label></div>
     <div class="row"><label><input type="checkbox" id="holes"> Auto-remove small enclosed areas</label></div>
     <div class="row"><label title="Enclosed areas smaller than this share of the image are removed automatically. Careful: eye whites are small too.">&nbsp;&nbsp;&nbsp;&nbsp;Max size</label><input type="range" id="holeMax" min="1" max="100" value="10"><output id="holeOut">1%</output></div>
     <div class="row"><label><input type="checkbox" id="hilite" checked> Highlight enclosed bg-colored areas</label></div>
-    <p class="hint"><span class="pink">Pink stripes</span> mark background-colored areas that are fully enclosed by the drawing and are <b>kept</b>, like a white face or the gaps between bed bars. Click the gaps with the <b>Wand remove</b> tool. Pink only shows in this editor. It is never exported.</p>
-    <div class="btns"><button id="applyAll" title="Copy tolerance, edge and enclosed-area settings to every image">Apply settings to all</button><button id="resetEdits">Reset my edits</button></div>
+    <p class="hint"><span class="pink">Pink stripes</span> = enclosed white area that is <b>kept</b> (face, eyes…). If one is really background, click it with <b>Wand remove</b>.<br><span class="blue">Blue stripes</span> = gap that Smart gaps <b>removed</b>. If it was wrong, Shift+click it to bring it back.<br>The stripes only show in this editor and are never exported.</p>
+    <div class="btns"><button id="applyAll" title="Copy tolerance, edge, smart gaps and enclosed-area settings to every image">Apply settings to all</button><button id="resetEdits">Reset my edits</button></div>
 
     <h2>View</h2>
     <div class="seg" id="previewSeg"><button data-p="checker" class="on">▦</button><button data-p="white">White</button><button data-p="black">Black</button><button data-p="green">Green</button></div>
@@ -130,7 +131,7 @@ const vctx = view.getContext('2d'), octx = overlay.getContext('2d');
 const S = {
   items: [], cur: -1, tool: 'wand', brush: 40, preview: 'checker', hilite: true, showOrig: false,
   view: { s: 1, tx: 0, ty: 0 }, space: false, busy: false,
-  defaults: { tol: 32, edge: 1, holes: false, holeMax: 1, bg: null },
+  defaults: { tol: 32, edge: 1, smart: true, holes: false, holeMax: 1, bg: null },
 };
 let nextId = 1;
 
@@ -180,7 +181,8 @@ const bgOf = it => it.set.bg || it.bgAuto || [255, 255, 255];
 
 /* ---------------- auto mask ----------------
    auto[i]: 0 = foreground, 1 = background connected to the image border (removed),
-            2 = enclosed background-colored area (kept), 3 = enclosed area auto-removed */
+            2 = enclosed background-colored area (kept), 3 = enclosed area removed by the size rule,
+            4 = enclosed area guessed to be background seen through a gap (removed) */
 function computeAuto(it) {
   const { w, h } = it, n = w * h, d = it.src.data, T = it.set.tol;
   const [br, bgc, bb] = bgOf(it);
@@ -200,22 +202,79 @@ function computeAuto(it) {
     if (i >= w) push(i - w, 1);
     if (i < n - w) push(i + w, 1);
   }
-  const lim = it.set.holes ? it.set.holeMax / 100 * n : -1;
+
+  // Label the enclosed background-colored areas. q holds each area's pixels as one contiguous run.
+  const lab = new Int32Array(n), comps = [];
+  let pos = 0;
   for (let s = 0; s < n; s++) {
     if (!near[s] || a[s]) continue;
-    head = tail = 0; a[s] = 2; q[tail++] = s;
-    while (head < tail) {
-      const i = q[head++], x = i % w;
-      if (x > 0) push(i - 1, 2);
-      if (x < w - 1) push(i + 1, 2);
-      if (i >= w) push(i - w, 2);
-      if (i < n - w) push(i + w, 2);
+    const c = comps.length + 1, start = pos;
+    const grow = j => { if (near[j] && !a[j]) { a[j] = 2; lab[j] = c; q[pos++] = j; } };
+    grow(s);
+    for (let k = start; k < pos; k++) {
+      const i = q[k], x = i % w;
+      if (x > 0) grow(i - 1);
+      if (x < w - 1) grow(i + 1);
+      if (i >= w) grow(i - w);
+      if (i < n - w) grow(i + w);
     }
+    comps.push({ start, end: pos, wall: Infinity });
+  }
+
+  // Smart gaps: background seen between bars is separated from the outside by a thin "wall"
+  // (one bar, a few outlines thick). A white face or body is either behind just its outline
+  // (no hair) or deep inside the drawing. Measure each area's wall in units of outline thickness.
+  const t = it.set.smart && comps.length ? outlineThickness(it, a) : 0;
+  const lo = Math.max(4, 2.5 * t), hi = 5.5 * t;
+  if (t) {
+    const dist = new Uint16Array(n);
+    head = tail = 0;
+    const q2 = new Int32Array(n);
+    for (let i = 0; i < n; i++) if (a[i] === 1) q2[tail++] = i;
+    const step = (j, dv) => {
+      if (lab[j]) { const c = comps[lab[j] - 1]; if (dv < c.wall) c.wall = dv; }
+      else if (a[j] === 0 && !dist[j] && dv + 1 <= hi) { dist[j] = dv + 1; q2[tail++] = j; }
+    };
+    while (head < tail) {
+      const i = q2[head++], x = i % w, dv = dist[i];
+      if (x > 0) step(i - 1, dv);
+      if (x < w - 1) step(i + 1, dv);
+      if (i >= w) step(i - w, dv);
+      if (i < n - w) step(i + w, dv);
+    }
+  }
+
+  const lim = it.set.holes ? it.set.holeMax / 100 * n : -1;
+  let kept = 0, guessed = 0;
+  for (const c of comps) {
+    const size = c.end - c.start;
     // tiny specks (JPEG noise inside the drawing) are just foreground
-    const v = tail < 16 ? 0 : tail <= lim ? 3 : 2;
-    if (v !== 2) for (let k = 0; k < tail; k++) a[q[k]] = v;
+    const v = size < 16 ? 0 : size <= lim ? 3 : (t && c.wall >= lo && c.wall <= hi) ? 4 : 2;
+    if (v === 2 && size >= n / 1000) kept++; else if (v === 4) guessed++;
+    if (v !== 2) for (let k = c.start; k < c.end; k++) a[q[k]] = v;
   }
   it.auto = a;
+  it.info = { kept, guessed };
+}
+
+// Typical thickness of the drawing's outer outline: dark pixel runs met when scanning in from the background.
+function outlineThickness(it, a) {
+  const { w, h } = it, d = it.src.data, runs = [];
+  const dark = i => { const p = i * 4; return d[p] * .3 + d[p + 1] * .59 + d[p + 2] * .11 < 110; };
+  const scan = (start, stp, len) => {
+    let k = 0;
+    while (k < len && a[start + k * stp] === 1) k++;
+    if (k === 0 || k >= len) return;
+    let r = 0;
+    while (k < len && dark(start + k * stp)) { r++; k++; }
+    if (r > 0) runs.push(r);
+  };
+  const sy = Math.max(1, h >> 9), sx = Math.max(1, w >> 9);
+  for (let y = 0; y < h; y += sy) { scan(y * w, 1, w); scan(y * w + w - 1, -1, w); }
+  for (let x = 0; x < w; x += sx) { scan(x, w, h); scan((h - 1) * w + x, -w, h); }
+  if (runs.length < 20) return 0; // no clear outlines: don't guess
+  runs.sort((x, y) => x - y);
+  return runs[runs.length >> 1];
 }
 
 /* ---------------- compositing ----------------
@@ -224,7 +283,7 @@ function compose(it, x0 = 0, y0 = 0, x1 = it.w, y1 = it.h) {
   const { w, h, auto, ov } = it, src = it.src.data, out = it.out.data;
   const r = +it.set.edge;
   const B = bgOf(it);
-  const rem = i => { const o = ov[i]; return o === 1 || (o === 0 && (auto[i] === 1 || auto[i] === 3)); };
+  const rem = i => { const o = ov[i]; return o === 1 || (o === 0 && (auto[i] === 1 || auto[i] >= 3)); };
   // distance (in px, chessboard) from each kept pixel to the nearest removed pixel, up to r
   const bx0 = Math.max(0, x0 - r), by0 = Math.max(0, y0 - r), bx1 = Math.min(w, x1 + r), by1 = Math.min(h, y1 + r);
   const bw = bx1 - bx0, bh = by1 - by0;
@@ -286,7 +345,10 @@ function drawOverlay(it, x0 = 0, y0 = 0, x1 = it.w, y1 = it.h) {
   for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) {
     const i = (y0 + y) * w + x0 + x;
     // diagonal hatch, so the kept area stays readable underneath
-    if (auto[i] === 2 && ov[i] === 0 && ((x0 + x + y0 + y) & 7) < 3) { const p = (y * bw + x) * 4; d[p] = 255; d[p + 1] = 30; d[p + 2] = 190; d[p + 3] = 190; }
+    if (ov[i] !== 0) continue;
+    const X = x0 + x, Y = y0 + y, p = (y * bw + x) * 4;
+    if (auto[i] === 2 && ((X + Y) & 7) < 3) { d[p] = 255; d[p + 1] = 30; d[p + 2] = 190; d[p + 3] = 190; }
+    else if (auto[i] === 4 && ((X - Y) & 7) < 2) { d[p] = 30; d[p + 1] = 140; d[p + 2] = 255; d[p + 3] = 200; }
   }
   octx.putImageData(img, x0, y0);
 }
@@ -322,7 +384,7 @@ function renderList() {
   S.items.forEach((it, idx) => {
     const el = document.createElement('div');
     el.className = 'item' + (idx === S.cur ? ' active' : '');
-    el.innerHTML = `<div class="th">${it.thumb ? `<img src="${it.thumb}">` : ''}</div><div><div class="nm"></div><div class="st ${it.state}">${it.state === 'done' ? 'Ready' : it.state === 'working' ? 'Working…' : 'Queued'}</div></div>`;
+    el.innerHTML = `<div class="th">${it.thumb ? `<img src="${it.thumb}">` : ''}</div><div><div class="nm"></div><div class="st ${it.state}">${it.state === 'done' ? 'Ready' + (it.info && (it.info.kept || it.info.guessed) ? ` · ${it.info.guessed} gaps removed, ${it.info.kept} kept` : '') : it.state === 'working' ? 'Working…' : 'Queued'}</div></div>`;
     el.querySelector('.nm').textContent = it.name;
     el.onclick = () => select(idx);
     L.appendChild(el);
@@ -391,6 +453,7 @@ function syncPanel() {
   const it = curItem(); if (!it) return;
   $('#tol').value = it.set.tol; $('#tolOut').textContent = it.set.tol;
   $('#edge').value = it.set.edge;
+  $('#smart').checked = it.set.smart;
   $('#holes').checked = it.set.holes;
   $('#holeMax').value = Math.round(it.set.holeMax * 10); $('#holeOut').textContent = it.set.holeMax + '%';
   const b = bgOf(it);
@@ -401,7 +464,7 @@ function syncPanel() {
 let recalcTimer = 0;
 function settingsChanged(needAuto = true) {
   const it = curItem(); if (!it) return;
-  Object.assign(S.defaults, { tol: it.set.tol, edge: it.set.edge, holes: it.set.holes, holeMax: it.set.holeMax });
+  Object.assign(S.defaults, { tol: it.set.tol, edge: it.set.edge, smart: it.set.smart, holes: it.set.holes, holeMax: it.set.holeMax });
   syncPanel();
   clearTimeout(recalcTimer);
   recalcTimer = setTimeout(() => {
@@ -415,6 +478,7 @@ function settingsChanged(needAuto = true) {
 
 $('#tol').oninput = e => { const it = curItem(); if (!it) return; it.set.tol = +e.target.value; settingsChanged(); };
 $('#edge').onchange = e => { const it = curItem(); if (!it) return; it.set.edge = +e.target.value; settingsChanged(false); };
+$('#smart').onchange = e => { const it = curItem(); if (!it) return; it.set.smart = e.target.checked; settingsChanged(); };
 $('#holes').onchange = e => { const it = curItem(); if (!it) return; it.set.holes = e.target.checked; settingsChanged(); };
 $('#holeMax').oninput = e => { const it = curItem(); if (!it) return; it.set.holeMax = +e.target.value / 10; settingsChanged(); };
 $('#bgAuto').onclick = () => { const it = curItem(); if (!it) return; it.set.bg = null; settingsChanged(); };
@@ -422,7 +486,7 @@ $('#hilite').onchange = e => { S.hilite = e.target.checked; overlay.style.displa
 $('#applyAll').onclick = () => {
   const it = curItem(); if (!it) return;
   for (const o of S.items) if (o !== it) {
-    o.set.tol = it.set.tol; o.set.edge = it.set.edge; o.set.holes = it.set.holes; o.set.holeMax = it.set.holeMax;
+    o.set.tol = it.set.tol; o.set.edge = it.set.edge; o.set.smart = it.set.smart; o.set.holes = it.set.holes; o.set.holeMax = it.set.holeMax;
     o.autoStale = true; o.state = 'queued';
   }
   renderList(); processQueue(); toast('Settings applied to all images');
