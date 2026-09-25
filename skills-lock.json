@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "cinematic-script-writer": {
+      "source": "praveenspeaks/cinematic-script-writer",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "0d27354ebe1b3c543d5b3f036eee7b86d65ad6eeafd7bfd587aed9b6f41a1e5d"
+    }
+  }
+}
