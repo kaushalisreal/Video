@@ -40,6 +40,9 @@ main{display:grid;grid-template-columns:190px 1fr 270px;height:calc(100% - 48px)
 #board.white{background:#fff}#board.black{background:#000}#board.green{background:#00b140}
 #board.pix canvas{image-rendering:pixelated}
 #overlay{pointer-events:none}
+#lasso{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+#lasso path{fill:#4f8cff22;stroke:#fff;stroke-width:1.5;stroke-dasharray:6 4;vector-effect:non-scaling-stroke}
+#lasso path.bk{stroke:#000;stroke-dasharray:none}
 #cursor{position:absolute;border:1px solid #fff;outline:1px solid #000;border-radius:50%;pointer-events:none;display:none;transform:translate(-50%,-50%)}
 #drop{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:var(--muted);text-align:center;padding:20px}
 #drop b{color:var(--text);font-size:16px}
@@ -82,6 +85,7 @@ main{display:grid;grid-template-columns:190px 1fr 270px;height:calc(100% - 48px)
   <aside id="list"></aside>
   <section id="stage">
     <div id="board" class="checker" style="background-size:16px 16px"><canvas id="view"></canvas><canvas id="overlay"></canvas></div>
+    <svg id="lasso"><path class="bk" id="lassoBk"></path><path id="lassoPath"></path></svg>
     <div id="cursor"></div>
     <div id="drop"><b>Drop images here, or click “Add images…”</b><span>JPG / PNG / WEBP. You can add many at once. Everything runs on your PC, and nothing is uploaded.</span></div>
   </section>
@@ -94,7 +98,10 @@ main{display:grid;grid-template-columns:190px 1fr 270px;height:calc(100% - 48px)
       <button data-tool="keep" title="Paint to restore original pixels">🖌 Restore brush<kbd>B</kbd></button>
       <button data-tool="pick" title="Click the background to set its color">💧 Pick bg color<kbd>I</kbd></button>
       <button data-tool="hand" title="Drag to move the image. You can also hold Space.">✋ Pan<kbd>H</kbd></button>
+      <button data-tool="lasso" style="grid-column:1/3" title="Draw around an area. By default only the white/background-colored pixels inside are removed, so outlines and hair stay.">➰ Lasso select<kbd>L</kbd></button>
     </div>
+    <div class="row"><label>Lasso does</label></div>
+    <div class="seg" id="lassoSeg"><button data-m="clean" class="on" title="Remove only background-colored (white) pixels inside the lasso">Remove white</button><button data-m="all" title="Remove everything inside the lasso (Ctrl+drag)">Remove all</button><button data-m="keep" title="Bring back the original pixels inside the lasso (Shift+drag)">Restore</button></div>
     <div class="row"><label>Brush size</label><input type="range" id="brush" min="2" max="300" value="40"><output id="brushOut">40</output></div>
     <div class="btns"><button id="undoBtn" title="Ctrl+Z">↶ Undo</button><button id="redoBtn" title="Ctrl+Y">↷ Redo</button></div>
 
@@ -119,7 +126,7 @@ main{display:grid;grid-template-columns:190px 1fr 270px;height:calc(100% - 48px)
     <p class="hint">Output is a PNG at the exact original size. Kept pixels have the exact original colors.</p>
 
     <h2>Shortcuts</h2>
-    <p class="hint">Wheel = zoom · Space-drag or middle mouse = pan · Shift+click with the wand = restore · [ ] = brush size · ← → = previous/next image · Ctrl+Z / Ctrl+Y = undo/redo · O = hold to see the original</p>
+    <p class="hint">Wheel = zoom · Space-drag or middle mouse = pan · Shift+click with the wand = restore · L = lasso (Shift-drag restores, Ctrl-drag removes everything inside) · [ ] = brush size · ← → = previous/next image · Ctrl+Z / Ctrl+Y = undo/redo · O = hold to see the original</p>
   </aside>
 </main>
 <div id="toast"></div>
@@ -130,7 +137,7 @@ const stage = $('#stage'), board = $('#board'), view = $('#view'), overlay = $('
 const vctx = view.getContext('2d'), octx = overlay.getContext('2d');
 
 const S = {
-  items: [], cur: -1, tool: 'wand', brush: 40, preview: 'checker', hilite: true, showOrig: false,
+  items: [], cur: -1, tool: 'wand', lassoMode: 'clean', brush: 40, preview: 'checker', hilite: true, showOrig: false,
   view: { s: 1, tx: 0, ty: 0 }, space: false, busy: false,
   defaults: { tol: 32, edge: 1, smart: true, holes: false, holeMax: 1, bg: null },
 };
@@ -602,6 +609,52 @@ function strokeTo(it, x, y) {
   paint(it, bx0 - r, by0 - r, bx1 + r, by1 + r);
 }
 
+// Lasso: freehand selection. 'clean' removes only background-colored pixels inside it (keeps outlines,
+// hair strands…), 'all' removes everything inside, 'keep' brings back the original pixels inside.
+let lasso = null;
+const lassoPath = $('#lassoPath'), lassoBk = $('#lassoBk');
+function drawLasso() {
+  let dd = '';
+  if (lasso) {
+    const v = S.view;
+    dd = 'M' + lasso.pts.map(([x, y]) => (v.tx + x * v.s).toFixed(1) + ',' + (v.ty + y * v.s).toFixed(1)).join('L') + 'Z';
+  }
+  lassoPath.setAttribute('d', dd); lassoBk.setAttribute('d', dd);
+}
+function applyLasso(it, pts, mode) {
+  const { w, h, ov } = it, d = it.src.data, T = it.set.tol, [br, bgc, bb] = bgOf(it);
+  let x0 = w, y0 = h, x1 = 0, y1 = 0;
+  for (const [x, y] of pts) { x0 = Math.min(x0, x); y0 = Math.min(y0, y); x1 = Math.max(x1, x); y1 = Math.max(y1, y); }
+  x0 = Math.max(0, Math.floor(x0)); y0 = Math.max(0, Math.floor(y0));
+  x1 = Math.min(w, Math.ceil(x1) + 1); y1 = Math.min(h, Math.ceil(y1) + 1);
+  const bw = x1 - x0, bh = y1 - y0;
+  if (bw <= 0 || bh <= 0) return;
+  const c = document.createElement('canvas');
+  c.width = bw; c.height = bh;
+  const cx = c.getContext('2d', { willReadFrequently: true });
+  cx.beginPath();
+  pts.forEach(([x, y], k) => k ? cx.lineTo(x - x0, y - y0) : cx.moveTo(x - x0, y - y0));
+  cx.closePath(); cx.fill();
+  const m = cx.getImageData(0, 0, bw, bh).data;
+  const val = mode === 'keep' ? 2 : 1, idx = [], old = [];
+  for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) {
+    if (m[(y * bw + x) * 4 + 3] < 128) continue;
+    const i = (y0 + y) * w + x0 + x, p = i * 4;
+    if (mode !== 'all' && d[p + 3] >= 16 && Math.max(Math.abs(d[p] - br), Math.abs(d[p + 1] - bgc), Math.abs(d[p + 2] - bb)) > T) continue;
+    if (ov[i] !== val) { idx.push(i); old.push(ov[i]); ov[i] = val; }
+  }
+  if (!idx.length) return;
+  pushUndo(it, idx, old);
+  const r = +it.set.edge + 1;
+  paint(it, x0 - r, y0 - r, x1 + r, y1 + r);
+  thumbSoon(it);
+}
+document.querySelectorAll('#lassoSeg button').forEach(b => b.onclick = () => {
+  S.lassoMode = b.dataset.m;
+  document.querySelectorAll('#lassoSeg button').forEach(x => x.classList.toggle('on', x === b));
+  setTool('lasso');
+});
+
 /* ---------------- view: zoom / pan ---------------- */
 function applyView() {
   const v = S.view;
@@ -659,6 +712,10 @@ stage.addEventListener('pointerdown', e => {
     if (inside) wand(it, x, y, (S.tool === 'wandKeep') !== e.shiftKey ? 2 : 1);
   } else if (S.tool === 'pick') {
     if (inside) { const q = (y * it.w + x) * 4, d = it.src.data; it.set.bg = [d[q], d[q + 1], d[q + 2]]; settingsChanged(); }
+  } else if (S.tool === 'lasso') {
+    lasso = { pts: [[p.x, p.y]], mode: e.shiftKey ? 'keep' : (e.ctrlKey || e.metaKey || e.altKey) ? 'all' : S.lassoMode };
+    stage.setPointerCapture(e.pointerId);
+    drawLasso();
   } else if (S.tool === 'erase' || S.tool === 'keep') {
     stroke = { mark: new Uint8Array(it.w * it.h), idx: [], old: [], val: (S.tool === 'erase') !== e.shiftKey ? 1 : 2, lx: p.x, ly: p.y };
     stage.setPointerCapture(e.pointerId);
@@ -672,6 +729,10 @@ stage.addEventListener('pointermove', e => {
   }
   updateCursor();
   if (stroke) strokeTo(curItem(), lastMouse.x, lastMouse.y);
+  if (lasso) {
+    const [lx, ly] = lasso.pts[lasso.pts.length - 1];
+    if (Math.hypot(lastMouse.x - lx, lastMouse.y - ly) * S.view.s >= 2) { lasso.pts.push([lastMouse.x, lastMouse.y]); drawLasso(); }
+  }
 });
 const endPointer = () => {
   if (pan) { pan = null; setTool(S.tool); if (S.space) stage.style.cursor = 'grab'; }
@@ -679,6 +740,10 @@ const endPointer = () => {
     const it = curItem();
     if (stroke.idx.length) { pushUndo(it, stroke.idx, stroke.old); thumbSoon(it); }
     stroke = null;
+  }
+  if (lasso) {
+    const l = lasso; lasso = null; drawLasso();
+    if (l.pts.length >= 3) applyLasso(curItem(), l.pts, l.mode);
   }
 };
 stage.addEventListener('pointerup', endPointer);
@@ -702,7 +767,7 @@ document.querySelectorAll('#previewSeg button').forEach(b => b.onclick = () => {
 });
 
 /* ---------------- keyboard ---------------- */
-const keyTools = { w: 'wand', q: 'wandKeep', e: 'erase', b: 'keep', i: 'pick', h: 'hand' };
+const keyTools = { w: 'wand', q: 'wandKeep', e: 'erase', b: 'keep', i: 'pick', h: 'hand', l: 'lasso' };
 window.addEventListener('keydown', e => {
   if (e.target.tagName === 'INPUT' && e.target.type !== 'range' && e.target.type !== 'checkbox') return;
   const k = e.key.toLowerCase();
