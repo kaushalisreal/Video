@@ -18,6 +18,7 @@ The tool is made for cartoon or illustration images with outlines on a plain bac
 1. Click **Add images…** or drag in many images at once. They are all processed automatically.
 2. **Smart gaps** removes the white seen between bed bars automatically (blue stripes). **Pink stripes** mark enclosed white areas that were kept, such as the face. Click any that are really background with **Wand remove (W)**; Shift+click a blue area to bring it back.
 3. For leftover white bits, for example between hair strands, use **Lasso select (L)**: draw around the area and only the white pixels inside are removed, so the hair stays. Lasso can also *Remove all* (Ctrl+drag) or *Restore* (Shift+drag).
+   **Lasso wand restore (M)** works like clicking **Wand restore** on many areas at once. Draw a loop around several areas that were removed by mistake, and each one comes back whole. An area counts if at least half of it is inside the loop. Shift+drag does the opposite: it removes every white area inside the loop.
 4. Fix details with **Erase brush (E)** or **Restore brush (B)**. **Wand restore (Q)**, or Shift+click, brings back a removed area.
 5. Click **Download all (ZIP)** or **Save all to folder…**.
 
