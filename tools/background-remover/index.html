@@ -35,7 +35,8 @@ main{display:grid;grid-template-columns:190px 1fr 270px;height:calc(100% - 48px)
 #stage{position:relative;overflow:hidden;background:#15171a;touch-action:none}
 #board{position:absolute;left:0;top:0;transform-origin:0 0}
 #board canvas{position:absolute;left:0;top:0;display:block}
-#board.checker{background-color:#fff;background-image:conic-gradient(#cfcfcf 25%,#fff 0 50%,#cfcfcf 0 75%,#fff 0);background-size:16px 16px}
+#board.checker{background-color:#3b4048;background-image:conic-gradient(#2a2e34 25%,#3b4048 0 50%,#2a2e34 0 75%,#3b4048 0)}
+#board.light{background-color:#fff;background-image:conic-gradient(#bdbdbd 25%,#fff 0 50%,#bdbdbd 0 75%,#fff 0)}
 #board.white{background:#fff}#board.black{background:#000}#board.green{background:#00b140}
 #board.pix canvas{image-rendering:pixelated}
 #overlay{pointer-events:none}
@@ -80,7 +81,7 @@ main{display:grid;grid-template-columns:190px 1fr 270px;height:calc(100% - 48px)
 <main>
   <aside id="list"></aside>
   <section id="stage">
-    <div id="board" class="checker"><canvas id="view"></canvas><canvas id="overlay"></canvas></div>
+    <div id="board" class="checker" style="background-size:16px 16px"><canvas id="view"></canvas><canvas id="overlay"></canvas></div>
     <div id="cursor"></div>
     <div id="drop"><b>Drop images here, or click “Add images…”</b><span>JPG / PNG / WEBP. You can add many at once. Everything runs on your PC, and nothing is uploaded.</span></div>
   </section>
@@ -110,7 +111,7 @@ main{display:grid;grid-template-columns:190px 1fr 270px;height:calc(100% - 48px)
     <div class="btns"><button id="applyAll" title="Copy tolerance, edge, smart gaps and enclosed-area settings to every image">Apply settings to all</button><button id="resetEdits">Reset my edits</button></div>
 
     <h2>View</h2>
-    <div class="seg" id="previewSeg"><button data-p="checker" class="on">▦</button><button data-p="white">White</button><button data-p="black">Black</button><button data-p="green">Green</button></div>
+    <div class="seg" id="previewSeg"><button data-p="checker" class="on" title="Dark checkerboard">▦ Dark</button><button data-p="light" title="Light checkerboard">▦ Light</button><button data-p="white">White</button><button data-p="black">Black</button><button data-p="green">Green</button></div>
     <div class="row"><button id="origBtn" style="flex:1" title="Hold O">Hold to see original</button><button id="fitBtn">Fit</button><button id="oneBtn">100%</button><span id="zoomLbl"></span></div>
 
     <h2>Export</h2>
@@ -606,6 +607,9 @@ function applyView() {
   const v = S.view;
   board.style.transform = `translate(${v.tx}px,${v.ty}px) scale(${v.s})`;
   board.classList.toggle('pix', v.s >= 2);
+  // keep the checkerboard squares a fixed size on screen, whatever the zoom
+  const cs = 16 / v.s;
+  board.style.backgroundSize = `${cs}px ${cs}px`;
   $('#zoomLbl').textContent = Math.round(v.s * 100) + '%';
 }
 function fit() {
