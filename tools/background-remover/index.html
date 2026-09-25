@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cutout Background Remover</title>
+<style>
+:root{
+  --bg:#1b1d21; --panel:#23262b; --panel2:#2b2f35; --line:#363b42; --text:#e6e8eb; --muted:#9aa1ab;
+  --accent:#4f8cff; --accent2:#2f6fe8; --danger:#ff5d6c; --ok:#3ecf8e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:13px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+button,select,input{font:inherit;color:inherit}
+select{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:5px 6px}
+button{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+button:hover{border-color:#4a515a}
+button.primary{background:var(--accent2);border-color:var(--accent)}
+button.primary:hover{background:var(--accent)}
+button:disabled{opacity:.45;cursor:default}
+header{height:48px;display:flex;align-items:center;gap:8px;padding:0 12px;border-bottom:1px solid var(--line);background:var(--panel)}
+header h1{font-size:14px;margin:0 12px 0 0;font-weight:600;white-space:nowrap}
+header .grow{flex:1}
+#progress{color:var(--muted);white-space:nowrap}
+main{display:grid;grid-template-columns:190px 1fr 270px;height:calc(100% - 48px)}
+#list{border-right:1px solid var(--line);overflow:auto;padding:8px;background:var(--panel)}
+.item{display:flex;gap:8px;align-items:center;padding:6px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.item:hover{background:var(--panel2)}
+.item.active{border-color:var(--accent);background:#263041}
+.item .th{width:48px;height:48px;flex:none;border-radius:4px;background:#fff;background-image:conic-gradient(#ccc 25%,#fff 0 50%,#ccc 0 75%,#fff 0);background-size:10px 10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.item .th img{max-width:100%;max-height:100%}
+.item .nm{font-size:12px;word-break:break-all;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.item .st{font-size:11px;color:var(--muted)}
+.item .st.done{color:var(--ok)}
+#stage{position:relative;overflow:hidden;background:#15171a;touch-action:none}
+#board{position:absolute;left:0;top:0;transform-origin:0 0}
+#board canvas{position:absolute;left:0;top:0;display:block}
+#board.checker{background-color:#fff;background-image:conic-gradient(#cfcfcf 25%,#fff 0 50%,#cfcfcf 0 75%,#fff 0);background-size:16px 16px}
+#board.white{background:#fff}#board.black{background:#000}#board.green{background:#00b140}
+#board.pix canvas{image-rendering:pixelated}
+#overlay{pointer-events:none}
+#cursor{position:absolute;border:1px solid #fff;outline:1px solid #000;border-radius:50%;pointer-events:none;display:none;transform:translate(-50%,-50%)}
+#drop{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;color:var(--muted);text-align:center;padding:20px}
+#drop b{color:var(--text);font-size:16px}
+#stage.dragging::after{content:"Drop images to add them";position:absolute;inset:10px;border:2px dashed var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;background:#4f8cff22}
+#panel{border-left:1px solid var(--line);overflow:auto;background:var(--panel);padding:10px 12px}
+#panel h2{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:14px 0 8px;font-weight:600}
+#panel h2:first-child{margin-top:2px}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.tools button{text-align:left;font-size:12px;padding:6px 8px}
+.tools button.on{background:#263041;border-color:var(--accent)}
+.tools kbd{float:right;color:var(--muted)}
+.row{display:flex;align-items:center;gap:8px;margin:8px 0}
+.row label{flex:1}
+.row input[type=range]{flex:1.4;min-width:0}
+.row output{width:40px;text-align:right;color:var(--muted)}
+.swatch{width:26px;height:22px;border-radius:4px;border:1px solid var(--line)}
+.hint{color:var(--muted);font-size:12px;margin:6px 0}
+.hint .pink{color:#ff5fd2;font-weight:600}
+.btns{display:flex;flex-wrap:wrap;gap:6px}
+.btns button{flex:1;white-space:nowrap}
+.seg{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{border:0;border-radius:0;flex:1;padding:5px 0}
+.seg button.on{background:#263041;color:#fff}
+#zoomLbl{color:var(--muted);min-width:44px;text-align:right}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#000c;padding:8px 14px;border-radius:8px;display:none;z-index:9}
+@media (max-width:820px){main{grid-template-columns:1fr;grid-template-rows:90px 1fr auto}#list{display:flex;gap:6px;border-right:0;border-bottom:1px solid var(--line)}.item .nm,.item .st{display:none}#panel{max-height:40vh;border-left:0;border-top:1px solid var(--line)}header h1{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>✂ Cutout</h1>
+  <button class="primary" id="addBtn">Add images…</button>
+  <input type="file" id="fileIn" accept="image/*" multiple hidden>
+  <span class="grow"></span>
+  <span id="progress"></span>
+  <button id="zipBtn" disabled>Download all (ZIP)</button>
+  <button id="folderBtn" disabled>Save all to folder…</button>
+</header>
+<main>
+  <aside id="list"></aside>
+  <section id="stage">
+    <div id="board" class="checker"><canvas id="view"></canvas><canvas id="overlay"></canvas></div>
+    <div id="cursor"></div>
+    <div id="drop"><b>Drop images here, or click “Add images…”</b><span>JPG / PNG / WEBP. You can add many at once. Everything runs on your PC, and nothing is uploaded.</span></div>
+  </section>
+  <aside id="panel">
+    <h2>Tools</h2>
+    <div class="tools" id="tools">
+      <button data-tool="wand" title="Click an area to make it transparent (for example, the gaps between bed bars)">🪄 Wand remove<kbd>W</kbd></button>
+      <button data-tool="wandKeep" title="Click an area to bring it back (for example, a face that was removed by mistake)">🪄 Wand restore<kbd>Q</kbd></button>
+      <button data-tool="erase" title="Paint to erase">🧽 Erase brush<kbd>E</kbd></button>
+      <button data-tool="keep" title="Paint to restore original pixels">🖌 Restore brush<kbd>B</kbd></button>
+      <button data-tool="pick" title="Click the background to set its color">💧 Pick bg color<kbd>I</kbd></button>
+      <button data-tool="hand" title="Drag to move the image. You can also hold Space.">✋ Pan<kbd>H</kbd></button>
+    </div>
+    <div class="row"><label>Brush size</label><input type="range" id="brush" min="2" max="300" value="40"><output id="brushOut">40</output></div>
+    <div class="btns"><button id="undoBtn" title="Ctrl+Z">↶ Undo</button><button id="redoBtn" title="Ctrl+Y">↷ Redo</button></div>
+
+    <h2>Auto removal (this image)</h2>
+    <div class="row"><label title="How different a pixel can be from the background color and still be removed">Tolerance</label><input type="range" id="tol" min="1" max="150" value="32"><output id="tolOut">32</output></div>
+    <div class="row"><label>Background color</label><span class="swatch" id="bgSwatch"></span><button id="bgAuto" title="Detect the background color from the image border">Auto</button></div>
+    <div class="row"><label title="Anti-aliased outline pixels are un-mixed from the background, so no white halo is left">Edge smoothing</label>
+      <select id="edge"><option value="0">Hard</option><option value="1" selected>Smooth 1px</option><option value="2">Smooth 2px</option><option value="3">Smooth 3px</option></select></div>
+    <div class="row"><label><input type="checkbox" id="holes"> Auto-remove small enclosed areas</label></div>
+    <div class="row"><label title="Enclosed areas smaller than this share of the image are removed automatically. Careful: eye whites are small too.">&nbsp;&nbsp;&nbsp;&nbsp;Max size</label><input type="range" id="holeMax" min="1" max="100" value="10"><output id="holeOut">1%</output></div>
+    <div class="row"><label><input type="checkbox" id="hilite" checked> Highlight enclosed bg-colored areas</label></div>
+    <p class="hint"><span class="pink">Pink stripes</span> mark background-colored areas that are fully enclosed by the drawing and are <b>kept</b>, like a white face or the gaps between bed bars. Click the gaps with the <b>Wand remove</b> tool. Pink only shows in this editor. It is never exported.</p>
+    <div class="btns"><button id="applyAll" title="Copy tolerance, edge and enclosed-area settings to every image">Apply settings to all</button><button id="resetEdits">Reset my edits</button></div>
+
+    <h2>View</h2>
+    <div class="seg" id="previewSeg"><button data-p="checker" class="on">▦</button><button data-p="white">White</button><button data-p="black">Black</button><button data-p="green">Green</button></div>
+    <div class="row"><button id="origBtn" style="flex:1" title="Hold O">Hold to see original</button><button id="fitBtn">Fit</button><button id="oneBtn">100%</button><span id="zoomLbl"></span></div>
+
+    <h2>Export</h2>
+    <div class="btns"><button class="primary" id="dlBtn" disabled>Download this PNG</button></div>
+    <p class="hint">Output is a PNG at the exact original size. Kept pixels have the exact original colors.</p>
+
+    <h2>Shortcuts</h2>
+    <p class="hint">Wheel = zoom · Space-drag or middle mouse = pan · Shift+click with the wand = restore · [ ] = brush size · ← → = previous/next image · Ctrl+Z / Ctrl+Y = undo/redo · O = hold to see the original</p>
+  </aside>
+</main>
+<div id="toast"></div>
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+const stage = $('#stage'), board = $('#board'), view = $('#view'), overlay = $('#overlay'), cursorEl = $('#cursor');
+const vctx = view.getContext('2d'), octx = overlay.getContext('2d');
+
+const S = {
+  items: [], cur: -1, tool: 'wand', brush: 40, preview: 'checker', hilite: true, showOrig: false,
+  view: { s: 1, tx: 0, ty: 0 }, space: false, busy: false,
+  defaults: { tol: 32, edge: 1, holes: false, holeMax: 1, bg: null },
+};
+let nextId = 1;
+
+/* ---------------- image loading ---------------- */
+async function decode(file) {
+  let bmp;
+  try { bmp = await createImageBitmap(file, { premultiplyAlpha: 'none' }); }
+  catch (e) { bmp = await createImageBitmap(file); }
+  const c = document.createElement('canvas');
+  c.width = bmp.width; c.height = bmp.height;
+  const x = c.getContext('2d', { willReadFrequently: true });
+  x.drawImage(bmp, 0, 0);
+  if (bmp.close) bmp.close();
+  return x.getImageData(0, 0, c.width, c.height);
+}
+
+async function ensureLoaded(it) {
+  if (!it.src) {
+    it.src = await decode(it.file);
+    it.w = it.src.width; it.h = it.src.height;
+    it.out = new ImageData(it.w, it.h);
+    if (!it.ov) it.ov = new Uint8Array(it.w * it.h);
+    if (!it.bgAuto) detectBg(it);
+  }
+  if (!it.auto || it.autoStale) { computeAuto(it); it.autoStale = false; }
+}
+
+function release(it) { it.src = null; it.out = null; }
+
+/* ---------------- background detection ---------------- */
+function detectBg(it) {
+  const { w, h } = it, d = it.src.data, bins = new Map();
+  const add = (x, y) => {
+    const p = (y * w + x) * 4;
+    if (d[p + 3] < 16) return;
+    const k = (d[p] >> 4) << 8 | (d[p + 1] >> 4) << 4 | (d[p + 2] >> 4);
+    let b = bins.get(k); if (!b) bins.set(k, b = [0, 0, 0, 0]);
+    b[0]++; b[1] += d[p]; b[2] += d[p + 1]; b[3] += d[p + 2];
+  };
+  for (let x = 0; x < w; x++) { add(x, 0); add(x, h - 1); }
+  for (let y = 0; y < h; y++) { add(0, y); add(w - 1, y); }
+  let best = null;
+  for (const b of bins.values()) if (!best || b[0] > best[0]) best = b;
+  it.bgAuto = best ? [best[1] / best[0], best[2] / best[0], best[3] / best[0]].map(Math.round) : [255, 255, 255];
+}
+const bgOf = it => it.set.bg || it.bgAuto || [255, 255, 255];
+
+/* ---------------- auto mask ----------------
+   auto[i]: 0 = foreground, 1 = background connected to the image border (removed),
+            2 = enclosed background-colored area (kept), 3 = enclosed area auto-removed */
+function computeAuto(it) {
+  const { w, h } = it, n = w * h, d = it.src.data, T = it.set.tol;
+  const [br, bgc, bb] = bgOf(it);
+  const near = new Uint8Array(n);
+  for (let i = 0, p = 0; i < n; i++, p += 4) {
+    if (d[p + 3] < 16 || Math.max(Math.abs(d[p] - br), Math.abs(d[p + 1] - bgc), Math.abs(d[p + 2] - bb)) <= T) near[i] = 1;
+  }
+  const a = new Uint8Array(n), q = new Int32Array(n);
+  let head = 0, tail = 0;
+  const push = (i, v) => { if (near[i] && !a[i]) { a[i] = v; q[tail++] = i; } };
+  for (let x = 0; x < w; x++) { push(x, 1); push((h - 1) * w + x, 1); }
+  for (let y = 0; y < h; y++) { push(y * w, 1); push(y * w + w - 1, 1); }
+  while (head < tail) {
+    const i = q[head++], x = i % w;
+    if (x > 0) push(i - 1, 1);
+    if (x < w - 1) push(i + 1, 1);
+    if (i >= w) push(i - w, 1);
+    if (i < n - w) push(i + w, 1);
+  }
+  const lim = it.set.holes ? it.set.holeMax / 100 * n : -1;
+  for (let s = 0; s < n; s++) {
+    if (!near[s] || a[s]) continue;
+    head = tail = 0; a[s] = 2; q[tail++] = s;
+    while (head < tail) {
+      const i = q[head++], x = i % w;
+      if (x > 0) push(i - 1, 2);
+      if (x < w - 1) push(i + 1, 2);
+      if (i >= w) push(i - w, 2);
+      if (i < n - w) push(i + w, 2);
+    }
+    // tiny specks (JPEG noise inside the drawing) are just foreground
+    const v = tail < 16 ? 0 : tail <= lim ? 3 : 2;
+    if (v !== 2) for (let k = 0; k < tail; k++) a[q[k]] = v;
+  }
+  it.auto = a;
+}
+
+/* ---------------- compositing ----------------
+   ov[i] (manual edits): 0 = follow auto, 1 = force remove, 2 = force keep */
+function compose(it, x0 = 0, y0 = 0, x1 = it.w, y1 = it.h) {
+  const { w, h, auto, ov } = it, src = it.src.data, out = it.out.data;
+  const r = +it.set.edge;
+  const B = bgOf(it);
+  const rem = i => { const o = ov[i]; return o === 1 || (o === 0 && (auto[i] === 1 || auto[i] === 3)); };
+  // distance (in px, chessboard) from each kept pixel to the nearest removed pixel, up to r
+  const bx0 = Math.max(0, x0 - r), by0 = Math.max(0, y0 - r), bx1 = Math.min(w, x1 + r), by1 = Math.min(h, y1 + r);
+  const bw = bx1 - bx0, bh = by1 - by0;
+  let dist = null;
+  if (r > 0) {
+    dist = new Uint8Array(bw * bh);
+    for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) dist[y * bw + x] = rem((by0 + y) * w + bx0 + x) ? 0 : 255;
+    for (let k = 1; k <= r; k++) {
+      for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) {
+        const j = y * bw + x;
+        if (dist[j] !== 255) continue;
+        let hit = false;
+        for (let dy = -1; dy <= 1 && !hit; dy++) {
+          const yy = y + dy; if (yy < 0 || yy >= bh) continue;
+          for (let dx = -1; dx <= 1; dx++) {
+            const xx = x + dx; if (xx < 0 || xx >= bw) continue;
+            if (dist[yy * bw + xx] === k - 1) { hit = true; break; }
+          }
+        }
+        if (hit) dist[j] = k;
+      }
+    }
+  }
+  for (let y = y0; y < y1; y++) {
+    for (let x = x0; x < x1; x++) {
+      const i = y * w + x, p = i * 4;
+      out[p] = src[p]; out[p + 1] = src[p + 1]; out[p + 2] = src[p + 2];
+      if (rem(i)) { out[p + 3] = 0; continue; }
+      out[p + 3] = src[p + 3];
+      if (dist && ov[i] !== 2) {
+        const dd = dist[(y - by0) * bw + (x - bx0)];
+        if (dd > 0 && dd <= r) {
+          // "color to alpha": un-mix the anti-aliased edge pixel from the background color
+          let al = 0;
+          for (let c = 0; c < 3; c++) {
+            const v = src[p + c], b = B[c];
+            const t = v < b ? (b - v) / b : v > b ? (v - b) / (255 - b || 1) : 0;
+            if (t > al) al = t;
+          }
+          if (al < 0.004) { out[p + 3] = 0; continue; }
+          if (al < 1) {
+            for (let c = 0; c < 3; c++) {
+              const v = (src[p + c] - (1 - al) * B[c]) / al;
+              out[p + c] = v < 0 ? 0 : v > 255 ? 255 : Math.round(v);
+            }
+            out[p + 3] = Math.round(al * src[p + 3]);
+          }
+        }
+      }
+    }
+  }
+}
+
+function drawOverlay(it, x0 = 0, y0 = 0, x1 = it.w, y1 = it.h) {
+  if (!S.hilite) return;
+  const bw = x1 - x0, bh = y1 - y0;
+  if (bw <= 0 || bh <= 0) return;
+  const img = octx.createImageData(bw, bh), d = img.data, { w, auto, ov } = it;
+  for (let y = 0; y < bh; y++) for (let x = 0; x < bw; x++) {
+    const i = (y0 + y) * w + x0 + x;
+    // diagonal hatch, so the kept area stays readable underneath
+    if (auto[i] === 2 && ov[i] === 0 && ((x0 + x + y0 + y) & 7) < 3) { const p = (y * bw + x) * 4; d[p] = 255; d[p + 1] = 30; d[p + 2] = 190; d[p + 3] = 190; }
+  }
+  octx.putImageData(img, x0, y0);
+}
+
+function paint(it, x0 = 0, y0 = 0, x1 = it.w, y1 = it.h) {
+  x0 = Math.max(0, x0 | 0); y0 = Math.max(0, y0 | 0); x1 = Math.min(it.w, Math.ceil(x1)); y1 = Math.min(it.h, Math.ceil(y1));
+  if (x1 <= x0 || y1 <= y0) return;
+  compose(it, x0, y0, x1, y1);
+  if (it === curItem()) {
+    if (!S.showOrig) vctx.putImageData(it.out, 0, 0, x0, y0, x1 - x0, y1 - y0);
+    drawOverlay(it, x0, y0, x1, y1);
+  }
+}
+
+/* ---------------- items & list ---------------- */
+const curItem = () => S.items[S.cur];
+
+function addFiles(files) {
+  const imgs = [...files].filter(f => f.type.startsWith('image/') || /\.(jpe?g|png|webp|bmp|gif|avif)$/i.test(f.name));
+  if (!imgs.length) return;
+  for (const f of imgs) {
+    S.items.push({ id: nextId++, file: f, name: f.name, set: { ...S.defaults }, undo: [], redo: [], state: 'queued' });
+  }
+  $('#drop').style.display = 'none';
+  renderList();
+  if (S.cur < 0) select(0);
+  processQueue();
+}
+
+function renderList() {
+  const L = $('#list');
+  L.innerHTML = '';
+  S.items.forEach((it, idx) => {
+    const el = document.createElement('div');
+    el.className = 'item' + (idx === S.cur ? ' active' : '');
+    el.innerHTML = `<div class="th">${it.thumb ? `<img src="${it.thumb}">` : ''}</div><div><div class="nm"></div><div class="st ${it.state}">${it.state === 'done' ? 'Ready' : it.state === 'working' ? 'Working…' : 'Queued'}</div></div>`;
+    el.querySelector('.nm').textContent = it.name;
+    el.onclick = () => select(idx);
+    L.appendChild(el);
+  });
+  const done = S.items.filter(i => i.state === 'done').length;
+  $('#progress').textContent = S.items.length ? `${done} / ${S.items.length} ready` : '';
+  $('#zipBtn').disabled = $('#folderBtn').disabled = !S.items.length;
+}
+
+function makeThumb(it) {
+  const c = document.createElement('canvas');
+  c.width = it.w; c.height = it.h;
+  c.getContext('2d').putImageData(it.out, 0, 0);
+  const k = Math.min(1, 96 / Math.max(it.w, it.h));
+  const t = document.createElement('canvas');
+  t.width = Math.max(1, Math.round(it.w * k)); t.height = Math.max(1, Math.round(it.h * k));
+  const tx = t.getContext('2d');
+  tx.imageSmoothingQuality = 'high';
+  tx.drawImage(c, 0, 0, t.width, t.height);
+  it.thumb = t.toDataURL('image/png');
+}
+
+let queueRunning = false;
+async function processQueue() {
+  if (queueRunning) return;
+  queueRunning = true;
+  for (;;) {
+    const it = S.items.find(i => i.state === 'queued');
+    if (!it) break;
+    it.state = 'working'; renderList();
+    await new Promise(r => setTimeout(r, 0));
+    try {
+      await ensureLoaded(it);
+      compose(it);
+      makeThumb(it);
+      it.state = 'done';
+    } catch (e) { console.error(e); it.state = 'done'; toast('Could not read ' + it.name); }
+    if (it !== curItem()) release(it);
+    renderList();
+  }
+  queueRunning = false;
+}
+
+async function select(idx) {
+  if (idx < 0 || idx >= S.items.length) return;
+  const prev = curItem();
+  S.cur = idx;
+  if (prev && prev !== curItem() && prev.state === 'done') release(prev);
+  const it = curItem();
+  renderList();
+  await ensureLoaded(it);
+  if (it !== curItem()) return;
+  compose(it);
+  view.width = overlay.width = it.w; view.height = overlay.height = it.h;
+  board.style.width = it.w + 'px'; board.style.height = it.h + 'px';
+  vctx.putImageData(S.showOrig ? it.src : it.out, 0, 0);
+  octx.clearRect(0, 0, it.w, it.h);
+  drawOverlay(it);
+  syncPanel();
+  fit();
+  $('#dlBtn').disabled = false;
+}
+
+/* ---------------- settings panel ---------------- */
+function syncPanel() {
+  const it = curItem(); if (!it) return;
+  $('#tol').value = it.set.tol; $('#tolOut').textContent = it.set.tol;
+  $('#edge').value = it.set.edge;
+  $('#holes').checked = it.set.holes;
+  $('#holeMax').value = Math.round(it.set.holeMax * 10); $('#holeOut').textContent = it.set.holeMax + '%';
+  const b = bgOf(it);
+  $('#bgSwatch').style.background = `rgb(${b})`;
+  $('#bgSwatch').title = `rgb(${b.join(', ')})` + (it.set.bg ? ' (picked)' : ' (auto)');
+}
+
+let recalcTimer = 0;
+function settingsChanged(needAuto = true) {
+  const it = curItem(); if (!it) return;
+  Object.assign(S.defaults, { tol: it.set.tol, edge: it.set.edge, holes: it.set.holes, holeMax: it.set.holeMax });
+  syncPanel();
+  clearTimeout(recalcTimer);
+  recalcTimer = setTimeout(() => {
+    if (!it.src) return;
+    if (needAuto) computeAuto(it);
+    octx.clearRect(0, 0, it.w, it.h);
+    paint(it);
+    makeThumb(it); renderList();
+  }, 60);
+}
+
+$('#tol').oninput = e => { const it = curItem(); if (!it) return; it.set.tol = +e.target.value; settingsChanged(); };
+$('#edge').onchange = e => { const it = curItem(); if (!it) return; it.set.edge = +e.target.value; settingsChanged(false); };
+$('#holes').onchange = e => { const it = curItem(); if (!it) return; it.set.holes = e.target.checked; settingsChanged(); };
+$('#holeMax').oninput = e => { const it = curItem(); if (!it) return; it.set.holeMax = +e.target.value / 10; settingsChanged(); };
+$('#bgAuto').onclick = () => { const it = curItem(); if (!it) return; it.set.bg = null; settingsChanged(); };
+$('#hilite').onchange = e => { S.hilite = e.target.checked; overlay.style.display = S.hilite ? '' : 'none'; const it = curItem(); if (it && it.src) { octx.clearRect(0, 0, it.w, it.h); drawOverlay(it); } };
+$('#applyAll').onclick = () => {
+  const it = curItem(); if (!it) return;
+  for (const o of S.items) if (o !== it) {
+    o.set.tol = it.set.tol; o.set.edge = it.set.edge; o.set.holes = it.set.holes; o.set.holeMax = it.set.holeMax;
+    o.autoStale = true; o.state = 'queued';
+  }
+  renderList(); processQueue(); toast('Settings applied to all images');
+};
+$('#resetEdits').onclick = () => {
+  const it = curItem(); if (!it || !it.src) return;
+  const idx = [], old = [];
+  for (let i = 0; i < it.ov.length; i++) if (it.ov[i]) { idx.push(i); old.push(it.ov[i]); it.ov[i] = 0; }
+  if (idx.length) pushUndo(it, idx, old);
+  octx.clearRect(0, 0, it.w, it.h); paint(it); makeThumb(it); renderList();
+};
+
+/* ---------------- tools ---------------- */
+function setTool(t) {
+  S.tool = t;
+  document.querySelectorAll('#tools button').forEach(b => b.classList.toggle('on', b.dataset.tool === t));
+  stage.style.cursor = t === 'hand' ? 'grab' : (t === 'erase' || t === 'keep') ? 'none' : 'crosshair';
+  cursorEl.style.display = 'none';
+}
+document.querySelectorAll('#tools button').forEach(b => b.onclick = () => setTool(b.dataset.tool));
+setTool('wand');
+$('#brush').oninput = e => { S.brush = +e.target.value; $('#brushOut').textContent = S.brush; };
+
+function pushUndo(it, idx, old) {
+  it.undo.push({ idx: Int32Array.from(idx), old: Uint8Array.from(old) });
+  if (it.undo.length > 30) it.undo.shift();
+  it.redo.length = 0;
+}
+function undoRedo(fromStack, toStack) {
+  const it = curItem(); if (!it || !it.src) return;
+  const e = it[fromStack].pop(); if (!e) return;
+  let x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1;
+  for (let k = 0; k < e.idx.length; k++) {
+    const i = e.idx[k], cur = it.ov[i];
+    it.ov[i] = e.old[k]; e.old[k] = cur;
+    const x = i % it.w, y = (i / it.w) | 0;
+    if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+  }
+  it[toStack].push(e);
+  const r = +it.set.edge + 1;
+  paint(it, x0 - r, y0 - r, x1 + 1 + r, y1 + 1 + r);
+  thumbSoon(it);
+}
+$('#undoBtn').onclick = () => undoRedo('undo', 'redo');
+$('#redoBtn').onclick = () => undoRedo('redo', 'undo');
+
+let thumbTimer = 0;
+function thumbSoon(it) { clearTimeout(thumbTimer); thumbTimer = setTimeout(() => { if (it.out) { makeThumb(it); renderList(); } }, 400); }
+
+// Magic wand: contiguous region of pixels similar to the clicked one (on the ORIGINAL image)
+function wand(it, x, y, val) {
+  const { w, h } = it, n = w * h, d = it.src.data, T = it.set.tol;
+  const s = y * w + x, sp = s * 4, r0 = d[sp], g0 = d[sp + 1], b0 = d[sp + 2];
+  const seen = new Uint8Array(n), q = new Int32Array(n);
+  let head = 0, tail = 0;
+  const push = i => {
+    if (seen[i]) return; seen[i] = 1;
+    const p = i * 4;
+    if (Math.max(Math.abs(d[p] - r0), Math.abs(d[p + 1] - g0), Math.abs(d[p + 2] - b0)) <= T) q[tail++] = i;
+  };
+  push(s);
+  while (head < tail) {
+    const i = q[head++], xx = i % w;
+    if (xx > 0) push(i - 1);
+    if (xx < w - 1) push(i + 1);
+    if (i >= w) push(i - w);
+    if (i < n - w) push(i + w);
+  }
+  const idx = [], old = [];
+  let x0 = w, y0 = h, x1 = 0, y1 = 0;
+  for (let k = 0; k < tail; k++) {
+    const i = q[k];
+    if (it.ov[i] !== val) { idx.push(i); old.push(it.ov[i]); it.ov[i] = val; }
+    const px = i % w, py = (i / w) | 0;
+    if (px < x0) x0 = px; if (px > x1) x1 = px; if (py < y0) y0 = py; if (py > y1) y1 = py;
+  }
+  if (!idx.length) return;
+  pushUndo(it, idx, old);
+  const r = +it.set.edge + 1;
+  paint(it, x0 - r, y0 - r, x1 + 1 + r, y1 + 1 + r);
+  thumbSoon(it);
+}
+
+// Brush strokes
+let stroke = null;
+function stamp(it, cx, cy, val) {
+  const rad = S.brush / 2, { w, h, ov } = it;
+  const x0 = Math.max(0, Math.floor(cx - rad)), x1 = Math.min(w - 1, Math.ceil(cx + rad));
+  const y0 = Math.max(0, Math.floor(cy - rad)), y1 = Math.min(h - 1, Math.ceil(cy + rad));
+  const r2 = rad * rad;
+  for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
+    const dx = x + .5 - cx, dy = y + .5 - cy;
+    if (dx * dx + dy * dy > r2) continue;
+    const i = y * w + x;
+    if (ov[i] === val) continue;
+    if (!stroke.mark[i]) { stroke.mark[i] = 1; stroke.idx.push(i); stroke.old.push(ov[i]); }
+    ov[i] = val;
+  }
+  return [x0, y0, x1 + 1, y1 + 1];
+}
+function strokeTo(it, x, y) {
+  const { lx, ly, val } = stroke;
+  const dist = Math.hypot(x - lx, y - ly), step = Math.max(1, S.brush / 4);
+  const nSteps = Math.max(1, Math.ceil(dist / step));
+  let bx0 = 1e9, by0 = 1e9, bx1 = -1, by1 = -1;
+  for (let k = 1; k <= nSteps; k++) {
+    const t = k / nSteps, b = stamp(it, lx + (x - lx) * t, ly + (y - ly) * t, val);
+    bx0 = Math.min(bx0, b[0]); by0 = Math.min(by0, b[1]); bx1 = Math.max(bx1, b[2]); by1 = Math.max(by1, b[3]);
+  }
+  stroke.lx = x; stroke.ly = y;
+  const r = +it.set.edge + 1;
+  paint(it, bx0 - r, by0 - r, bx1 + r, by1 + r);
+}
+
+/* ---------------- view: zoom / pan ---------------- */
+function applyView() {
+  const v = S.view;
+  board.style.transform = `translate(${v.tx}px,${v.ty}px) scale(${v.s})`;
+  board.classList.toggle('pix', v.s >= 2);
+  $('#zoomLbl').textContent = Math.round(v.s * 100) + '%';
+}
+function fit() {
+  const it = curItem(); if (!it || !it.w) return;
+  const r = stage.getBoundingClientRect();
+  const s = Math.min((r.width - 40) / it.w, (r.height - 40) / it.h, 4);
+  S.view = { s, tx: (r.width - it.w * s) / 2, ty: (r.height - it.h * s) / 2 };
+  applyView();
+}
+function zoomAt(mx, my, ns) {
+  const v = S.view; ns = Math.min(40, Math.max(0.02, ns));
+  v.tx = mx - (mx - v.tx) * ns / v.s; v.ty = my - (my - v.ty) * ns / v.s; v.s = ns;
+  applyView(); updateCursor();
+}
+$('#fitBtn').onclick = fit;
+$('#oneBtn').onclick = () => { const r = stage.getBoundingClientRect(); zoomAt(r.width / 2, r.height / 2, 1); };
+stage.addEventListener('wheel', e => {
+  e.preventDefault();
+  const r = stage.getBoundingClientRect();
+  zoomAt(e.clientX - r.left, e.clientY - r.top, S.view.s * Math.pow(1.0015, -e.deltaY));
+}, { passive: false });
+window.addEventListener('resize', () => curItem() && fit());
+
+function toImg(e) {
+  const r = stage.getBoundingClientRect(), v = S.view;
+  return { x: (e.clientX - r.left - v.tx) / v.s, y: (e.clientY - r.top - v.ty) / v.s, sx: e.clientX - r.left, sy: e.clientY - r.top };
+}
+let lastMouse = null;
+function updateCursor() {
+  if (!lastMouse || !(S.tool === 'erase' || S.tool === 'keep') || S.space) { cursorEl.style.display = 'none'; return; }
+  const d = S.brush * S.view.s;
+  Object.assign(cursorEl.style, { display: 'block', left: lastMouse.sx + 'px', top: lastMouse.sy + 'px', width: d + 'px', height: d + 'px' });
+}
+
+let pan = null;
+stage.addEventListener('pointerdown', e => {
+  const it = curItem(); if (!it || !it.src) return;
+  const p = toImg(e);
+  if (e.button === 1 || S.space || S.tool === 'hand') {
+    pan = { x: e.clientX, y: e.clientY, tx: S.view.tx, ty: S.view.ty };
+    stage.setPointerCapture(e.pointerId); stage.style.cursor = 'grabbing';
+    e.preventDefault(); return;
+  }
+  if (e.button !== 0) return;
+  const x = Math.floor(p.x), y = Math.floor(p.y), inside = x >= 0 && y >= 0 && x < it.w && y < it.h;
+  if (S.tool === 'wand' || S.tool === 'wandKeep') {
+    if (inside) wand(it, x, y, (S.tool === 'wandKeep') !== e.shiftKey ? 2 : 1);
+  } else if (S.tool === 'pick') {
+    if (inside) { const q = (y * it.w + x) * 4, d = it.src.data; it.set.bg = [d[q], d[q + 1], d[q + 2]]; settingsChanged(); }
+  } else if (S.tool === 'erase' || S.tool === 'keep') {
+    stroke = { mark: new Uint8Array(it.w * it.h), idx: [], old: [], val: (S.tool === 'erase') !== e.shiftKey ? 1 : 2, lx: p.x, ly: p.y };
+    stage.setPointerCapture(e.pointerId);
+    strokeTo(it, p.x, p.y);
+  }
+});
+stage.addEventListener('pointermove', e => {
+  lastMouse = toImg(e);
+  if (pan) {
+    S.view.tx = pan.tx + e.clientX - pan.x; S.view.ty = pan.ty + e.clientY - pan.y; applyView(); return;
+  }
+  updateCursor();
+  if (stroke) strokeTo(curItem(), lastMouse.x, lastMouse.y);
+});
+const endPointer = () => {
+  if (pan) { pan = null; setTool(S.tool); if (S.space) stage.style.cursor = 'grab'; }
+  if (stroke) {
+    const it = curItem();
+    if (stroke.idx.length) { pushUndo(it, stroke.idx, stroke.old); thumbSoon(it); }
+    stroke = null;
+  }
+};
+stage.addEventListener('pointerup', endPointer);
+stage.addEventListener('pointercancel', endPointer);
+stage.addEventListener('pointerleave', () => { lastMouse = null; updateCursor(); });
+
+/* ---------------- original compare / preview bg ---------------- */
+function showOriginal(on) {
+  const it = curItem(); if (!it || !it.src || S.showOrig === on) return;
+  S.showOrig = on;
+  vctx.putImageData(on ? it.src : it.out, 0, 0);
+  overlay.style.visibility = on ? 'hidden' : '';
+}
+const ob = $('#origBtn');
+ob.addEventListener('pointerdown', () => showOriginal(true));
+ob.addEventListener('pointerup', () => showOriginal(false));
+ob.addEventListener('pointerleave', () => showOriginal(false));
+document.querySelectorAll('#previewSeg button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('#previewSeg button').forEach(x => x.classList.toggle('on', x === b));
+  board.className = b.dataset.p + (S.view.s >= 2 ? ' pix' : '');
+});
+
+/* ---------------- keyboard ---------------- */
+const keyTools = { w: 'wand', q: 'wandKeep', e: 'erase', b: 'keep', i: 'pick', h: 'hand' };
+window.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT' && e.target.type !== 'range' && e.target.type !== 'checkbox') return;
+  const k = e.key.toLowerCase();
+  if ((e.ctrlKey || e.metaKey) && k === 'z') { e.preventDefault(); e.shiftKey ? undoRedo('redo', 'undo') : undoRedo('undo', 'redo'); return; }
+  if ((e.ctrlKey || e.metaKey) && k === 'y') { e.preventDefault(); undoRedo('redo', 'undo'); return; }
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  if (k === ' ') { e.preventDefault(); if (!S.space) { S.space = true; stage.style.cursor = 'grab'; updateCursor(); } return; }
+  if (keyTools[k]) { setTool(keyTools[k]); return; }
+  if (k === 'o') { showOriginal(true); return; }
+  if (k === '[' || k === ']') { S.brush = Math.min(300, Math.max(2, Math.round(S.brush * (k === ']' ? 1.2 : 1 / 1.2)))); $('#brush').value = S.brush; $('#brushOut').textContent = S.brush; updateCursor(); return; }
+  if (e.target.type === 'range') return;
+  if (k === 'arrowright') select(S.cur + 1);
+  if (k === 'arrowleft') select(S.cur - 1);
+});
+window.addEventListener('keyup', e => {
+  if (e.key === ' ') { S.space = false; setTool(S.tool); updateCursor(); }
+  if (e.key.toLowerCase() === 'o') showOriginal(false);
+});
+
+/* ---------------- files in ---------------- */
+$('#addBtn').onclick = () => $('#fileIn').click();
+$('#fileIn').onchange = e => { addFiles(e.target.files); e.target.value = ''; };
+['dragenter', 'dragover'].forEach(t => stage.addEventListener(t, e => { e.preventDefault(); stage.classList.add('dragging'); }));
+['dragleave', 'drop'].forEach(t => stage.addEventListener(t, e => { e.preventDefault(); stage.classList.remove('dragging'); }));
+stage.addEventListener('drop', e => addFiles(e.dataTransfer.files));
+document.addEventListener('dragover', e => e.preventDefault());
+document.addEventListener('drop', e => { e.preventDefault(); if (e.target.closest && !e.target.closest('#stage')) addFiles(e.dataTransfer.files); });
+
+/* ---------------- export ---------------- */
+const outName = n => n.replace(/\.[^.]+$/, '') + '.png';
+async function renderPng(it) {
+  const wasLoaded = !!it.src;
+  await ensureLoaded(it);
+  compose(it);
+  const c = document.createElement('canvas');
+  c.width = it.w; c.height = it.h;
+  c.getContext('2d').putImageData(it.out, 0, 0);
+  const blob = await new Promise(r => c.toBlob(r, 'image/png'));
+  if (!wasLoaded && it !== curItem()) release(it);
+  return blob;
+}
+function download(blob, name) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+}
+$('#dlBtn').onclick = async () => { const it = curItem(); if (it) download(await renderPng(it), outName(it.name)); };
+
+function uniqueNames() {
+  const used = new Set();
+  return S.items.map(it => {
+    let n = outName(it.name), k = 1;
+    while (used.has(n.toLowerCase())) n = outName(it.name).replace(/\.png$/, `_${++k}.png`);
+    used.add(n.toLowerCase()); return n;
+  });
+}
+async function exportAll(writer) {
+  if (S.busy) return;
+  S.busy = true;
+  const names = uniqueNames();
+  try {
+    for (let k = 0; k < S.items.length; k++) {
+      $('#progress').textContent = `Exporting ${k + 1} / ${S.items.length}…`;
+      await writer(names[k], await renderPng(S.items[k]));
+    }
+  } finally { S.busy = false; renderList(); }
+}
+
+$('#zipBtn').onclick = async () => {
+  const files = [];
+  await exportAll(async (name, blob) => files.push({ name, data: new Uint8Array(await blob.arrayBuffer()) }));
+  download(makeZip(files), 'cutouts.zip');
+};
+$('#folderBtn').onclick = async () => {
+  if (!window.showDirectoryPicker) { toast('This browser cannot save to a folder. Use Chrome or Edge, or download the ZIP instead.'); return; }
+  let dir;
+  try { dir = await window.showDirectoryPicker({ mode: 'readwrite' }); } catch (e) { return; }
+  await exportAll(async (name, blob) => {
+    const fh = await dir.getFileHandle(name, { create: true });
+    const w = await fh.createWritable(); await w.write(blob); await w.close();
+  });
+  toast(`Saved ${S.items.length} PNG files`);
+};
+
+// Minimal ZIP writer (store, no compression - PNGs are already compressed)
+const CRC = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+function crc32(u8) { let c = 0xFFFFFFFF; for (let i = 0; i < u8.length; i++) c = CRC[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+function makeZip(files) {
+  const enc = new TextEncoder(), parts = [], central = [];
+  const now = new Date();
+  const dosTime = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1);
+  const dosDate = ((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate();
+  let offset = 0;
+  for (const f of files) {
+    const name = enc.encode(f.name), crc = crc32(f.data), size = f.data.length;
+    const lh = new DataView(new ArrayBuffer(30));
+    lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0x0800, true); lh.setUint16(8, 0, true);
+    lh.setUint16(10, dosTime, true); lh.setUint16(12, dosDate, true); lh.setUint32(14, crc, true);
+    lh.setUint32(18, size, true); lh.setUint32(22, size, true); lh.setUint16(26, name.length, true); lh.setUint16(28, 0, true);
+    parts.push(lh.buffer, name, f.data);
+    const ch = new DataView(new ArrayBuffer(46));
+    ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true); ch.setUint16(8, 0x0800, true);
+    ch.setUint16(10, 0, true); ch.setUint16(12, dosTime, true); ch.setUint16(14, dosDate, true); ch.setUint32(16, crc, true);
+    ch.setUint32(20, size, true); ch.setUint32(24, size, true); ch.setUint16(28, name.length, true);
+    ch.setUint32(42, offset, true);
+    central.push(ch.buffer, name);
+    offset += 30 + name.length + size;
+  }
+  const cdSize = central.reduce((s, p) => s + p.byteLength, 0);
+  const end = new DataView(new ArrayBuffer(22));
+  end.setUint32(0, 0x06054b50, true); end.setUint16(8, files.length, true); end.setUint16(10, files.length, true);
+  end.setUint32(12, cdSize, true); end.setUint32(16, offset, true);
+  return new Blob([...parts, ...central, end.buffer], { type: 'application/zip' });
+}
+
+let toastTimer = 0;
+function toast(msg) {
+  const t = $('#toast'); t.textContent = msg; t.style.display = 'block';
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.style.display = 'none', 3000);
+}
+</script>
+</body>
+</html>
