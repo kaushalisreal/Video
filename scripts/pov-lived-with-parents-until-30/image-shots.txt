@@ -1,0 +1,435 @@
+# beat|anchor|shot|loc|light|description   ({H}=hero, {H30}=hero at 30 with stubble; {MOM} {DAD} {MAYA} {JORDAN} {RYAN} {CAROL} {AGENT} {DATE})
+1|-|ECU|OFF|DAY|extreme close-up of {H30}'s calm face in profile, eyes lowered to the table, soft window light on his gold skin
+1|old|INSERT|OFF|DAY|a small birthday card propped against a coffee mug on the office table, a single number 30 candle beside it, shallow depth of field
+2|-|WS|OFF|DAY|wide shot: {H30} sits alone on one side of the long table, the room quiet and orderly
+3|small|EWS|OFF|DAY|establishing shot through the office doorway: the small closing office, {H30} seated at the far end of the long table
+4|-|MACRO|OFF|DAY|extreme close-up of a laser printer pushing out a warm fresh sheet of paper, tiny dust in the light beam
+4|printer|INSERT|OFF|DAY|close-up of a tall stack of printed documents with a binder clip, crisp edges catching the light
+5|-|OTS|OFF|DAY|over-the-shoulder from behind {H30}: across the table sits {AGENT}, looking at him
+6|-|INSERT|OFF|DAY|close-up of {AGENT}'s hands sliding a thick stack of documents across the polished table toward the camera
+6|documents|CU|OFF|DAY|the stack of documents arriving in front of {H30}'s gold hands resting on the table
+7|-|ECU|OFF|DAY|extreme close-up of {AGENT}'s fingertip tapping the signature line on the last page
+8|-|MCU|OFF|DAY|medium close-up of {AGENT} looking up over her reading glasses, a practiced polite expression
+9|-|CU|OFF|DAY|close-up of {AGENT}'s face mid-sentence, pen held ready
+10|financing|INSERT|OFF|DAY|close-up of a loan form with an empty box labelled "LENDER", a pen hovering over it
+11|-|MCU|OFF|DAY|medium close-up of {H30} lifting his eyes calmly to meet hers
+11|won't|ECU|OFF|DAY|extreme close-up of {H30}'s calm eyes and a tiny confident half-smile
+12|-|CU|OFF|DAY|close-up of {H30} saying one quiet word, completely relaxed, window light across his gold face
+12|pauses|CU|OFF|DAY|close-up of {AGENT} frozen for a second, pen stopped in mid-air, eyebrows raised
+13|-|INSERT|OFF|DAY|close-up of {AGENT} flipping back through the file folder, pages fanning
+14|-|ECU|OFF|DAY|extreme close-up of the purchase price line on the document: "$255,000"
+15|fifty-five|MS|OFF|DAY|{AGENT} leaning back slightly in her chair, impressed, the open file in her hands
+16|-|INSERT|OFF|DAY|close-up of a bank loan application form being set aside, stamped "NOT REQUIRED"
+16|mortgage|INSERT|OFF|DAY|close-up of a thick mortgage contract booklet pushed away to the edge of the table
+17|-|MACRO|OFF|DAY|cinematic close-up of a wall calendar with thirty years of pages flipping away into the air
+18|-|ECU|OFF|DAY|extreme close-up of {H30}'s gold hand signing his name with a black pen, ink glistening
+19|-|INSERT|OFF|DAY|close-up of {AGENT}'s hand holding out a set of shiny brass house keys on a simple ring
+19|keys|ECU|OFF|DAY|extreme close-up of the brass keys dropping into {H30}'s open gold palm, a bright glint of light
+20|-|WS|BED|WARM|match cut: wide shot of {H} at 22 lying awake on the narrow twin bed in his childhood bedroom, eight years earlier, slightly faded warm tones
+21|guy|MS|HSE|DAY|{H} at 22 standing alone on the porch of his parents' house while neighbours glance at him with pity
+22|-|WS|HSE|DAY|his friends drive away down the street in packed cars while {H} stays on the porch holding a mug
+23|-|MS|BED|NIGHT|{H} at 22 lying in the small bed, knees bent because the bed is too short for him
+24|childhood|CU|BED|NIGHT|close-up of the plastic glow-in-the-dark stars on the ceiling above his bed
+25|-|INSERT|BED|WARM|slow detail shot of an old framed childhood photo on the shelf: a small boy in the same bedroom
+26|-|WS|TOWN|GOLD|golden hour: {H30} standing in front of a modest three-bedroom house with a "SOLD" sign, the story's destination
+26|house|CU|TOWN|GOLD|close-up of the brass keys in {H30}'s hand with the house blurred behind him
+27|-|EWS|BED|WARM|title-card style composition: {H} at 22 sitting on the edge of his childhood bed surrounded by moving boxes, empty wall space on the left for a chapter title
+27|twenty-two|INSERT|BED|WARM|close-up of a graduation photo frame leaning on a box, {H} in cap and gown
+28|-|EWS|GRAD|DAY|sunny campus lawn, graduation caps flying into the blue sky
+28|weekend|MS|GRAD|DAY|{H} in a black graduation gown and cap holding a diploma, {MOM} and {DAD} proudly beside him
+29|-|WS|HSE|DAY|the street outside: friends loading cardboard boxes into car trunks, doors open
+29|cars|INSERT|HSE|DAY|close-up of a hatchback trunk crammed with boxes, a lamp and a rolled-up rug
+30|-|MS|LOFT|DAY|{MAYA} signing a lease on a clipboard held by a landlord, keys dangling in her other hand
+31|-|WS|LOFT|DAY|{MAYA} spinning happily in her new empty downtown one-bedroom apartment
+32|-|MS|ROOM2|DAY|{JORDAN} shaking hands with a stranger roommate in a hoodie inside a cramped shared apartment
+33|online|INSERT|ROOM2|DAY|close-up of a phone screen showing a roommate-finder app with a matched profile photo
+34|-|WS|HSE|DAY|a line of moving trucks and packed cars along the whole street, everyone leaving at once
+35|because|MS|HSE|DAY|{MAYA} and {JORDAN} waving goodbye from their car windows as they drive off
+36|-|MCU|HSE|DAY|{H} at 22 waving back, a small smile, standing alone on the lawn
+36|adult|INSERT|LOFT|DAY|close-up of a new apartment door with a shiny key in the lock and a welcome mat
+37|-|WS|BED|WARM|{H} carrying a cardboard box back into his childhood bedroom
+37|boxes|INSERT|BED|WARM|close-up of {H}'s gold hands opening a moving box full of books and a framed diploma
+38|room|MS|BED|WARM|{H} sitting on the small bed, looking around at the same posters and trophies from his childhood
+38|nine|INSERT|BED|WARM|close-up of pencil height marks on the door frame, the highest labelled "age 9"
+39|-|MS|WORK|DAY|{H} at 22 at his first office desk in a small cubicle, name badge on a lanyard
+40|fifty-two|INSERT|none|STUDIO|cinematic close-up of a job offer letter showing "$52,000 / year", a pen resting on it
+41|-|INSERT|none|STUDIO|close-up of a pay stub with a large tax deduction column, a red pen circle around it
+41|thirty-four|INSERT|none|STUDIO|close-up of a phone banking notification: "Deposit $3,400"
+42|account|CU|BED|NIGHT|{H} lying in bed looking at the deposit on his phone, the screen lighting his gold face
+43|-|WS|KIT|NIGHT|night: the parents' kitchen, {H} sitting alone at the round table under the pendant lamp
+43|kitchen|INSERT|KIT|NIGHT|close-up of the pendant lamp swaying gently above the wooden table
+44|-|INSERT|KIT|NIGHT|extreme close-up of {H}'s gold hand writing numbers with a pen on a white paper napkin
+44|napkin|TOP|KIT|NIGHT|top-down shot of the napkin on the table with scribbled math, a pen and a mug of tea
+45|-|WS|none|DAY|a sunny city apartment building with a "FOR RENT: 1 BEDROOM" sign on the front
+46|costs|INSERT|none|STUDIO|close-up of a rent listing on a phone: "1-bedroom — $1,400/month"
+47|-|INSERT|none|STUDIO|cinematic close-up of an electricity meter with spinning dials
+48|-|INSERT|none|STUDIO|close-up of a Wi-Fi router with blinking lights
+48|furniture|INSERT|none|STUDIO|close-up of a new sofa still wrapped in plastic with a price tag hanging off it
+49|-|TOP|KIT|NIGHT|top-down on the napkin: {H}'s pen circling the total "$1,600"
+50|-|CU|KIT|NIGHT|close-up of {H} looking at the napkin, jaw tight, realising the size of the number
+50|half|INSERT|none|STUDIO|a round pie chart made of real coins, almost half of the coins pushed to one side
+51|-|INSERT|none|STUDIO|close-up of a wall calendar showing the 1st of the month circled in red
+52|month|MACRO|none|STUDIO|cinematic shot of dollar bills flying out of an open wallet into darkness, one after another
+52|forever|WS|none|DARK|an endless row of identical calendar pages stretching into the distance
+53|-|MS|KIT|NIGHT|{H} sliding the napkin across the kitchen table toward {MOM} and {DAD}
+54|-|CU|KIT|NIGHT|close-up of {H} shaking his head earnestly, hand on his chest
+55|-|INSERT|KIT|NIGHT|close-up of four crisp hundred-dollar bills placed on the kitchen table
+56|groceries|INSERT|KIT|WARM|close-up of paper grocery bags full of vegetables and bread on the kitchen counter
+57|-|MS|KIT|WARM|{H} cooking at the stove in an apron, steam rising from a pan
+58|-|MS|HSE|DAY|{H} mowing the front lawn of his parents' house in the sun
+58|fix|MS|KIT|DAY|{H} lying under the kitchen sink with a wrench fixing a leaking pipe
+59|-|MCU|KIT|NIGHT|{H} at the kitchen table holding up the napkin, serious and determined
+60|-|INSERT|KIT|NIGHT|extreme close-up of the pen writing "OUT BY 30" in bold letters on the napkin, underlined twice
+61|-|INSERT|none|STUDIO|close-up of an apartment key on a plain ring, crossed out by a shadow
+62|house|WS|TOWN|GOLD|a dreamy golden image of a modest house with a fenced yard, like a vision of the future
+63|-|MCU|KIT|NIGHT|{DAD} leaning back in his chair and laughing, one hand on his belly
+64|-|MCU|KIT|NIGHT|{MOM} not laughing: she looks at her son steadily over her reading glasses
+65|-|CU|KIT|NIGHT|close-up of {MOM} sliding a pen across the table toward {H}
+66|-|INSERT|KIT|NIGHT|close-up of the napkin being pinned to the fridge door with a magnet
+67|-|MS|KIT|NIGHT|{H} standing in front of the fridge, looking at the pinned plan, hands in pockets
+68|-|INSERT|none|STUDIO|cinematic close-up of a house key and a small plant sprouting from a pile of coins
+68|plan|WS|none|DARK|a single spotlight on an empty chair in a dark room, a small backpack beside it
+69|-|WS|none|DAY|a running track: {H} at the starting line, crouched, ready to sprint, other runners behind him
+70|-|INSERT|none|STUDIO|close-up of a blank notebook page with a pen drawing an arrow upward
+71|difference|INSERT|none|STUDIO|close-up of two stacks of coins: one small, one clearly taller
+72|-|WS|BED|WARM|{H} at 23 sitting at the small desk in his childhood bedroom with a laptop, calm, empty wall space on the left for a chapter title
+72|twenty-three|INSERT|BED|WARM|close-up of a birthday cake with a "23" candle on the desk
+73|-|INSERT|none|STUDIO|close-up of eighteen hundred-dollar bills fanned out on a dark wooden table
+74|eighteen|INSERT|none|STUDIO|close-up of a phone showing "$1,800" in large green digits
+75|-|CU|BED|WARM|{H} turning his phone face-down on the desk with a small calm smile
+76|-|INSERT|none|STUDIO|close-up of a calendar page with "PAYDAY" written in green
+76|anything|INSERT|none|STUDIO|close-up of an untouched online shopping cart icon, a finger hovering then pulling away
+77|-|INSERT|none|STUDIO|close-up of a phone banking screen: "Automatic transfer scheduled"
+77|eighteen|MACRO|none|STUDIO|cinematic shot of glowing dollar bills flowing through a clear tube from one jar into another
+78|index|INSERT|none|STUDIO|a large glass jar labelled "INDEX FUND" slowly filling with coins
+79|-|MACRO|none|STUDIO|a glass basket holding hundreds of tiny miniature company buildings and factories
+80|hundreds|EWS|none|DAY|aerial view of a huge city full of skyscrapers and factories, the whole economy in one frame
+80|largest|LOW|none|DAY|low-angle shot of a cluster of giant glass skyscrapers towering into the blue sky, the biggest companies in the country
+81|-|MCU|BED|WARM|{H} yawning at the desk with a cup of coffee, the laptop showing a simple flat chart
+81|skill|INSERT|none|STUDIO|close-up of a dusty unopened stock-picking book on a shelf
+82|-|WS|none|DAY|a long straight road stretching to the horizon, one small car driving on it
+83|stock|INSERT|none|STUDIO|a big illustrated chart line zig-zagging but rising from left to right, drawn in gold on a dark board
+84|percent|INSERT|none|STUDIO|close-up of a small gold staircase where each step is slightly higher, labelled "7%"
+85|-|CU|none|COLD|close-up of a red downward arrow on a stock screen
+85|falls|INSERT|none|COLD|a small toy rollercoaster car dipping down a steep drop
+86|-|WS|none|GOLD|the same rollercoaster track, which overall climbs higher and higher toward a golden sky
+87|-|INSERT|none|STUDIO|close-up of a stock ticker screen with dozens of company names, blurred and ignored
+88|chart|CU|BED|WARM|{H} closing a laptop showing a chart, then picking up a book instead
+89|-|INSERT|none|STUDIO|close-up of money sliding out of a wallet into a locked glass safe before a hand can grab it
+90|-|MCU|BED|NIGHT|{H} lying on his bed scrolling his phone at night
+91|posting|INSERT|none|STUDIO|close-up of a phone screen with a social feed of bright apartment-tour photos
+92|-|WS|LOFT|DAY|{MAYA}'s apartment: a warm exposed red brick wall with sunlight
+93|-|INSERT|LOFT|DAY|close-up of a green fiddle-leaf fig plant in the corner of the apartment
+94|-|MS|LOFT|DAY|{MAYA} taking a selfie in front of her brick wall, smiling
+95|-|INSERT|none|STUDIO|close-up of the post caption on the phone: "finally home" with a small house emoji
+96|-|ECU|none|STUDIO|extreme close-up of {H}'s gold thumb double-tapping a photo, a small heart appearing
+97|-|INSERT|none|STUDIO|close-up of a phone screen going dark as the app closes
+98|-|MS|BED|NIGHT|{H} lying on his back in the dark bedroom, looking up
+98|stars|WS|BED|NIGHT|low angle from the bed: dozens of faded glow-in-the-dark stars on the ceiling glowing softly
+99|-|ECU|BED|NIGHT|extreme close-up of one peeling plastic star on the ceiling
+100|-|WS|DIN|WARM|Thanksgiving: the family dining room, a roast turkey in the centre, the whole family seated
+101|-|MS|DIN|WARM|{CAROL} leaning across the table toward {H}, wine glass in hand, a knowing grin
+102|-|MCU|DIN|WARM|close-up of {CAROL} raising one eyebrow
+103|-|CU|DIN|WARM|{CAROL} mid-question, pointing her fork at {H}
+104|-|WS|DIN|WARM|the whole table frozen in awkward silence, forks mid-air, every relative looking at {H}
+105|-|CU|DIN|WARM|a teenage cousin snorting a laugh behind a napkin
+106|-|MS|DIN|WARM|{H} calmly nodding yes
+106|potatoes|INSERT|DIN|WARM|close-up of {H}'s gold hands passing a steaming bowl of mashed potatoes
+107|-|WS|CAFE|NIGHT|a cosy evening café, {H} sitting across from {DATE} at a small round table
+108|-|MCU|CAFE|NIGHT|{H} saying something casually while stirring his coffee
+109|weather|INSERT|none|STUDIO|close-up of a small TV weather report icon with a sun and cloud, humorous visual metaphor
+110|-|MCU|CAFE|NIGHT|{DATE}'s polite smile freezing, she glances at her watch
+110|end|WS|CAFE|NIGHT|{H} alone at the café table, the chair across from him now empty
+111|-|CU|none|NIGHT|{H} walking home under a streetlight, hands in pockets
+112|-|ECU|BED|NIGHT|extreme close-up of {H}'s gold face on the pillow in the dark, eyes open, quietly sad
+113|-|INSERT|BED|WARM|close-up of a birthday cupcake with a single candle labelled "24"
+114|-|MCU|BED|WARM|{H} opening his investment app on his phone
+115|first|CU|BED|WARM|{H}'s eyes widening slightly as the screen loads
+116|-|ECU|none|STUDIO|extreme close-up of the phone screen: "$46,226"
+117|-|INSERT|none|STUDIO|close-up of a paycheck envelope
+117|saved|INSERT|none|STUDIO|a glass jar full of neatly stacked bills
+118|-|MACRO|none|STUDIO|cinematic shot of coins multiplying on their own on a dark table, new coins appearing
+118|slept|WS|BED|NIGHT|{H} asleep in bed while a soft golden glow comes from his phone on the nightstand
+119|-|WS|none|DAY|a crowd of young people on a city sidewalk looking at their phones, tired
+120|number|CU|BED|WARM|{H} holding the phone close to his chest, a quiet proud smile on his gold face
+121|-|EWS|HSE|DAY|{H} at 25 leaving his parents' house for work in the morning, briefcase in hand, empty sky on the left for a chapter title
+122|-|INSERT|none|STUDIO|close-up of a birthday cake with a "25" candle
+123|-|MS|WORK|DAY|{H}'s manager shaking his hand in the office, colleagues clapping
+123|raise|INSERT|none|STUDIO|close-up of a raise letter with a new salary circled in green
+124|-|WS|WORK|DAY|colleagues across the office also celebrating their raises, high-fives
+125|-|MS|DRV|DAY|{RYAN} in a car dealership signing papers with a big grin
+126|celebrates|INSERT|none|STUDIO|close-up of a champagne bottle popping in a car showroom
+127|-|WS|DRV|DAY|a glossy black BMW sedan with a red bow on the hood in a showroom
+127|BMW|LOW|DRV|DAY|low-angle hero shot of {RYAN} leaning against the black BMW, sunglasses on
+128|-|INSERT|none|STUDIO|close-up of a lease contract: "$550 / month" with {RYAN}'s signature
+129|-|WS|HSE|DAY|the black BMW pulling up in front of the parents' house, {H} walking out to it
+129|dinner|MS|CAR|DAY|{RYAN} leaning out of the driver's window, grinning at {H}
+130|-|MCU|CAR|DAY|close-up of {RYAN} lowering his sunglasses, smirking
+131|-|CU|CAR|DAY|{RYAN} tapping the steering wheel, spreading his arms
+132|-|MCU|CAR|DAY|{H} in the passenger seat, calm, looking out of the window
+133|-|INSERT|none|STUDIO|an hourglass with golden sand running
+134|-|CU|none|DAY|{H} looking at an old family photo on his phone: his parents young
+135|thirty|WS|none|GOLD|a long road with milestone signs "22", "25", "30" stretching toward a sunset
+136|-|WS|none|DAY|a busy city street full of young professionals carrying shopping bags
+137|-|INSERT|none|STUDIO|close-up of a finger pressing a big "UPGRADE" button
+137|nicer|WS|LOFT|DAY|a sleek luxury apartment with floor-to-ceiling windows
+138|-|INSERT|none|STUDIO|close-up of new car keys dangling from a finger in a dealership
+138|phone|INSERT|none|STUDIO|close-up of a brand-new phone being unboxed
+139|-|INSERT|none|STUDIO|a gold paycheck on a rising escalator, with a stack of bills climbing right behind it
+140|-|MS|LOFT|NIGHT|a young man in a nice apartment looking stressed at a pile of bills on a designer table
+141|-|MS|none|DAY|an economist in a tweed jacket at a chalkboard, pointing at a graph
+142|creep|INSERT|none|STUDIO|a small shopping cart slowly growing bigger and bigger, overflowing
+143|-|MCU|BED|WARM|{H} at his desk shaking his head calmly, closing a shopping website
+144|-|INSERT|none|STUDIO|close-up of five hundred-dollar bills sliding out of a new pay stub
+145|dollars|INSERT|none|STUDIO|close-up of a phone banking app: "Raise +$500/month"
+146|-|MACRO|none|STUDIO|cinematic shot of those bills dropping one by one into the "INDEX FUND" jar
+146|fund|INSERT|none|STUDIO|the index fund jar noticeably fuller, glowing warmly
+147|-|INSERT|none|STUDIO|close-up of the automatic transfer screen updated: "$2,300 / month"
+148|-|INSERT|none|STUDIO|a calendar with the same green payday mark repeating month after month
+148|automatically|INSERT|none|STUDIO|close-up of a phone screen showing a small "Auto" toggle switched on
+149|-|WS|BED|WARM|{H}'s bedroom exactly the same as years before, same posters, same bed
+150|-|INSERT|BED|WARM|close-up of the same twin bed and blue blanket
+150|same|WS|HSE|DAY|an old dented silver hatchback parked in the driveway
+151|twenty|INSERT|HSE|DAY|close-up of the old car's worn steering wheel and a faded air freshener
+152|-|WS|HSE|DAY|Saturday morning: sunlight, sprinklers, a quiet suburban street
+153|-|MS|HSE|DAY|{H} mowing his dad's lawn, {DAD} watching from the porch with coffee
+154|-|INSERT|none|STUDIO|close-up of a phone screen with a chart line climbing
+155|-|INSERT|none|STUDIO|a birthday cake with a "26" candle beside the phone
+156|-|ECU|none|STUDIO|extreme close-up of the phone screen: "$100,000"
+156|thousand|CU|BED|WARM|{H} sitting on his bed staring at the number, a slow proud smile
+157|-|INSERT|none|STUDIO|close-up of {RYAN}'s lease contract with a sticky note "24 months left"
+158|-|MS|DRV|DAY|{RYAN} at the dealership handing the BMW keys back over the counter
+159|keys|INSERT|none|STUDIO|close-up of the BMW key sliding across the counter to a salesman
+159|nothing|WS|DRV|DAY|{RYAN} standing alone on the empty dealership lot with his hands empty
+160|-|CU|DIN|WARM|{H} at a family dinner listening to {RYAN} talk, saying nothing, calm
+160|Chapter|EWS|ROOF|SUNSET|a city skyline at dusk, empty sky on the left for a chapter title
+161|-|INSERT|none|STUDIO|a birthday cake with a "27" candle, the flame flickering in the wind
+162|-|WS|BED|NIGHT|{H} at 27 sitting on the edge of his bed in the dark, head down
+163|-|INSERT|ROOF|SUNSET|extreme close-up of an engagement ring on {MAYA}'s hand, sparkling
+164|-|EWS|ROOF|SUNSET|the rooftop engagement party: string lights, guests with drinks, the city skyline behind
+165|everyone|MS|ROOF|SUNSET|a group of young couples talking and gesturing, holding drinks
+165|closing|INSERT|none|STUDIO|close-up of a house listing brochure with a "CLOSING COSTS" line highlighted
+166|-|INSERT|none|STUDIO|close-up of a mortgage rate board with glowing percentages
+167|-|MS|ROOF|SUNSET|a couple hugging their proud parents who hand them a cheque
+167|payment|INSERT|none|STUDIO|close-up of a down payment cheque being handed over
+168|-|MS|ROOF|SUNSET|a guest turning to {H} and asking him a question, drink in hand
+169|-|MCU|ROOF|SUNSET|{H} answering politely, a tight smile
+170|-|WS|ROOF|SUNSET|{H} standing alone at the glass railing while the party continues behind him
+171|feel|ECU|ROOF|SUNSET|extreme close-up of {H}'s gold face, the city lights reflected in his eyes, a quiet ache
+172|-|WS|none|DAY|{H} standing still on a busy escalator while everyone else rushes past upward
+172|Stuck|MS|none|DAY|{H} in a traffic jam in his old car while other cars move ahead in the next lane
+173|-|WS|none|DAY|a montage-like frame: couples carrying boxes into new homes, a wedding, a new car
+174|-|MS|BED|NIGHT|{H} sitting on his bed watching those moments on his phone, lit by the screen
+175|-|INSERT|none|COLD|close-up of a stock market screen turning red, a sharp drop
+176|-|INSERT|none|COLD|a desk calendar with three weeks crossed out in red marker
+177|-|CU|BED|NIGHT|{H} staring at his phone as the balance drops, his gold face lit cold blue
+177|eighteen|ECU|none|COLD|extreme close-up of the phone: "-$18,000" in red
+178|-|MACRO|none|COLD|cinematic shot of a tall stack of bills collapsing and scattering across a dark floor
+179|-|CU|BED|NIGHT|{H} putting a hand over his mouth, stunned
+180|months|INSERT|none|COLD|eight calendar pages torn off and falling into darkness
+181|-|WS|none|NIGHT|a dark living room lit only by a TV screen playing a series
+182|series|INSERT|none|NIGHT|close-up of a TV remote on a couch next to an empty bowl of popcorn
+183|-|INSERT|KIT|DARK|close-up of a digital oven clock glowing "2:00 AM" in the dark kitchen
+184|-|WS|KIT|DARK|{MOM} in a dressing gown pausing in the kitchen doorway
+185|dark|MS|KIT|DARK|{H} sitting alone at the dark kitchen table, his face lit only by the phone
+186|-|INSERT|KIT|DARK|close-up of water pouring from a jug into two glasses on the counter
+187|-|MS|KIT|DARK|{MOM} placing the glasses on the table and sitting down across from {H}
+188|-|CU|KIT|DARK|{MOM} speaking softly, head tilted, worried
+189|-|CU|KIT|DARK|{H} shaking his head slowly
+190|-|ECU|KIT|DARK|extreme close-up of the phone screen showing a lower but still large balance
+191|-|MCU|KIT|DARK|{MOM} gently reaching across and turning his phone face-down on the table
+192|-|INSERT|KIT|DARK|close-up of the face-down phone next to the two glasses of water
+192|sell|ECU|none|STUDIO|extreme close-up of a finger hovering over a red "SELL ALL" button, then pulling away
+193|-|INSERT|none|STUDIO|close-up of the automatic transfer screen still switched ON
+194|-|INSERT|none|STUDIO|a calendar with the green PAYDAY mark
+195|dollars|MACRO|none|STUDIO|bills dropping into the index fund jar again
+196|-|MACRO|none|STUDIO|the glass basket of tiny company buildings, now with more buildings piling in
+197|cheaper|INSERT|none|STUDIO|a shop window with a big red "SALE — 20% OFF" sign
+198|-|MCU|BED|DAY|{H} writing a second note on a sticky pad at his desk
+199|-|WS|none|DARK|a man on a stormy boat clinging to the rail, waves crashing, symbolising panic
+200|-|MS|none|DAY|{H} calmly pushing a shopping cart full of small gold company boxes
+201|-|INSERT|none|STUDIO|close-up of a price tag being slashed
+202|sale|WS|none|DAY|a store full of shoppers grabbing discounted items, while outside another crowd runs away
+203|-|MS|none|COLD|a panicked investor in a suit clutching his head in front of red screens
+204|panic|MACRO|none|COLD|close-up of a hand dropping a bundle of cash into a trash can marked "SOLD AT THE BOTTOM"
+205|-|INSERT|none|GOLD|close-up of the phone chart climbing back up in green
+205|recovered|WS|none|GOLD|sunrise over a calm sea after a storm
+206|-|INSERT|none|STUDIO|a birthday cake with a "28" candle next to the phone
+207|eighty|ECU|none|STUDIO|extreme close-up of the phone screen: "$180,000"
+208|-|EWS|HSE|GOLD|golden hour: the parents' house from the street, a warm light in {H}'s bedroom window, empty sky on the left for a chapter title
+209|-|MS|BED|DAY|{H} at 28 looking out of his bedroom window, thoughtful
+209|happen|INSERT|none|STUDIO|a chessboard where one small pawn quietly moves ahead of the bigger pieces
+210|flips|INSERT|none|STUDIO|a sand timer flipping over
+211|-|MS|LOFT|DAY|{MAYA} opening an envelope in her apartment, frowning
+212|-|INSERT|LOFT|DAY|close-up of a rent increase notice
+212|same|INSERT|none|STUDIO|a lease letter with the old rent crossed out
+213|-|INSERT|none|STUDIO|close-up of the old rent "$1,400" on a faded listing
+214|-|ECU|none|STUDIO|extreme close-up of the new rent in red: "$1,750"
+215|-|MS|ROOM2|DAY|{JORDAN}'s roommate carrying boxes out the door
+216|-|MS|ROOM2|NIGHT|{JORDAN} alone on the couch holding the full rent bill, head in hand
+217|-|MS|WORK|DAY|{MAYA} presenting confidently in a meeting room
+217|jobs|MS|WORK|DAY|{JORDAN} coding at a busy tech office, focused
+218|-|INSERT|none|STUDIO|close-up of two pay stubs side by side with higher numbers
+219|-|WS|none|DAY|a treadmill with a young person running in place, going nowhere
+219|month|ECU|none|STUDIO|extreme close-up of a bank balance resetting to "$0"
+220|-|MS|WORK|DAY|{H} receiving another raise letter from his manager
+221|same|MCU|BED|WARM|{H} tapping his phone calmly, same routine as always
+222|-|INSERT|none|STUDIO|transfer screen updated: "$2,800 / month"
+223|fund|MACRO|none|STUDIO|the index fund jar almost full, glowing gold
+224|-|MS|BED|NIGHT|{H} scrolling a house listing website on his laptop
+224|houses|INSERT|none|STUDIO|close-up of house listing cards on the laptop screen
+225|-|WS|none|DAY|a busy downtown skyline with glass towers and cranes
+226|-|WS|none|DAY|a quiet two-lane road out of the city through green fields
+226|town|EWS|TOWN|DAY|arriving in the small town: a main street with a diner, a hardware store and a church spire
+227|-|WS|TOWN|DAY|a modest three-bedroom house with a "FOR SALE" sign on the lawn
+228|fenced|INSERT|TOWN|DAY|close-up of a white picket fence around a green yard
+229|-|INSERT|OPEN|DAY|close-up of the slightly ugly dated kitchen: old oak cabinets and yellowed tiles
+230|-|INSERT|TOWN|DAY|close-up of the "FOR SALE" sign with a price rider
+231|fifty-five|ECU|none|STUDIO|extreme close-up of the listing price: "$255,000"
+232|-|MS|OPEN|DAY|{H} walking through an open house holding a printed listing sheet
+232|open|WS|TOWN|DAY|a row of "OPEN HOUSE" signs along a sunny street
+233|-|MS|OPEN|DAY|{H} crouching in a basement with a flashlight
+233|crack|ECU|OPEN|DAY|extreme close-up of a thin crack in a concrete foundation wall under a flashlight beam
+234|-|MS|OPEN|DAY|{H} talking to a realtor on the front lawn, pointing up
+234|roof|LOW|TOWN|DAY|low angle up at an old asphalt-shingle roof against the sky
+235|-|WS|DIN|WARM|family dinner: {H} explaining the plan to {MOM} and {DAD}, a house listing on the table
+236|-|MCU|DIN|WARM|{DAD} going quiet, putting his fork down
+237|-|CU|DIN|WARM|{DAD} looking at his son, eyes softening
+238|-|MCU|DIN|WARM|{DAD} with a slow, amazed half-smile
+238|Chapter|EWS|none|STUDIO|a single brass key and a stack of bills on a dark wooden table, empty space on the left for a chapter title
+239|-|INSERT|none|STUDIO|a birthday cake with a "29" candle
+240|-|MS|DIN|WARM|a well-dressed relative at a party raising a finger to ask a question
+241|cash|ECU|none|STUDIO|extreme close-up of a thick stack of cash beside a house key
+242|-|INSERT|none|STUDIO|close-up of a bank window with a mortgage rates board showing high numbers
+243|-|MS|none|DAY|a financial advisor in a suit gesturing confidently across a desk
+244|-|INSERT|none|STUDIO|close-up of a loan agreement being signed
+244|invested|INSERT|none|STUDIO|a green growing chart on a tablet
+245|-|INSERT|none|STUDIO|two lines on a chart: an investment line rising faster than a loan line
+246|-|INSERT|none|STUDIO|a calculator with numbers on its screen, a pencil beside it
+247|-|WS|none|DAY|a road splitting into two paths at a fork
+248|-|INSERT|none|STUDIO|a balance scale perfectly level with a house on one side and coins on the other
+249|-|MCU|BED|NIGHT|{H} at his desk at night, calm and certain
+250|-|INSERT|none|STUDIO|a small wooden house model being built brick by brick by gold hands
+251|-|MACRO|none|DARK|a heavy iron chain wrapped around a monthly bill, snapping open
+252|-|WS|NEW|GOLD|morning light flooding a bedroom in a modest house, {H} waking up peacefully
+253|bank|INSERT|none|STUDIO|a bank foreclosure notice torn in half
+254|-|INSERT|none|STUDIO|a mortgage payment book closed and set aside
+254|thirty|INSERT|none|STUDIO|thirty calendar pages dissolving into dust
+255|-|INSERT|none|STUDIO|close-up of a property tax bill and an insurance policy on a table
+256|-|ECU|none|STUDIO|extreme close-up of a small monthly bill: "$350 / month"
+257|-|MS|BED|NIGHT|{H} at his desk with a calculator and a notebook, running the numbers
+258|-|INSERT|none|STUDIO|a tall stack of bills labelled on a tag "$215,000 IN"
+259|fifteen|MACRO|none|STUDIO|eight years of paycheck envelopes stacked neatly in a row
+260|-|MACRO|none|STUDIO|the stack of bills growing taller in golden light
+261|seventy-nine|ECU|none|STUDIO|extreme close-up of the phone: "$279,000"
+262|-|INSERT|none|STUDIO|close-up of a tax form "CAPITAL GAINS"
+263|-|INSERT|none|STUDIO|a slice being cut off the top of the cash stack
+264|-|INSERT|none|STUDIO|close-up of a closing costs statement with a few lines highlighted
+265|-|MCU|BED|NIGHT|{H} leaning back in his chair, exhaling slowly
+265|barely|INSERT|none|STUDIO|a scale where a stack of cash barely outweighs a small house model
+266|enough|CU|BED|NIGHT|{H} nodding to himself, a quiet decision made
+267|-|INSERT|none|STUDIO|a simple glass jar on a shelf, separate from everything
+268|emergency|ECU|none|STUDIO|extreme close-up of the jar label: "EMERGENCY FUND — $15,000"
+269|-|INSERT|none|STUDIO|a padlock closing on the emergency jar lid
+270|-|INSERT|none|DARK|a flooded basement with a burst pipe spraying water
+271|-|INSERT|none|STUDIO|a mortgage document with a heavy chain on it
+272|-|WS|TOWN|DAY|a newly bought house with a "SOLD" sign on the lawn and a thick mortgage folder lying on the doorstep
+273|-|INSERT|none|STUDIO|an empty wallet turned inside out
+274|-|MS|none|DARK|a dead water heater in a dark basement, a puddle spreading on the floor
+275|-|EWS|OFF|DAY|the small closing office from the doorway, bright and quiet, empty wall on the left for a chapter title
+276|-|MS|OFF|DAY|{H30} walking into the closing office and pulling out a chair
+277|-|INSERT|OFF|DAY|close-up of the stack of documents on the table
+277|question|MCU|OFF|DAY|{AGENT} looking up from the file
+278|-|CU|OFF|DAY|{AGENT} asking her question, pen ready over the lender box
+279|-|ECU|OFF|DAY|extreme close-up of {H30}'s calm face saying one word, gold skin glowing in the window light
+280|-|WS|none|NIGHT|night highway, {H30}'s old silver hatchback driving alone under streetlights
+281|house|WS|TOWN|NIGHT|the modest house at night under a single streetlight, all windows dark
+282|-|WS|NEW|NIGHT|the empty living room at night, bare walls, moonlight through the windows
+282|echoes|MS|NEW|NIGHT|{H30} standing in the empty doorway, his footsteps the only sound
+283|-|INSERT|NEW|NIGHT|close-up of the bare wooden floor with a single dust bunny in the moonlight
+284|-|INSERT|NEW|NIGHT|close-up of an old metal folding chair being unfolded
+285|garage|WS|HSE|NIGHT|flash of the parents' cluttered garage with the folding chair leaning on a shelf
+286|-|WS|NEW|NIGHT|symmetrical wide shot: {H30} sitting on the folding chair in the middle of the empty living room
+287|-|INSERT|NEW|NIGHT|close-up of his phone lying face-down on the floor beside the chair
+288|-|ECU|NEW|NIGHT|extreme close-up of a social media app icon, untouched
+289|-|WS|NEW|NIGHT|very wide shot: the tiny figure of {H30} alone in the empty room, peaceful
+290|-|WS|none|DAY|split-screen composition: {MAYA}'s city apartment on the left, {RYAN}'s BMW on the right
+291|-|MS|LOFT|DAY|{MAYA} sitting on her floor surrounded by years of rent receipts
+292|thousand|MACRO|none|STUDIO|a tall tower of rent receipts adding up, labelled "$148,000"
+293|-|MS|DRV|DAY|{RYAN} handing back BMW keys at the dealership counter
+294|dollars|INSERT|none|STUDIO|a pile of lease payment slips beside a key tag reading "RETURNED"
+294|never|WS|DRV|DAY|the black BMW driving off the dealership lot with a stranger at the wheel while {RYAN} watches with empty hands
+295|-|MCU|LOFT|DAY|{MAYA} and {JORDAN} laughing together over pizza in her apartment, happy normal life
+296|-|WS|none|DAY|a crowd of young people walking the same direction on a busy sidewalk
+297|-|MACRO|none|STUDIO|dollar bills flying out of an open window into the sky
+298|never|WS|none|DAY|the bills disappearing into the clouds
+299|-|MACRO|none|STUDIO|dollar bills stacked neatly and staying put inside a gold-lit safe
+300|-|INSERT|none|STUDIO|a single dollar bill folded into a tiny house shape
+301|-|WS|NEW|DAY|timelapse-style frame of the house walls rising brick by brick, made of gold-tinted bricks
+302|roof|WS|TOWN|GOLD|the modest house finished: roof, fenced yard, green lawn, sunset
+303|-|ECU|TOWN|GOLD|extreme close-up of {H30}'s gold hand turning a key in the front door lock
+304|-|EWS|TOWN|GOLD|the house at golden hour from across the street, empty sky on the left for a chapter title
+305|-|INSERT|none|STUDIO|a closed wooden door with light leaking underneath
+306|-|INSERT|none|STUDIO|a rent bill and a mortgage bill crossed out
+307|-|INSERT|none|STUDIO|a tiny paper receipt showing a very small monthly total
+308|-|MCU|NEW|DAY|{H30} tapping the same automatic transfer on his phone, relaxed at a kitchen counter
+309|-|ECU|none|STUDIO|extreme close-up of the transfer screen: "$2,500 / month"
+310|fund|MACRO|none|STUDIO|a new index fund jar filling with gold coins
+311|-|INSERT|none|STUDIO|a birthday cake with a "45" candle
+312|-|MACRO|none|STUDIO|a tall glowing gold chart line climbing high
+313|thousand|ECU|none|STUDIO|extreme close-up of a screen: "$800,000"
+314|house|WS|TOWN|GOLD|the paid-off house with a small "PAID" plaque by the door
+315|-|WS|none|DAY|a long queue of tired commuters on a train platform
+316|years|INSERT|none|STUDIO|a mortgage calendar with twenty years still left, most boxes unchecked
+317|-|CU|NEW|DAY|{H30} looking out of his window, thoughtful
+317|Two|INSERT|none|STUDIO|calendar pages turning: two years pass
+318|-|WS|FACT|GREY|the factory gate closed with a chain, a "CLOSED" sign hanging on it
+318|closes|MS|FACT|GREY|{DAD} walking out of the factory gate carrying a cardboard box of belongings
+319|-|MCU|FACT|GREY|{DAD} looking back at the factory, shoulders heavy
+320|-|CU|KIT|GREY|{DAD} at the kitchen table reading job ads in a newspaper, glasses on his nose
+321|-|INSERT|KIT|GREY|close-up of a mortgage statement on the parents' kitchen table
+322|thousand|ECU|none|STUDIO|extreme close-up of the balance: "$41,000 remaining"
+322|grew|WS|HSE|GREY|the parents' older family house under a grey sky
+323|-|WS|HSE|DAY|Sunday: {H30}'s car pulling into his parents' driveway
+324|-|MS|KIT|WARM|{MOM} cooking at the stove, the same pot roast as years ago
+325|napkin|INSERT|KIT|WARM|close-up of the old napkin, faded and still pinned to the fridge
+326|-|WS|DIN|WARM|after dinner at the dining table, empty plates, the family relaxed
+327|-|INSERT|DIN|WARM|close-up of {H30}'s gold hand sliding a folded paper across the tablecloth
+328|-|INSERT|DIN|WARM|close-up of the paper unfolding: a receipt
+328|mortgage|ECU|DIN|WARM|extreme close-up of the stamp: "MORTGAGE — PAID IN FULL"
+329|-|MCU|DIN|WARM|{DAD} reading the receipt, then reading it again
+330|-|CU|DIN|WARM|{DAD} silent, lips pressed together, eyes glistening
+331|-|MCU|DIN|WARM|{MOM} laughing through tears
+332|wipes|CU|DIN|WARM|{MOM} wiping her eyes with her napkin
+333|-|WS|DIN|WARM|the three of them at the table, {DAD} putting a hand on {H30}'s shoulder, warm light
+334|-|WS|BED|GOLD|the old childhood bedroom, empty now, sunlight on the little bed
+335|-|INSERT|none|STUDIO|a magnifying glass over the old napkin plan
+336|-|INSERT|BED|GOLD|close-up of the twin bed with a small "FREE" tag crossed out
+337|-|WS|none|DAY|a young man lying on a couch at his parents' house surrounded by shopping bags
+338|spend|INSERT|none|STUDIO|a credit card being swiped repeatedly
+339|-|INSERT|none|STUDIO|two coin stacks again: one tall, one small, the tall one glowing gold
+340|-|INSERT|KIT|WARM|close-up of four hundred-dollar bills on the kitchen table
+341|-|INSERT|KIT|WARM|close-up of "OUT BY 30" on the napkin
+342|-|INSERT|none|STUDIO|the "Auto" transfer toggle switched on
+343|spend|INSERT|none|STUDIO|a wallet snapping shut
+344|-|INSERT|none|STUDIO|a staircase of coin stacks each higher than the last
+345|income|INSERT|none|STUDIO|a raise letter next to a larger transfer amount
+346|-|MS|KIT|DARK|{MOM} and {H} at the 2 AM kitchen table, the face-down phone
+346|fell|INSERT|none|COLD|the red falling chart with a calm gold hand resting beside it
+347|-|WS|none|DAY|different homes along a street, each one different
+348|-|MS|none|DAY|a young woman packing her own boxes alone, no family nearby
+349|-|MS|none|NIGHT|a young man working late in a small studio apartment
+350|-|WS|none|NIGHT|a single lit window in a dark apartment building
+351|-|MACRO|none|STUDIO|a small seed sprouting out of a pile of coins
+352|-|INSERT|none|STUDIO|a giant bill labelled "RENT" shrinking away
+352|early|MACRO|none|STUDIO|a tiny gold sapling growing out of a small pile of coins in a pot, morning light
+353|money|INSERT|none|STUDIO|a stack of saved bills
+354|-|MACRO|none|STUDIO|an hourglass with golden sand pouring into a small house shape
+355|-|MACRO|none|STUDIO|a tiny gold coin rolling and growing into a giant golden coin
+356|-|INSERT|none|STUDIO|a simple calendar with a small green checkmark on every payday
+357|-|WS|TOWN|GOLD|the paid-off house with a fortress-like golden glow around it
+358|-|WS|HSE|GOLD|flashback frame: {H} at 22 on his parents' porch while his friends drive away
+359|-|MS|NEW|GOLD|{H30} quietly carrying one box into his new house
+360|-|WS|BED|GOLD|the childhood bedroom glowing in golden light, the glow-in-the-dark stars on the ceiling
+361|-|WS|TOWN|GOLD|{H30} standing on the porch of his paid-off house at golden hour, {MOM} and {DAD} pulling into the driveway and waving
+362|-|EWS|TOWN|GOLD|final crane-style wide shot: the modest house with its roof glowing in the sunset, the whole street peaceful
