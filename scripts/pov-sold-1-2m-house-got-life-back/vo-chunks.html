@@ -1,0 +1,249 @@
+<title>Sold the House VO Chunks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ground:#F2F3EE; --surface:#FFFFFF; --ink:#17191C; --muted:#5E645F; --line:#DCDFD6;
+  --accent:#17714A; --accent-ink:#FFFFFF; --done:#E7EAE2;
+  --t-pace:#1F5FA8; --t-pause:#6B6F75; --t-emo:#A8620B; --t-style:#7A3FA6; --t-sound:#0F7C7A;
+  --t-pace-bg:#E4EEF9; --t-pause-bg:#ECEDEF; --t-emo-bg:#FBF0DE; --t-style-bg:#F2E8F9; --t-sound-bg:#DDF3F1;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
+h1{font:800 clamp(28px,5vw,40px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 18px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0 0 22px}
+.how div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.how b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
+.barrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.prog{font:500 13px "IBM Plex Mono",monospace;color:var(--muted);margin-right:auto;font-variant-numeric:tabular-nums}
+.prog strong{color:var(--ink)}
+.meter{height:4px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.chipbtn{font:500 12.5px "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chipbtn:focus-visible,.copy:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.toggle{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+h2{font:700 13px "IBM Plex Sans",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;display:flex;gap:10px;align-items:baseline}
+h2 span{font:500 12px "IBM Plex Mono",monospace;letter-spacing:0;text-transform:none}
+.chunk{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:start}
+.chunk.is-done{background:var(--done)}
+.chunk.is-done .text{opacity:.55}
+.num{font:500 12px "IBM Plex Mono",monospace;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+.voice{font:600 11px "IBM Plex Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:5px;background:var(--ground);border:1px solid var(--line)}
+.voice.v-NARRATOR{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fname{font:500 11.5px "IBM Plex Mono",monospace;color:var(--muted)}
+.text{font-size:15.5px;overflow-wrap:anywhere}
+.tag{font:500 12.5px "IBM Plex Mono",monospace;padding:1px 5px;border-radius:4px;white-space:nowrap}
+.tg-pace{color:var(--t-pace);background:var(--t-pace-bg)}
+.tg-pause{color:var(--t-pause);background:var(--t-pause-bg)}
+.tg-emo{color:var(--t-emo);background:var(--t-emo-bg)}
+.tg-style{color:var(--t-style);background:var(--t-style-bg)}
+.tg-sound{color:var(--t-sound);background:var(--t-sound-bg)}
+.side{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.copy{font:600 13px "IBM Plex Sans",sans-serif;background:var(--accent);color:var(--accent-ink);border:0;border-radius:7px;padding:7px 14px;cursor:pointer;min-width:74px}
+.copy.ok{background:var(--ink);color:var(--ground)}
+.side label{font-size:12px;color:var(--muted);display:flex;gap:5px;align-items:center;cursor:pointer}
+.cast{font-size:13.5px;border-collapse:collapse;width:100%}
+.cast td{padding:4px 8px 4px 0;vertical-align:top;border-top:1px solid var(--line)}
+.cast td:first-child{white-space:nowrap;font-weight:600}
+.tablewrap{overflow-x:auto}
+@media (max-width:560px){.chunk{grid-template-columns:1fr}.num{display:none}.side{flex-direction:row;align-items:center;justify-content:space-between}}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+
+<div class="wrap">
+  <h1>POV: You Sold Your $1.2M House and Got Your Life Back. Voiceover chunks</h1>
+  <p class="lede">The script (about 20 minutes at your pace, 3,148 words) is split into short pieces of 1 to 4 sentences, ready for Google Vids. Paste one chunk per scene, generate it, then tick it off. Your ticks are saved in this browser.</p>
+
+  <div class="how">
+    <div><b>Workflow</b>Filter by one voice, set that voice once in Vids, and generate all of its chunks back to back. Then switch voice. Name each export with the file name shown, and the clips will sort into the right order for the edit.</div>
+    <div><b>Tags</b>Every tag comes from the Vids menus. If a tag gets read out loud instead of performed, delete it and re-add it with <em>Apply audio tags</em>.
+      <div class="legend"><span class="tag tg-pace">pace</span><span class="tag tg-pause">pause</span><span class="tag tg-emo">emotion</span><span class="tag tg-style">style</span><span class="tag tg-sound">sound</span></div></div>
+    <div><b>Casting</b>
+      <div class="tablewrap"><table class="cast">
+        <tr><td>NARRATOR</td><td>One voice reads everything, dialogue included. Warm, calm, reflective male voice; tired at the start, lighter by the end. No sarcasm.</td></tr>
+        <tr><td>In the story</td><td>Jen (your wife), Emma (your daughter), Rosa (the real estate agent). Their lines are in quotes inside the narration; read them slightly softer.</td></tr>
+      </table></div></div>
+  </div>
+
+  <div class="bar">
+    <div class="barrow">
+      <span class="prog" id="prog"></span>
+      <label class="toggle"><input type="checkbox" id="hideDone"> Hide done</label>
+    </div>
+    <div class="barrow" id="filters" style="margin-top:8px"></div>
+    <div class="meter"><i id="meter"></i></div>
+  </div>
+
+  <main id="list"></main>
+</div>
+
+<script>
+const S = (t) => ({section:t});
+const D = [
+S("Cold open: the ladder"),
+["NARRATOR", "[slow pace] [thoughtful] It's seven on a Saturday morning. [short pause] You're on a ladder, pulling wet leaves out of a gutter, on a four-bedroom house where three of the bedrooms are empty. [natural] You're fifty-four. [short pause] Your back hurts. [short pause] On the kitchen table inside, there's a quote for a new roof. [short pause] Twenty-eight thousand dollars. [natural pace] Last night, out of curiosity, you looked up your house online. [short pause] The estimate said one point two million dollars. [short pause] You bought it for three hundred and eighty thousand."],
+["NARRATOR", "[serious] On paper, you and your wife Jen are millionaires. [short pause] In real life, you haven't taken a real vacation in four years. [short pause] You both work fifty-hour weeks. [short pause] And your weekends belong to the house. [slow pace] You climb down the ladder, sit on the bottom step, and say something out loud for the first time. [medium pause] What if we sold it? [medium pause] This is the story of what happened when you did. [short pause] The math, the taxes, the tears, [short pause] and the life you got back."],
+S("Chapter 1: The house that made sense"),
+["NARRATOR", "[authoritative] Chapter one. [short pause] The house that made sense. [natural pace] It's 2004. [short pause] You're thirty-two, Jen is thirty, and your daughter Emma is two. [short pause] Your son Noah is on the way. [natural] You buy a four-bedroom colonial in a suburb with good schools, for three hundred and eighty thousand dollars. [short pause] It's a stretch. [short pause] But it has a big backyard, a basement for the kids, and a maple tree in the front that turns bright orange every October. [thoughtful] For eighteen years, it's the perfect house."],
+["NARRATOR", "[short pause] Birthday parties in the backyard. [short pause] Sleepovers in the basement. [short pause] Pencil marks on the pantry door frame, showing how tall the kids were every year on the first day of school. [natural] Over the years, you put in a new kitchen and a deck, about seventy thousand dollars of improvements. [short pause] In 2021, when rates dropped, you refinanced to a thirty-year loan at two point nine percent. [slow pace] Then Emma moved to Chicago for work. [short pause] Noah left for college. [medium pause] And one night, you realize that you and Jen are living in four bedrooms, [short pause] and using one."],
+S("Chapter 2: House rich, cash poor"),
+["NARRATOR", "[authoritative] Chapter two. [short pause] House rich, cash poor. [natural pace] That Saturday, after the ladder, you and Jen sit down and write out everything you own. [interest] The house is worth about one point two million. [short pause] You still owe about three hundred and twenty thousand on the mortgage. [short pause] So your home equity is almost eight hundred and ninety thousand dollars. [natural] Your retirement accounts hold about four hundred and fifty thousand. [short pause] Your savings account, about twenty thousand. [serious] Add it up, and you're worth about one point three five million dollars. [short pause] But almost two thirds of it is in one place."],
+["NARRATOR", "[short pause] Walls, a roof, and a maple tree. [thoughtful] And that money doesn't do anything for you. [short pause] You can't buy groceries with home equity. [short pause] You can't retire on a backyard. [short pause] The only ways to use it are to borrow against it, [short pause] or to sell. [cautious] You look at borrowing first. [short pause] A home equity line of credit would let you tap some of that value. [short pause] But the rate would be far higher than your two point nine percent mortgage, [short pause] and you'd be taking on new debt in your fifties to pay for a house that's already too big."],
+S("Chapter 2: House rich, cash poor  \u2192  Chapter 3: What the house really costs"),
+["NARRATOR", "[short pause] Borrowing wouldn't shrink the problem. [short pause] It would just finance it. [natural] Financial planners have a name for this. [short pause] House rich, cash poor. [short pause] And it's more common than you'd think, especially among people in their fifties and sixties who bought decades ago. [authoritative] Chapter three. [short pause] What the house really costs. [natural pace] Your mortgage payment is only about fifteen hundred dollars a month. [short pause] That low rate makes the house feel cheap. [short pause] So you add up everything else. [interest] Property taxes. [short pause] They've climbed as the house went up in value. [short pause] Now eighteen thousand dollars a year. [short pause] Fifteen hundred a month, the same as your mortgage."],
+S("Chapter 3: What the house really costs"),
+["NARRATOR", "[interest] Home insurance. [short pause] Five years ago, twenty-four hundred dollars a year. [short pause] Now forty-eight hundred. [short pause] You're not alone. [short pause] Premiums have climbed across the country, and a 2026 government report found they rose the most in areas hit by storms and wildfires. [natural] Heating and cooling four bedrooms and a basement: about six hundred and fifty dollars a month. [short pause] Lawn care and snow removal: two hundred and fifty. [short pause] And maintenance. [short pause] The roof, the water heater, the old windows, the deck that needs sealing. [short pause] Averaged out, about a thousand dollars a month. [interest] That's actually on the low side."],
+["NARRATOR", "[short pause] A common rule of thumb says to budget one to two percent of your home's value every year for upkeep. [short pause] On a one point two million dollar house, that's twelve to twenty-four thousand dollars a year. [short pause] Your old house is just getting started. [serious] Total: about fifty-three hundred dollars a month. [short pause] More than sixty thousand dollars a year, [short pause] to keep three empty bedrooms warm. [thoughtful] And that's only the money. [short pause] You figure you spend about eight hours every weekend on the house. [short pause] Over a year, that's more than four hundred hours. [short pause] Ten full work weeks, of cleaning gutters."],
+S("Chapter 4: Three empty bedrooms"),
+["NARRATOR", "[authoritative] Chapter four. [short pause] Three empty bedrooms. [natural pace] Here's the strange part. [short pause] You're not the only one. [interest] In 2026, Redfin looked at Census data and found that empty-nest baby boomers own about twenty-eight percent of all homes in America with three or more bedrooms. [short pause] Millennials with kids at home own only about sixteen percent. [thoughtful] In other words, the people with the most space often need it the least. [short pause] And the young families who need it most can't find it, or can't afford it."],
+["NARRATOR", "[short pause] Researchers call it a housing mismatch. [natural] You think about the young couple two streets over. [short pause] Two kids and a baby on the way, squeezed into a small rental. [short pause] They've been trying to buy in this school district for three years. [short pause] They keep losing. [natural] And you think about your own kids. [short pause] Emma is twenty-four, renting a one-bedroom in Chicago. [short pause] Noah is about to graduate. [short pause] Neither of them can imagine ever affording a house like this one. [slow pace] Your empty rooms are someone else's dream. [medium pause] And they're costing you your own."],
+S("Chapter 5: The two point nine percent trap"),
+["NARRATOR", "[authoritative] Chapter five. [short pause] The two point nine percent trap. [natural pace] So why doesn't everyone in your position just sell? [short pause] One big reason is the lock-in effect. [interest] Millions of homeowners refinanced or bought when rates were at record lows. [short pause] According to federal mortgage data, about half of all mortgages in America still had a rate of four percent or less at the start of 2026. [short pause] Meanwhile, in late September 2026, the average thirty-year rate passed seven percent, for the first time in more than a year and a half, according to Freddie Mac."],
+["NARRATOR", "[natural] So if you sell, you give up a two point nine percent loan. [short pause] If you buy again with a new mortgage, you might pay more than twice the rate. [short pause] Even for a smaller house, the monthly payment can end up almost the same. [short pause] Most people run that math once, and stay put. [thoughtful] Multiply that decision by millions of homeowners, and you get a housing market where very few homes come up for sale. [short pause] Prices stay high."],
+S("Chapter 5: The two point nine percent trap  \u2192  Chapter 6: The tax nobody plans for"),
+["NARRATOR", "[short pause] Young families wait. [short pause] And empty nesters stay in houses that no longer fit. [thoughtful] But there's a detail the lock-in story often misses. [short pause] It only traps you if you need a new loan. [short pause] If your equity is big enough to buy your next home in cash, the rate doesn't matter. [medium pause] You have almost eight hundred and ninety thousand dollars of equity. [short pause] That changes the question completely. [authoritative] Chapter six. [short pause] The tax nobody plans for. [natural pace] Next, you call your accountant."],
+S("Chapter 6: The tax nobody plans for"),
+["NARRATOR", "[short pause] You've heard that when you sell your home, you don't pay tax on the profit. [short pause] That's only partly true. [interest] Under current law, if you've owned and lived in your home for at least two of the last five years, you can exclude up to two hundred and fifty thousand dollars of profit from tax. [short pause] Five hundred thousand for a married couple filing jointly. [serious] Here's the catch. [short pause] Those limits were set in 1997. [short pause] They've never been raised for inflation. [short pause] Back then, five hundred thousand dollars of profit was almost unimaginable for a normal family."],
+["NARRATOR", "[short pause] Today, in many parts of the country, long-time owners blow past it. [natural] Your accountant walks you through it. [short pause] Your cost isn't just the three hundred and eighty thousand you paid. [short pause] You can add the seventy thousand you spent on the kitchen and the deck, if you kept the receipts. [short pause] Jen kept every single one in a shoebox. [interest] So your cost basis is four hundred and fifty thousand. [short pause] Sell for one point two million, subtract about seventy-eight thousand in selling costs, and your profit is about six hundred and seventy-two thousand."],
+["NARRATOR", "[short pause] Minus the five hundred thousand exclusion leaves a hundred and seventy-two thousand dollars that's taxable. [natural] At your income, that means about thirty thousand dollars in federal tax, including a small investment income surtax. [short pause] Plus about eighty-six hundred for your state. [short pause] Roughly thirty-nine thousand dollars in total. [cautious] Several bills in Congress have proposed raising or removing the cap. [short pause] As of now, none of them has become law. [short pause] So you plan for the tax as it is, not as you hope it will be."],
+S("Chapter 7: The cost of selling"),
+["NARRATOR", "[authoritative] Chapter seven. [short pause] The cost of selling. [natural pace] Then you meet with a real estate agent named Rosa. [short pause] She walks through every room with a notebook. [interest] First, commissions. [short pause] For decades, sellers usually paid about five to six percent, split between both agents. [short pause] After a big legal settlement with the National Association of Realtors in 2024, those fees are more openly negotiable, [short pause] and the buyer's agent pay is handled differently. [short pause] You negotiate a total of about five percent. [short pause] On one point two million, that's sixty thousand dollars. [natural] Then the prep. [short pause] Rosa suggests fresh paint, a few repairs, and a deep clean."],
+["NARRATOR", "[short pause] With closing costs and a small credit to the buyers, that's about eighteen thousand more. [short pause] And moving, about twelve thousand, after twenty-two years of stuff in the basement. [short pause] [natural] \"Do the roof, or don't. [short pause] Buyers will ask for money off either way. [short pause] Just don't do the kitchen again.\" [thoughtful] You don't do the roof. [short pause] You offer a credit instead. [medium pause] Altogether, selling costs you about ninety thousand dollars, including the move. [short pause] That's the price of the door. [short pause] It's a big number. [short pause] And it's why you only want to walk through that door once."],
+["NARRATOR", "[natural] You list the house on a Thursday in April, when the maple tree is just starting to leaf out. [short pause] Nine days later, you have three offers. [short pause] Two are slightly higher. [short pause] The third comes with a handwritten letter from a family with two kids, [short pause] promising to keep the maple tree and the pencil marks. [thoughtful] Rosa reminds you gently that letters aren't money. [short pause] But the difference is small, and the family's financing is solid. [short pause] You take their offer. [short pause] You also ask for a sixty-day closing, so you have time to move without paying for two homes at once."],
+S("Chapter 8: Where do you go?"),
+["NARRATOR", "[authoritative] Chapter eight. [short pause] Where do you go? [natural pace] This is the part that surprises most downsizers. [short pause] Smaller doesn't automatically mean cheaper. [natural] In your own town, a small, single-level home near downtown costs almost as much as your big colonial. [short pause] Everyone your age wants the same thing. [short pause] One floor, walkable, low maintenance. [thoughtful] That word, one floor, matters more than you think. [short pause] At fifty-four, stairs are nothing. [short pause] At seventy-four, they can decide whether you stay in your own home or not."],
+["NARRATOR", "[short pause] So you make a rule. [short pause] Whatever you buy next should work for the people you'll be in twenty years, not just the people you are today. [cautious] A condo downtown looks tempting. [short pause] Until Rosa shows you the monthly association fee, nine hundred dollars, and a note about a special assessment. [short pause] That's when the building charges every owner extra for big repairs, like a new roof or elevator. [short pause] This one is forty thousand dollars per unit. [natural] You even think about renting. [short pause] No repairs, total flexibility. [short pause] But you'd be paying rent that rises every year, for the rest of your life."],
+S("Chapter 8: Where do you go?  \u2192  Chapter 9: The number that changed everything"),
+["NARRATOR", "[hope] Then, one Sunday, you drive forty minutes north to a small lake town you've visited for years. [short pause] You find a two-bedroom, single-level cottage, five minutes from the water. [short pause] New roof. Small yard. [short pause] Four hundred and ninety-five thousand dollars. [natural] Jen can work from home three days a week. [short pause] Your office is hybrid too. [short pause] On the drive home, neither of you says anything for twenty minutes. [short pause] Then Jen breaks the silence. [short pause] [thoughtful] \"I could live there.\" [authoritative] Chapter nine. [short pause] The number that changed everything. [natural pace] That night, you do the final math at the kitchen table. [interest] Sale price: one point two million dollars."],
+S("Chapter 9: The number that changed everything"),
+["NARRATOR", "[short pause] Minus selling costs and the move, about ninety thousand. [short pause] Minus the mortgage payoff, about three hundred and twenty thousand. [short pause] Minus taxes, about thirty-nine thousand. [short pause] What's left: about seven hundred and fifty thousand dollars. [short pause] Cash. [natural] You buy the cottage outright for four hundred and ninety-five thousand, plus about ten thousand in closing costs. [short pause] No mortgage. [short pause] No rate to worry about. [natural] You're careful with the leftover money. [short pause] First, a full year of expenses goes into a high-yield savings account. [short pause] Your new emergency fund. [short pause] Then a small reserve for the cottage's future repairs, because even new roofs get old."],
+["NARRATOR", "[short pause] Everything else goes into simple, low-cost index funds. [hope] And you still have almost two hundred and fifty thousand dollars left over. [interest] Now the monthly math. [short pause] At the cottage, property taxes are about five hundred a month. [short pause] Insurance, a hundred and fifty. [short pause] Utilities, two hundred and fifty. [short pause] Maintenance, about four hundred. [short pause] Total: about thirteen hundred dollars a month. [serious] Before: fifty-three hundred. [short pause] After: thirteen hundred. [medium pause] Four thousand dollars a month, freed. [short pause] Forty-eight thousand dollars a year. [short pause] Every year. [thoughtful] For the first time in years, your money is working for you, [short pause] instead of for the house."],
+S("Chapter 10: The hardest part isn't the money"),
+["NARRATOR", "[authoritative] Chapter ten. [short pause] The hardest part isn't the money. [natural pace] The math was easy. [short pause] Telling the kids was not. [natural] Emma cries on the phone. [short pause] Not because she wants the house. [short pause] Because it's the last place where her childhood still exists. [short pause] [serious] \"Where will we go for Christmas?\" [thoughtful] You don't have a perfect answer. [short pause] The cottage has one guest room and a pull-out couch. [short pause] Holidays will be smaller, and more crowded. [short pause] That's a real cost too. [natural] Jen has the hardest time. [short pause] The night before the movers come, you find her standing in the pantry, looking at the pencil marks on the door frame."],
+["NARRATOR", "[short pause] Eighteen years of the kids growing up, one line at a time. [slow pace] You take a photo of the door frame. [short pause] Then another, close up, so you can read every date. [medium pause] You get it printed, full size, and hang it in the cottage hallway. [short pause] The marks came with you. [short pause] The walls didn't have to. [natural] And there's one more thing that helps. [short pause] That handwritten letter came from the young couple two streets over. [short pause] Two kids, and a baby due in the spring."],
+S("Chapter 11: Getting your life back"),
+["NARRATOR", "[authoritative] Chapter eleven. [short pause] Getting your life back. [natural pace] Here's what you do with the freed four thousand dollars a month. [interest] Half of it, two thousand dollars, goes straight into your investments, on top of the two hundred and fifty thousand you invested after the sale. [short pause] If those investments earn six percent a year, by the time you're sixty-two, that could grow to close to six hundred thousand dollars. [hope] The other half buys time. [short pause] Jen drops to four days a week at work."],
+["NARRATOR", "[short pause] You stop taking weekend calls. [short pause] You take the first real vacation in five years, two weeks in Portugal, paid in cash. [natural] And the weekends change completely. [short pause] No gutters. [short pause] No mowing an acre of grass. [short pause] No basement full of boxes. [short pause] Your Saturday mornings now start with coffee on a dock, and end whenever you feel like it. [natural] Your health changes too. [short pause] You walk around the lake every evening, about three miles. [short pause] Jen sleeps through the night for the first time in years."],
+["NARRATOR", "[short pause] At your next checkup, your doctor asks what you've been doing differently. [short pause] You tell her you sold your house. [short pause] She laughs, until she realizes you mean it. [thoughtful] Something else changes too. [short pause] For years, your retirement plan was a question mark. [short pause] Now it's a date. [short pause] Your planner says you could stop working full time at sixty-two, five years earlier than you thought, and still sleep at night. [slow pace] The house gave you eighteen wonderful years. [medium pause] Selling it gave you the next twenty."],
+S("Chapter 12: When downsizing is a mistake"),
+["NARRATOR", "[authoritative] Chapter twelve. [short pause] When downsizing is a mistake. [natural pace] To be fair, this doesn't work for everyone. [short pause] Downsizing can go wrong in a few very common ways. [cautious] If you move somewhere more expensive, you might free up almost nothing. [short pause] If you take on a big new mortgage at today's rates, the savings can disappear. [short pause] If you move far from family and friends, the loneliness can cost more than any house. [natural] Condos can bring rising association fees and surprise assessments. [short pause] Very small homes can be hard if a grown child moves back, or if one of you needs care later."],
+["NARRATOR", "[short pause] And with selling costs of seven or eight percent, moving twice is a very expensive mistake. [interest] One smart move if you're unsure about a new town. [short pause] Rent there for a few months first. [short pause] Spend a winter. [short pause] Find out where the grocery store is, and whether you actually like the neighbors, [short pause] before you buy. [thoughtful] And sometimes, staying is the right answer. [short pause] If you love the house, can easily afford it, and have a plan for the upkeep as you age, there's nothing wrong with staying. [short pause] The goal isn't a smaller house. [short pause] It's a house that fits the life you actually have now."],
+S("Chapter 13: What this means for you"),
+["NARRATOR", "[authoritative] Chapter thirteen. [short pause] What this means for you. [natural] Maybe you're decades away from an empty nest. [short pause] Maybe you're in one right now. [short pause] Either way, here's what you and Jen learned. [interest] First. Add up the real monthly cost of your home. [short pause] Not just the mortgage. [short pause] Taxes, insurance, utilities, upkeep, and your weekends. [interest] Second. Know how much of your net worth is stuck in your house. [short pause] If it's most of it, you're house rich and cash poor. [natural] Third."],
+["NARRATOR", "Keep every receipt for home improvements. [short pause] They lower your taxable profit when you sell. [short pause] Jen's shoebox saved you real money. [cautious] Fourth. Check your profit against the tax exclusion before you list. [short pause] Two hundred and fifty thousand if you're single, five hundred thousand if you're married, [short pause] and it hasn't been raised since 1997. [natural] Fifth. Price the whole move, not just the new house. [short pause] Commissions, repairs, moving, association fees, and future assessments. [determination] Sixth. If you can, buy the next place in cash, or close to it."],
+S("Chapter 13: What this means for you  \u2192  Closing: Saturday morning"),
+["NARRATOR", "[short pause] That's how you escape the lock-in trap. [thoughtful] And seventh. Decide with your family, not just your spreadsheet. [short pause] The memories don't live in the walls. [short pause] But the goodbye still deserves time. [slow pace] [thoughtful] One year later, it's seven on a Saturday morning again. [short pause] But this time, you're not on a ladder. [short pause] You're sitting on the dock with a cup of coffee, watching the mist lift off the lake. [natural] Jen is still asleep. [short pause] Your phone buzzes."],
+S("Closing: Saturday morning"),
+["NARRATOR", "[short pause] It's a message from the young family who bought your old house. [hope] It's a photo of the pantry door frame. [short pause] Next to the faint lines of your kids' old pencil marks, there are three new ones. [short pause] Fresh, dark, and very low to the ground. [slow pace] [hope] You smile, and put the phone down. [medium pause] The house is still full of life. [short pause] It just isn't yours to carry anymore. [medium pause] And for the first time in years, [short pause] neither is the weight."],
+];
+
+const CAT = {
+  "slow pace":"pace","natural pace":"pace","rushed pace":"pace",
+  "short pause":"pause","medium pause":"pause","long pause":"pause",
+  admiration:"emo",adoration:"emo",amused:"emo",awe:"emo",confusion:"emo",curiosity:"emo",determination:"emo",enthusiasm:"emo",excited:"emo",frustrated:"emo",happy:"emo",hope:"emo",interest:"emo",positive:"emo",surprised:"emo",thoughtful:"emo",
+  whisper:"style",authoritative:"style",bold:"style",cautious:"style",natural:"style",robotic:"style",sarcasm:"style",serious:"style",shouting:"style",
+  swallow:"sound",inhale:"sound",gasp:"sound",shush:"sound",urgh:"sound",snorts:"sound",giggles:"sound","clear throat":"sound"
+};
+
+let store = {};
+try { store = JSON.parse(localStorage.getItem("vo-done-sold-house") || "{}"); } catch (e) { store = {}; }
+const save = () => { try { localStorage.setItem("vo-done-sold-house", JSON.stringify(store)); } catch (e) {} };
+
+const list = document.getElementById("list");
+const esc = (s) => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (t) => esc(t).replace(/\[([a-z ]+)\]/g, (m, k) => `<span class="tag tg-${CAT[k] || "pause"}">[${k}]</span>`);
+
+let n = 0, sec = null;
+const voices = new Set();
+const rows = [];
+for (const item of D) {
+  if (item.section) {
+    sec = document.createElement("section");
+    sec.innerHTML = `<h2>${esc(item.section)} <span></span></h2>`;
+    list.appendChild(sec);
+    continue;
+  }
+  n++;
+  const [voice, text] = item;
+  voices.add(voice);
+  const id = String(n).padStart(3, "0");
+  const fname = `vo_${id}_${voice.toLowerCase()}`;
+  const el = document.createElement("article");
+  el.className = "chunk";
+  el.dataset.voice = voice;
+  el.dataset.id = id;
+  el.innerHTML = `<div class="num">${id}</div>
+    <div><div class="meta"><span class="voice v-${voice}">${voice}</span><span class="fname">${fname}</span></div>
+    <div class="text">${fmt(text)}</div></div>
+    <div class="side"><button class="copy" type="button" id="copy-${id}">Copy</button>
+    <label><input type="checkbox" id="done-${id}"> Done</label></div>`;
+  const btn = el.querySelector(".copy"), box = el.querySelector("input");
+  box.checked = !!store[id];
+  el.classList.toggle("is-done", box.checked);
+  btn.addEventListener("click", () => {
+    const ok = () => { btn.textContent = "Copied"; btn.classList.add("ok"); setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1400); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el.querySelector(".text")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Ctrl+C"; };
+    try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (e) { fallback(); }
+  });
+  box.addEventListener("change", () => { store[id] = box.checked; if (!box.checked) delete store[id]; save(); el.classList.toggle("is-done", box.checked); refresh(); });
+  sec.appendChild(el);
+  rows.push(el);
+}
+
+let active = "ALL";
+const filters = document.getElementById("filters");
+const order = ["ALL","NARRATOR","YOU","MOM","DAD","AGENT","CAROL","RYAN"].filter(v => v === "ALL" || voices.has(v));
+for (const v of order) {
+  const b = document.createElement("button");
+  b.className = "chipbtn"; b.type = "button"; b.id = "f-" + v;
+  b.addEventListener("click", () => { active = v; refresh(); });
+  filters.appendChild(b);
+}
+const hideDone = document.getElementById("hideDone");
+hideDone.addEventListener("change", refresh);
+
+function refresh() {
+  const total = rows.length;
+  const done = rows.filter(r => store[r.dataset.id]).length;
+  for (const b of filters.children) {
+    const v = b.id.slice(2);
+    const pool = v === "ALL" ? rows : rows.filter(r => r.dataset.voice === v);
+    const left = pool.filter(r => !store[r.dataset.id]).length;
+    b.textContent = `${v === "ALL" ? "All voices" : v} · ${left}`;
+    b.setAttribute("aria-pressed", String(v === active));
+  }
+  for (const r of rows) {
+    const show = (active === "ALL" || r.dataset.voice === active) && !(hideDone.checked && store[r.dataset.id]);
+    r.hidden = !show;
+  }
+  for (const s of list.children) {
+    const vis = [...s.querySelectorAll(".chunk")].filter(c => !c.hidden).length;
+    s.hidden = vis === 0;
+    s.querySelector("h2 span").textContent = `${vis} chunk${vis === 1 ? "" : "s"}`;
+  }
+  document.getElementById("prog").innerHTML = `<strong>${done}</strong> / ${total} generated`;
+  document.getElementById("meter").style.width = (done / total * 100) + "%";
+}
+refresh();
+</script>
