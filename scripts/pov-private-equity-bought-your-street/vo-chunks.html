@@ -1,0 +1,249 @@
+<title>Private Equity Street VO Chunks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ground:#F2F3EE; --surface:#FFFFFF; --ink:#17191C; --muted:#5E645F; --line:#DCDFD6;
+  --accent:#17714A; --accent-ink:#FFFFFF; --done:#E7EAE2;
+  --t-pace:#1F5FA8; --t-pause:#6B6F75; --t-emo:#A8620B; --t-style:#7A3FA6; --t-sound:#0F7C7A;
+  --t-pace-bg:#E4EEF9; --t-pause-bg:#ECEDEF; --t-emo-bg:#FBF0DE; --t-style-bg:#F2E8F9; --t-sound-bg:#DDF3F1;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
+h1{font:800 clamp(28px,5vw,40px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 18px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0 0 22px}
+.how div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.how b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
+.barrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.prog{font:500 13px "IBM Plex Mono",monospace;color:var(--muted);margin-right:auto;font-variant-numeric:tabular-nums}
+.prog strong{color:var(--ink)}
+.meter{height:4px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.chipbtn{font:500 12.5px "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chipbtn:focus-visible,.copy:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.toggle{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+h2{font:700 13px "IBM Plex Sans",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;display:flex;gap:10px;align-items:baseline}
+h2 span{font:500 12px "IBM Plex Mono",monospace;letter-spacing:0;text-transform:none}
+.chunk{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:start}
+.chunk.is-done{background:var(--done)}
+.chunk.is-done .text{opacity:.55}
+.num{font:500 12px "IBM Plex Mono",monospace;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+.voice{font:600 11px "IBM Plex Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:5px;background:var(--ground);border:1px solid var(--line)}
+.voice.v-NARRATOR{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fname{font:500 11.5px "IBM Plex Mono",monospace;color:var(--muted)}
+.text{font-size:15.5px;overflow-wrap:anywhere}
+.tag{font:500 12.5px "IBM Plex Mono",monospace;padding:1px 5px;border-radius:4px;white-space:nowrap}
+.tg-pace{color:var(--t-pace);background:var(--t-pace-bg)}
+.tg-pause{color:var(--t-pause);background:var(--t-pause-bg)}
+.tg-emo{color:var(--t-emo);background:var(--t-emo-bg)}
+.tg-style{color:var(--t-style);background:var(--t-style-bg)}
+.tg-sound{color:var(--t-sound);background:var(--t-sound-bg)}
+.side{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.copy{font:600 13px "IBM Plex Sans",sans-serif;background:var(--accent);color:var(--accent-ink);border:0;border-radius:7px;padding:7px 14px;cursor:pointer;min-width:74px}
+.copy.ok{background:var(--ink);color:var(--ground)}
+.side label{font-size:12px;color:var(--muted);display:flex;gap:5px;align-items:center;cursor:pointer}
+.cast{font-size:13.5px;border-collapse:collapse;width:100%}
+.cast td{padding:4px 8px 4px 0;vertical-align:top;border-top:1px solid var(--line)}
+.cast td:first-child{white-space:nowrap;font-weight:600}
+.tablewrap{overflow-x:auto}
+@media (max-width:560px){.chunk{grid-template-columns:1fr}.num{display:none}.side{flex-direction:row;align-items:center;justify-content:space-between}}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+
+<div class="wrap">
+  <h1>POV: Private Equity Just Bought Your Entire Street. Voiceover chunks</h1>
+  <p class="lede">The script (about 20 minutes at your pace, 3,178 words) is split into short pieces of 1 to 4 sentences, ready for Google Vids. Paste one chunk per scene, generate it, then tick it off. Your ticks are saved in this browser.</p>
+
+  <div class="how">
+    <div><b>Workflow</b>Filter by one voice, set that voice once in Vids, and generate all of its chunks back to back. Then switch voice. Name each export with the file name shown, and the clips will sort into the right order for the edit.</div>
+    <div><b>Tags</b>Every tag comes from the Vids menus. If a tag gets read out loud instead of performed, delete it and re-add it with <em>Apply audio tags</em>.
+      <div class="legend"><span class="tag tg-pace">pace</span><span class="tag tg-pause">pause</span><span class="tag tg-emo">emotion</span><span class="tag tg-style">style</span><span class="tag tg-sound">sound</span></div></div>
+    <div><b>Casting</b>
+      <div class="tablewrap"><table class="cast">
+        <tr><td>NARRATOR</td><td>One voice reads everything, dialogue included. Calm, measured male voice, slow and serious, like a quiet documentary. No sarcasm.</td></tr>
+        <tr><td>In the story</td><td>Brad (private equity associate), Dr. Patel (vet), Tom Henderson (plumber), Mrs. Alvarez (daycare), your mom, Dr. Nguyen (new vet). Their lines are in quotes inside the narration; read them slightly softer.</td></tr>
+      </table></div></div>
+  </div>
+
+  <div class="bar">
+    <div class="barrow">
+      <span class="prog" id="prog"></span>
+      <label class="toggle"><input type="checkbox" id="hideDone"> Hide done</label>
+    </div>
+    <div class="barrow" id="filters" style="margin-top:8px"></div>
+    <div class="meter"><i id="meter"></i></div>
+  </div>
+
+  <main id="list"></main>
+</div>
+
+<script>
+const S = (t) => ({section:t});
+const D = [
+S("Cold open: the week everything changed"),
+["NARRATOR", "[slow pace] [thoughtful] It's a Saturday morning, and you're sitting at your kitchen table with four envelopes in front of you. [natural pace] The first is from the vet. [short pause] Biscuit's yearly checkup. [short pause] Two years ago, it cost you three hundred dollars. [short pause] This time, it's eleven hundred and forty. [natural] The second is from the plumber. [short pause] Twenty minutes to fix a leaking pipe. [short pause] Four hundred and eighty-nine dollars. [serious] The third is your lease renewal. [short pause] Your rent is going up eighteen percent."],
+["NARRATOR", "[short pause] And the fourth is from your son Leo's daycare. [short pause] New ownership. New prices. [short pause] Starting next month. [thoughtful] Four different businesses. Four different logos. [short pause] All on the same street you've lived on for six years. [slow pace] You search the names on your phone. [short pause] And one by one, the answers come back the same. [medium pause] Acquired. [short pause] Acquired. [short pause] Acquired. [short pause] Acquired. [slow pace] [serious] You didn't notice it happening. [short pause] Nobody did. [medium pause] But private equity just bought your entire street. [natural] And this is how it happened."],
+S("Chapter 1: The street you knew"),
+["NARRATOR", "[authoritative] Chapter one. [short pause] The street you knew. [natural pace] Six years ago, when you moved onto Maple Avenue, every business had a face. [natural] There was a bakery that gave Leo a free cookie every Saturday. [short pause] A hardware store where the owner explained which screw you actually needed, then sold you the cheaper one. [short pause] A dentist who'd been fixing the same families' teeth for three generations. [natural] Dr. Priya Patel ran the vet clinic on the corner. [short pause] She'd been there for twenty-two years."],
+["NARRATOR", "She knew Biscuit's name before she knew yours. [short pause] When money was tight one winter, she let you pay a bill in three parts. [natural] Tom Henderson ran the plumbing company his father started. [short pause] Six trucks. Twelve employees. [short pause] When your water heater died on Christmas Eve, Tom came himself. [natural] Mrs. Alvarez ran the daycare out of a converted house with a yellow door. [short pause] Leo cried on his first day, and she held him on her lap until he stopped."],
+["NARRATOR", "[thoughtful] And your landlord was an old couple named the Kowalskis, who raised your rent twice in five years, both times by fifty dollars, and apologized both times. [slow pace] That's what a street used to be. [short pause] Small businesses, owned by people who lived close enough to see you at the grocery store. [serious] But those businesses had something in common. [short pause] Something someone, somewhere, had noticed. [medium pause] Their owners were getting older. [short pause] And most of them had no one to hand the business to."],
+S("Chapter 2: The knock on the door"),
+["NARRATOR", "[authoritative] Chapter two. [short pause] The knock on the door. [natural pace] It starts with Dr. Patel. [short pause] She's sixty-three. Her back hurts. Her kids are doctors in other cities, and none of them want to run a vet clinic. [natural] One afternoon, a man in a navy quarter-zip walks in with a leather folder. [short pause] His name is Brad, and he works for a firm called Harborline Capital. [short pause] [natural] \"Dr. Patel, we'd love to partner with you. [short pause] You keep treating animals. We handle everything else.\""],
+["NARRATOR", "[interest] And then he names a price. [short pause] It's almost three times what the young vet down the road offered her last year. [thoughtful] Put yourself in her shoes. [short pause] Twenty-two years of early mornings. A retirement account that never grew as much as she hoped. [short pause] And a stranger offering her more money than she ever expected to see. [slow pace] She says yes. [short pause] Almost anyone would. [natural] A month later, Brad visits Tom Henderson. [short pause] Then the dental office next to the pharmacy. [short pause] Then Mrs. Alvarez. [thoughtful] Tom almost says no."],
+["NARRATOR", "[short pause] His father built that company with one truck and a phone number painted on the side. [short pause] But his knees are bad, his son wants to be a nurse, and the offer would pay off his house and his daughter's college. [short pause] He signs the papers on a Friday, and doesn't tell his employees until Monday. [short pause] He tells them nothing will change. [slow pace] He believes it, too. [serious] Each owner thinks they got a lucky offer. [short pause] None of them know that Brad has a spreadsheet with every vet clinic, plumber, and daycare in three states on it. [short pause] And your street is just one row."],
+S("Chapter 3: How a buyout actually works"),
+["NARRATOR", "[authoritative] Chapter three. [short pause] How a buyout actually works. [natural pace] Here's the part most people never hear. [short pause] Harborline doesn't pay for Dr. Patel's clinic mostly with its own money. [interest] A private equity firm raises a fund from big investors, like pension funds, universities, and very wealthy families. [short pause] Then, when it buys a business, it usually puts in only part of the price, and borrows the rest. [serious] And here's the twist. [short pause] That loan doesn't belong to Harborline."],
+["NARRATOR", "[short pause] It gets placed on the business it just bought. [medium pause] Dr. Patel's clinic, which owed nothing yesterday, now owes a bank millions of dollars. [natural] It's called a leveraged buyout. [short pause] Leverage means debt. [thoughtful] Imagine buying a house with a small down payment, and then making the house itself responsible for the mortgage. [short pause] If things go well, you keep the profit. [short pause] If things go badly, the house takes the hit. [interest] And the firm gets paid either way. [short pause] The classic model is called two and twenty."],
+["NARRATOR", "[short pause] Around two percent of the fund's money every year as a management fee, [short pause] plus around twenty percent of the profits when investments are sold. [serious] That share of the profits is called carried interest. [short pause] And in America, if the firm holds an investment for at least three years, it's taxed at the lower long-term capital gains rate, not as a salary. [short pause] Brad's bosses pay a lower tax rate on their profits than Tom Henderson pays on his plumbers' wages."],
+S("Chapter 4: The roll-up"),
+["NARRATOR", "[authoritative] Chapter four. [short pause] The roll-up. [natural pace] So why would anyone pay three times the market price for a small vet clinic? [short pause] Because of a simple trick of math. [interest] When small businesses are sold, buyers usually pay a certain number of years of profit. [short pause] A small, single clinic might sell for around six times its yearly profit. [natural] But a big, national chain of fifty clinics? [short pause] Investors see it as safer and more valuable. [short pause] It can sell for fifteen times its profit, or more."],
+["NARRATOR", "[thoughtful] Now do the math. [short pause] Harborline buys fifty clinics that each make a million dollars a year. [short pause] At six times profit, that costs three hundred million dollars. [hope] Then it puts them under one name, one logo, one computer system. [short pause] Fifty million dollars of profit, now valued at fifteen times. [medium pause] Seven hundred and fifty million dollars. [serious] Four hundred and fifty million dollars of value, created mostly by gluing small businesses together. [short pause] Before a single price has changed."],
+S("Chapter 4: The roll-up  \u2192  Chapter 5: What changes inside"),
+["NARRATOR", "[natural] Wall Street calls this a roll-up. [short pause] And it's happening in vet clinics, dental offices, dermatology practices, plumbing and air conditioning companies, daycares, car washes, and funeral homes. [thoughtful] Industries full of small, independent owners, many close to retirement. [short pause] Easy to buy one by one. [short pause] Valuable when combined. [authoritative] Chapter five. [short pause] What changes inside. [natural pace] For the first few months, nothing seems different at the clinic. [short pause] Same building. Same sign. Dr. Patel is still there. [natural] Then small things start to change."],
+S("Chapter 5: What changes inside"),
+["NARRATOR", "[short pause] New software that suggests extra tests at every visit. [short pause] A monthly wellness plan the front desk is told to offer every customer. [short pause] Prices for dental cleanings and blood work go up, then up again. [serious] Remember the debt that was placed on the clinic? [short pause] It has to be paid, with interest, every single month. [short pause] And the firm needs the clinic's profits to grow fast, because it plans to sell the whole chain within a few years."],
+["NARRATOR", "[thoughtful] A year later, Dr. Patel retires for good. [short pause] Her replacement leaves after eight months. [short pause] The next one after six. [short pause] Biscuit sees a different vet every visit now. [natural] This isn't just a feeling. [short pause] Researchers have found that when private equity buys doctors' practices, prices often rise afterward. [short pause] In 2023, the Federal Trade Commission sued a private equity firm and the anesthesia group it built in Texas, accusing it of buying up practices to raise prices. [cautious] And some of the most famous surprise medical bills in America came from emergency room staffing companies owned by private equity."],
+["NARRATOR", "[short pause] One of them, Envision Healthcare, owned by the firm KKR, later filed for bankruptcy in 2023. [natural] At the dental office next to the pharmacy, it's the same story. [short pause] Your cleaning used to take thirty minutes with a hygienist who'd known you for years. [short pause] Now it's a new face every visit, a new treatment plan on a tablet, and a list of recommended procedures that somehow gets longer every time. [short pause] You start getting second opinions. [short pause] Half the time, the second dentist says you don't need anything at all. [slow pace] Same clinic. Same sign on the door. [medium pause] Different reason it exists."],
+S("Chapter 6: The same playbook, everywhere"),
+["NARRATOR", "[authoritative] Chapter six. [short pause] The same playbook, everywhere. [natural pace] Tom Henderson's plumbing company gets a new name, a new website, and a call center two states away. [short pause] When you call about a leak, you don't talk to Tom anymore. [short pause] You talk to someone reading a script, who books a technician with a sales target. [natural] The technician is polite. [short pause] He fixes the pipe. [short pause] And then he spends ten minutes explaining why you should really replace your whole water heater, today, with financing available. [thoughtful] Mrs. Alvarez's daycare becomes part of a chain of forty centers. [short pause] The yellow door gets painted gray, to match the brand."],
+["NARRATOR", "[short pause] Tuition goes up. The teachers change every few months. [short pause] And Leo stops asking about Mrs. Alvarez, because he can't remember which teacher she was. [serious] Across America, the same thing has happened to mobile home parks, where owners of the homes rent the land underneath them. [short pause] When investors buy the park, residents often face big increases in lot rent. [short pause] And moving a mobile home can cost thousands of dollars, so many residents simply pay. [slow pace] The pattern is always the same. [short pause] Find a business people can't easily walk away from. [short pause] Buy it. Combine it. Raise the price."],
+S("Chapter 7: The house you couldn't buy"),
+["NARRATOR", "[authoritative] Chapter seven. [short pause] The house you couldn't buy. [natural pace] Meanwhile, you're trying to escape renting. [short pause] You and your partner have saved for five years. [short pause] You find a small three-bedroom house with a big yard, perfect for Leo and Biscuit. [natural] You offer the full asking price. [short pause] You lose. [short pause] The next house, you offer ten thousand over. [short pause] You lose again. [short pause] Six offers. Six losses. [short pause] Four of them to all-cash buyers who closed in two weeks. [thoughtful] Here's why cash wins."],
+["NARRATOR", "[short pause] A seller who accepts your offer has to wait for your bank to approve the mortgage, send an appraiser, and check your paperwork. [short pause] Deals like yours can fall apart. [short pause] A cash buyer with a big fund behind it can promise to close fast, skip the inspection, and take the house as it is. [short pause] For many sellers, certainty is worth more than a few thousand dollars. [interest] After the 2008 housing crash, when millions of homes were foreclosed, some of the biggest investment firms in the world started buying single-family houses to rent out."],
+["NARRATOR", "[short pause] Blackstone, one of the largest private equity firms, launched a company called Invitation Homes in 2012. [natural] Today, Invitation Homes owns more than eighty-six thousand rental houses, making it the largest owner of single-family rental homes in America. [short pause] It's concentrated in a small number of cities, especially in the Sun Belt. [thoughtful] Nationally, big investors own only a small share of all houses. [short pause] But in some neighborhoods, in cities like Atlanta, Phoenix, and Tampa, they buy a large share of the starter homes that families like yours are trying to buy. [serious] And the rent you pay today?"],
+S("Chapter 7: The house you couldn't buy  \u2192  Chapter 8: How companies get hollowed out"),
+["NARRATOR", "[short pause] In many apartment buildings, it's calculated by software. [short pause] In 2024, the Justice Department sued RealPage, a company whose software many landlords used to set rents, accusing it of helping landlords coordinate prices. [short pause] The case ended in a settlement in 2025. [slow pace] [thoughtful] And who owns RealPage? [medium pause] A private equity firm. [authoritative] Chapter eight. [short pause] How companies get hollowed out. [natural pace] Not every private equity deal ends badly. [short pause] But when they do, it's usually because of two tools. [interest] The first is called a dividend recapitalization. [short pause] The owners make the company borrow even more money, [short pause] and then pay that borrowed money to themselves."],
+S("Chapter 8: How companies get hollowed out"),
+["NARRATOR", "[short pause] The firm gets its investment back early. [short pause] The company keeps the debt. [interest] The second is called a sale-leaseback. [short pause] The owners sell the buildings the company owns, keep the cash, and then make the company pay rent to use the same buildings it used to own. [serious] In 2014, the private equity firm Golden Gate Capital bought Red Lobster. [short pause] As part of the deal, the real estate under about five hundred restaurants was sold for one point five billion dollars, and leased back. [short pause] Red Lobster now paid rent on buildings it once owned."],
+["NARRATOR", "[short pause] Ten years later, after more changes in ownership and many other problems, Red Lobster filed for bankruptcy. [serious] In 2005, three investment firms bought Toys R Us in a six point six billion dollar leveraged buyout. [short pause] The company spent years paying interest on that debt instead of fixing its stores. [short pause] In 2017, it filed for bankruptcy. [short pause] The next year, its American stores closed, and tens of thousands of workers lost their jobs. [thoughtful] In both stories, the buyers could still make money, through fees and early payouts, even as the company itself sank."],
+S("Chapter 9: When the stakes are life and death"),
+["NARRATOR", "[authoritative] Chapter nine. [short pause] When the stakes are life and death. [slow pace] [serious] Your grandmother lives in a nursing home across town. [short pause] Last spring, you noticed the staff seemed to change every few weeks. [short pause] Call buttons took longer to answer. [short pause] A new company name appeared on the lobby wall. [natural] Economists studied exactly this. [short pause] Researchers used years of Medicare data to see what happened when private equity firms bought nursing homes. [serious] They found that after private equity took over, nurse staffing and measures of patient well-being declined."],
+["NARRATOR", "[short pause] And the short-term death rate for Medicare patients rose by about eleven percent. [thoughtful] That study doesn't mean every owner is cruel. [short pause] It means that when a business carries heavy debt and needs fast profits, the easiest costs to cut are often people. [short pause] And in some businesses, people are the entire product. [slow pace] You start visiting your grandmother twice a week instead of once. [short pause] You learn every nurse's name. [short pause] Not because anyone told you to. [short pause] Because somebody should."],
+S("Chapter 10: Who wins"),
+["NARRATOR", "[authoritative] Chapter ten. [short pause] Who wins. [natural pace] Five years after Brad first walked into Dr. Patel's clinic, Harborline sells its vet chain to a bigger firm. [short pause] For a price far higher than it paid. [interest] The investors in the fund get their money back, with a profit. [short pause] Harborline's partners collect their twenty percent of the gains. [short pause] And the new owner arrives with a new plan, and a new pile of debt. [thoughtful] Brad gets a promotion. [short pause] He's already working on the next spreadsheet."],
+["NARRATOR", "[short pause] Veterinary was a good run. [short pause] Now the firm is looking at pediatric therapy clinics, and hearing aid stores. [thoughtful] Dr. Patel did well. She got her retirement. [short pause] Tom Henderson did well too. [short pause] The people who sold first often do. [serious] The people who pay are the ones who come later. [short pause] The young vets who can't afford to open their own clinic, because every clinic in town is part of a chain. [short pause] The families paying higher prices for the same services. [short pause] And the workers, who get new managers, new targets, and new owners every few years."],
+S("Chapter 11: The twist"),
+["NARRATOR", "[authoritative] Chapter eleven. [short pause] The twist. [natural pace] That Sunday, you go to lunch at your mom's house. [short pause] She taught high school history for thirty-one years. [short pause] You tell her about the vet bill, the plumber, the daycare, the houses you lost. [natural] She listens. [short pause] Then she goes quiet, and pulls out a letter from a drawer. [short pause] It's her yearly pension statement. [interest] You read the list of investments. [short pause] Stocks. Bonds. [short pause] And a long list of private equity funds."],
+["NARRATOR", "[slow pace] [thoughtful] Pension funds for teachers, firefighters, and government workers are among the biggest investors in private equity. [short pause] They invest because those funds have often promised higher returns, and pensions need high returns to pay retirees like your mom. [short pause] [thoughtful] \"So I'm paying for my own retirement, [short pause] by raising your rent?\" [serious] In a way, yes. [short pause] That's what makes this story so hard to untangle. [short pause] The money buying your street isn't only a few billionaires. [short pause] Some of it belongs to ordinary people who never chose where it went."],
+S("Chapter 12: The other side"),
+["NARRATOR", "[authoritative] Chapter twelve. [short pause] The other side. [natural] To be fair, private equity isn't always the villain. [interest] Many small business owners have no buyer at all when they want to retire. [short pause] Without an offer, some businesses would simply close. [short pause] Private equity gives owners like Dr. Patel a way out. [natural] Some firms buy struggling companies and genuinely fix them. [short pause] They bring better technology, better management, and money to grow. [short pause] Some companies end up stronger than they were. [thoughtful] And the research is mixed. [short pause] Results depend on the industry, the amount of debt, and how the firm runs the business."],
+["NARRATOR", "[short pause] A software company with loyal customers is not the same as a nursing home. [natural] Some studies have found that companies bought by private equity become more productive, and that some grow faster than similar companies that weren't bought. [short pause] Others find higher prices, fewer workers, and more bankruptcies. [short pause] Both can be true, in different places, at the same time. [serious] The real problem isn't one firm or one deal. [short pause] It's what happens when the same playbook, heavy debt, fast growth, and a sale in a few years, is used on the everyday services families can't easily avoid. [short pause] Healthcare. Housing. Childcare. Repairs."],
+S("Chapter 13: What you can do"),
+["NARRATOR", "[authoritative] Chapter thirteen. [short pause] What you can do. [natural] You can't buy back your street. [short pause] But you can stop being an easy customer. [interest] First. Find out who owns the businesses you use. [short pause] Look at the bottom of the website, or the about page. [short pause] Words like, a member of, a partner of, or part of a family of practices, usually mean a larger group. [natural] Second. Ask for prices before you agree to anything. [short pause] Get an itemized estimate from the vet, the dentist, the plumber. [short pause] And get a second quote from an independent business. [short pause] The difference is often surprising."],
+["NARRATOR", "[cautious] Third. Know your rights. [short pause] In America, the No Surprises Act, which took effect in 2022, protects you from many surprise medical bills, especially in emergencies. [short pause] If you get one, don't just pay it. [short pause] Ask questions first. [natural] Fourth. When you buy a home, look for sellers who are people, not companies. [short pause] Ask your agent about homes that are not yet on the market, and first-time buyer programs in your state. [interest] Fifth. Pay attention to the rules where you live. [short pause] Some states now require review before big healthcare deals go through, so regulators can look at what happens to prices and patients."],
+S("Chapter 13: What you can do  \u2192  Closing: Monday morning"),
+["NARRATOR", "[short pause] Local officials and state attorneys general do listen when people complain. [thoughtful] And sixth. Support the independents that are left. [short pause] The young vet who opened her own clinic. [short pause] The plumber with one truck and good reviews. [short pause] Every dollar you spend there is a vote for a different kind of street. [slow pace] [thoughtful] Monday morning, you walk Biscuit past the corner where Dr. Patel's clinic used to be. [short pause] The sign looks the same. The building looks the same. [natural] But two blocks further, there's a new sign, handwritten in the window of a small storefront. [short pause] New veterinary clinic. Independent. Opening soon."],
+S("Closing: Monday morning"),
+["NARRATOR", "[short pause] A young woman in scrubs is carrying boxes inside. [hope] You stop, and you introduce yourself. [short pause] And Biscuit, for the first time in months, wags his tail at a vet. [natural] Her name is Dr. Nguyen. [short pause] She worked at the chain for two years before she quit. [short pause] She tells you she took out a small loan, bought used equipment, and decided to do it the old way. [short pause] [hope] \"I just want to know my patients' names again.\" [slow pace] [serious] The street looks exactly like it did six years ago. [medium pause] It just has different owners. [medium pause] And now, at least, you know how to read it."],
+];
+
+const CAT = {
+  "slow pace":"pace","natural pace":"pace","rushed pace":"pace",
+  "short pause":"pause","medium pause":"pause","long pause":"pause",
+  admiration:"emo",adoration:"emo",amused:"emo",awe:"emo",confusion:"emo",curiosity:"emo",determination:"emo",enthusiasm:"emo",excited:"emo",frustrated:"emo",happy:"emo",hope:"emo",interest:"emo",positive:"emo",surprised:"emo",thoughtful:"emo",
+  whisper:"style",authoritative:"style",bold:"style",cautious:"style",natural:"style",robotic:"style",sarcasm:"style",serious:"style",shouting:"style",
+  swallow:"sound",inhale:"sound",gasp:"sound",shush:"sound",urgh:"sound",snorts:"sound",giggles:"sound","clear throat":"sound"
+};
+
+let store = {};
+try { store = JSON.parse(localStorage.getItem("vo-done-private-equity-street") || "{}"); } catch (e) { store = {}; }
+const save = () => { try { localStorage.setItem("vo-done-private-equity-street", JSON.stringify(store)); } catch (e) {} };
+
+const list = document.getElementById("list");
+const esc = (s) => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (t) => esc(t).replace(/\[([a-z ]+)\]/g, (m, k) => `<span class="tag tg-${CAT[k] || "pause"}">[${k}]</span>`);
+
+let n = 0, sec = null;
+const voices = new Set();
+const rows = [];
+for (const item of D) {
+  if (item.section) {
+    sec = document.createElement("section");
+    sec.innerHTML = `<h2>${esc(item.section)} <span></span></h2>`;
+    list.appendChild(sec);
+    continue;
+  }
+  n++;
+  const [voice, text] = item;
+  voices.add(voice);
+  const id = String(n).padStart(3, "0");
+  const fname = `vo_${id}_${voice.toLowerCase()}`;
+  const el = document.createElement("article");
+  el.className = "chunk";
+  el.dataset.voice = voice;
+  el.dataset.id = id;
+  el.innerHTML = `<div class="num">${id}</div>
+    <div><div class="meta"><span class="voice v-${voice}">${voice}</span><span class="fname">${fname}</span></div>
+    <div class="text">${fmt(text)}</div></div>
+    <div class="side"><button class="copy" type="button" id="copy-${id}">Copy</button>
+    <label><input type="checkbox" id="done-${id}"> Done</label></div>`;
+  const btn = el.querySelector(".copy"), box = el.querySelector("input");
+  box.checked = !!store[id];
+  el.classList.toggle("is-done", box.checked);
+  btn.addEventListener("click", () => {
+    const ok = () => { btn.textContent = "Copied"; btn.classList.add("ok"); setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1400); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el.querySelector(".text")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Ctrl+C"; };
+    try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (e) { fallback(); }
+  });
+  box.addEventListener("change", () => { store[id] = box.checked; if (!box.checked) delete store[id]; save(); el.classList.toggle("is-done", box.checked); refresh(); });
+  sec.appendChild(el);
+  rows.push(el);
+}
+
+let active = "ALL";
+const filters = document.getElementById("filters");
+const order = ["ALL","NARRATOR","YOU","MOM","DAD","AGENT","CAROL","RYAN"].filter(v => v === "ALL" || voices.has(v));
+for (const v of order) {
+  const b = document.createElement("button");
+  b.className = "chipbtn"; b.type = "button"; b.id = "f-" + v;
+  b.addEventListener("click", () => { active = v; refresh(); });
+  filters.appendChild(b);
+}
+const hideDone = document.getElementById("hideDone");
+hideDone.addEventListener("change", refresh);
+
+function refresh() {
+  const total = rows.length;
+  const done = rows.filter(r => store[r.dataset.id]).length;
+  for (const b of filters.children) {
+    const v = b.id.slice(2);
+    const pool = v === "ALL" ? rows : rows.filter(r => r.dataset.voice === v);
+    const left = pool.filter(r => !store[r.dataset.id]).length;
+    b.textContent = `${v === "ALL" ? "All voices" : v} · ${left}`;
+    b.setAttribute("aria-pressed", String(v === active));
+  }
+  for (const r of rows) {
+    const show = (active === "ALL" || r.dataset.voice === active) && !(hideDone.checked && store[r.dataset.id]);
+    r.hidden = !show;
+  }
+  for (const s of list.children) {
+    const vis = [...s.querySelectorAll(".chunk")].filter(c => !c.hidden).length;
+    s.hidden = vis === 0;
+    s.querySelector("h2 span").textContent = `${vis} chunk${vis === 1 ? "" : "s"}`;
+  }
+  document.getElementById("prog").innerHTML = `<strong>${done}</strong> / ${total} generated`;
+  document.getElementById("meter").style.width = (done / total * 100) + "%";
+}
+refresh();
+</script>
