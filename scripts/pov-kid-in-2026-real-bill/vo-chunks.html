@@ -1,0 +1,249 @@
+<title>Real Baby Bill VO Chunks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ground:#F2F3EE; --surface:#FFFFFF; --ink:#17191C; --muted:#5E645F; --line:#DCDFD6;
+  --accent:#17714A; --accent-ink:#FFFFFF; --done:#E7EAE2;
+  --t-pace:#1F5FA8; --t-pause:#6B6F75; --t-emo:#A8620B; --t-style:#7A3FA6; --t-sound:#0F7C7A;
+  --t-pace-bg:#E4EEF9; --t-pause-bg:#ECEDEF; --t-emo-bg:#FBF0DE; --t-style-bg:#F2E8F9; --t-sound-bg:#DDF3F1;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
+h1{font:800 clamp(28px,5vw,40px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 18px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0 0 22px}
+.how div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.how b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
+.barrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.prog{font:500 13px "IBM Plex Mono",monospace;color:var(--muted);margin-right:auto;font-variant-numeric:tabular-nums}
+.prog strong{color:var(--ink)}
+.meter{height:4px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.chipbtn{font:500 12.5px "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chipbtn:focus-visible,.copy:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.toggle{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+h2{font:700 13px "IBM Plex Sans",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;display:flex;gap:10px;align-items:baseline}
+h2 span{font:500 12px "IBM Plex Mono",monospace;letter-spacing:0;text-transform:none}
+.chunk{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:start}
+.chunk.is-done{background:var(--done)}
+.chunk.is-done .text{opacity:.55}
+.num{font:500 12px "IBM Plex Mono",monospace;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+.voice{font:600 11px "IBM Plex Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:5px;background:var(--ground);border:1px solid var(--line)}
+.voice.v-NARRATOR{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fname{font:500 11.5px "IBM Plex Mono",monospace;color:var(--muted)}
+.text{font-size:15.5px;overflow-wrap:anywhere}
+.tag{font:500 12.5px "IBM Plex Mono",monospace;padding:1px 5px;border-radius:4px;white-space:nowrap}
+.tg-pace{color:var(--t-pace);background:var(--t-pace-bg)}
+.tg-pause{color:var(--t-pause);background:var(--t-pause-bg)}
+.tg-emo{color:var(--t-emo);background:var(--t-emo-bg)}
+.tg-style{color:var(--t-style);background:var(--t-style-bg)}
+.tg-sound{color:var(--t-sound);background:var(--t-sound-bg)}
+.side{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.copy{font:600 13px "IBM Plex Sans",sans-serif;background:var(--accent);color:var(--accent-ink);border:0;border-radius:7px;padding:7px 14px;cursor:pointer;min-width:74px}
+.copy.ok{background:var(--ink);color:var(--ground)}
+.side label{font-size:12px;color:var(--muted);display:flex;gap:5px;align-items:center;cursor:pointer}
+.cast{font-size:13.5px;border-collapse:collapse;width:100%}
+.cast td{padding:4px 8px 4px 0;vertical-align:top;border-top:1px solid var(--line)}
+.cast td:first-child{white-space:nowrap;font-weight:600}
+.tablewrap{overflow-x:auto}
+@media (max-width:560px){.chunk{grid-template-columns:1fr}.num{display:none}.side{flex-direction:row;align-items:center;justify-content:space-between}}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+
+<div class="wrap">
+  <h1>POV: You Have a Kid in 2026 — Here's the Real Bill. Voiceover chunks</h1>
+  <p class="lede">The script (about 20 minutes at your pace, 3,135 words) is split into short pieces of 1 to 4 sentences, ready for Google Vids. Paste one chunk per scene, generate it, then tick it off. Your ticks are saved in this browser.</p>
+
+  <div class="how">
+    <div><b>Workflow</b>Filter by one voice, set that voice once in Vids, and generate all of its chunks back to back. Then switch voice. Name each export with the file name shown, and the clips will sort into the right order for the edit.</div>
+    <div><b>Tags</b>Every tag comes from the Vids menus. If a tag gets read out loud instead of performed, delete it and re-add it with <em>Apply audio tags</em>.
+      <div class="legend"><span class="tag tg-pace">pace</span><span class="tag tg-pause">pause</span><span class="tag tg-emo">emotion</span><span class="tag tg-style">style</span><span class="tag tg-sound">sound</span></div></div>
+    <div><b>Casting</b>
+      <div class="tablewrap"><table class="cast">
+        <tr><td>NARRATOR</td><td>One voice reads everything, dialogue included. Warm, calm, measured male voice; honest about the numbers, never scary. No sarcasm.</td></tr>
+        <tr><td>In the story</td><td>Maya (your partner), your mom, the daycare director. Your cousin Priya is mentioned but doesn't speak. Their lines are in quotes inside the narration; read them slightly softer.</td></tr>
+      </table></div></div>
+  </div>
+
+  <div class="bar">
+    <div class="barrow">
+      <span class="prog" id="prog"></span>
+      <label class="toggle"><input type="checkbox" id="hideDone"> Hide done</label>
+    </div>
+    <div class="barrow" id="filters" style="margin-top:8px"></div>
+    <div class="meter"><i id="meter"></i></div>
+  </div>
+
+  <main id="list"></main>
+</div>
+
+<script>
+const S = (t) => ({section:t});
+const D = [
+S("Cold open: two pink lines"),
+["NARRATOR", "[slow pace] [thoughtful] It's six in the morning. [short pause] You're standing in a small bathroom, holding a plastic test up to the light. [medium pause] Two pink lines. [natural] Maya is sitting on the edge of the bathtub, laughing and crying at the same time. [short pause] You're thirty-one. She's twenty-nine. [short pause] You've been talking about this for two years. [short pause] And now it's real. [short pause] [hope] \"We're really doing this.\" [natural pace] That day is one of the happiest of your life. [short pause] You call your mom. [short pause] You look at tiny socks online."],
+["NARRATOR", "[short pause] You argue about names. [serious] And at eleven that night, after Maya falls asleep, you open your laptop and make a new spreadsheet. [short pause] You call it Baby. [short pause] Then you search for one question. [medium pause] How much does a kid actually cost? [slow pace] The first answer you find says about three hundred thousand dollars. [short pause] You stare at the screen for a long time. [medium pause] This is the story of what that number really means, [short pause] and what the bill looks like when it's your name on it."],
+S("Chapter 1: The number everyone quotes"),
+["NARRATOR", "[authoritative] Chapter one. [short pause] The number everyone quotes. [natural pace] That three hundred thousand dollar figure comes from a LendingTree study. [short pause] In 2025, it put the average cost of raising a child in America to age eighteen at about two hundred and ninety-eight thousand dollars. [short pause] An update since then puts it even higher. [interest] For years, the famous estimate came from the US Department of Agriculture. [short pause] Its last report said a middle-income family would spend about two hundred and thirty-four thousand dollars on a child born in 2015. [short pause] Adjusted for inflation, researchers at the Brookings Institution later put that closer to three hundred and ten thousand."],
+["NARRATOR", "[natural] The USDA also showed where the money goes. [short pause] Housing is the biggest piece, almost thirty percent. [short pause] Then food. [short pause] Then childcare and education. [short pause] Then transportation, health care, clothes, and everything else. [thoughtful] Three hundred thousand over eighteen years sounds like about sixteen or seventeen thousand dollars a year. [short pause] Almost manageable. [medium pause] But here's what nobody tells you. [short pause] That average is a lie of timing. [short pause] The bill doesn't arrive evenly. [short pause] It arrives in a wave. [short pause] And the biggest part of the wave hits in the first five years, [short pause] exactly when most parents are youngest and earn the least."],
+S("Chapter 2: The bill before the baby"),
+["NARRATOR", "[authoritative] Chapter two. [short pause] The bill before the baby. [natural pace] The first costs show up before the baby does. [short pause] Doctor visits. Ultrasounds. Blood tests. [short pause] And then the birth itself. [interest] According to research from Peterson and KFF, pregnancy, birth, and the months after cost about twenty thousand dollars on average for women with job-based insurance. [short pause] Most of that is paid by the insurance company. [short pause] But families still paid about two thousand seven hundred dollars out of their own pocket, on average."],
+["NARRATOR", "[short pause] Plus almost five hundred more for the newborn's care in the first three months. [natural] Maya's plan has a high deductible, so your share lands a little higher. [short pause] About thirty-two hundred dollars, spread across a stack of bills that keep arriving for months after you bring the baby home. [cautious] And there's a quieter cost. [short pause] Adding a child to your health insurance. [short pause] Moving from coverage for two to a family plan raises your premium by about four hundred dollars a month."],
+["NARRATOR", "[short pause] Almost five thousand dollars a year, [short pause] before your daughter has even learned to smile. [amused] Months later, the first envelope from the insurance company will arrive, two weeks after the birth. [short pause] At the top, in bold letters, it will say: this is not a bill. [short pause] The second envelope, from the hospital, will very much be a bill. [thoughtful] But that's months away. [short pause] Tonight, you just add two rows to the spreadsheet. [short pause] It's already bigger than you expected. [short pause] And you haven't bought a single diaper."],
+S("Chapter 3: The leave nobody pays for"),
+["NARRATOR", "[authoritative] Chapter three. [short pause] The leave nobody pays for. [natural pace] In month five, Maya sits down with human resources to ask about maternity leave. [short pause] She comes home quiet. [serious] Here's what she learned. [short pause] The United States has no national paid parental leave. [short pause] The main federal law, the Family and Medical Leave Act from 1993, gives eligible workers up to twelve weeks off to care for a new child. [short pause] It protects your job. [short pause] But it doesn't pay you a cent."],
+["NARRATOR", "[short pause] And you only qualify if your employer is big enough and you've worked there long enough. [interest] A little over a dozen states, plus Washington DC, have created their own paid family leave programs. [short pause] Yours isn't one of them. [natural] So Maya's company offers six weeks at sixty percent of her pay, through short-term disability. [short pause] After that, six more weeks unpaid, if she wants the full twelve. [short pause] You get two weeks of paid leave from your job."],
+S("Chapter 3: The leave nobody pays for  \u2192  Chapter 4: The first year's shopping list"),
+["NARRATOR", "[short pause] Two. [thoughtful] You do the math. [short pause] Maya earns seventy thousand dollars a year. [short pause] Twelve weeks of leave, with half of it partly paid and half not paid at all, costs your family about eleven thousand dollars in lost income. [medium pause] The most important weeks of your daughter's life come with a pay cut. [authoritative] Chapter four. [short pause] The first year's shopping list. [natural pace] Then there's the gear. [short pause] A crib. A car seat, because most hospitals want to see one before they'll let you drive your baby home. [short pause] A stroller. A monitor. Bottles. A changing table."],
+S("Chapter 4: The first year's shopping list"),
+["NARRATOR", "[short pause] A mountain of tiny clothes she'll outgrow in six weeks. [interest] And diapers. [short pause] A newborn can go through eight to twelve a day. [short pause] That's thousands of diapers in the first year. [short pause] With wipes, about eighty dollars a month, every month, for two or three years. [natural] Then formula, or the pumps, bags, and bottles that come with breastfeeding. [short pause] And later, baby food. [short pause] You remember the formula shortage of 2022, when empty shelves sent parents driving from store to store. [short pause] You buy a few extra cans, just in case. [cautious] This is where the registry trap catches a lot of new parents."],
+["NARRATOR", "[short pause] The baby industry is very good at making every product feel like a safety decision. [short pause] The smart bassinet. The wipe warmer. The designer stroller that costs more than your first car. [natural] Your mom solves half of it in one afternoon. [short pause] She shows up with a van full of hand-me-downs from your cousins. [short pause] A crib, a swing, three bags of clothes. [short pause] [amused] \"Babies don't read the price tags, sweetheart.\" [thoughtful] You buy the car seat new, because safety standards matter there. [short pause] Almost everything else is used or gifted. [short pause] Total gear bill: about twenty-five hundred dollars, instead of the eight thousand the registry suggested."],
+S("Chapter 5: The daycare wall"),
+["NARRATOR", "[authoritative] Chapter five. [short pause] The daycare wall. [natural pace] In month six of the pregnancy, a friend gives you some advice. [short pause] Get on a daycare waitlist. [short pause] Today. [surprised] You laugh. [short pause] The baby isn't even born yet. [short pause] Then you call the center three blocks from your apartment. [short pause] [cautious] \"Our infant room has a waitlist of about fourteen months.\" [serious] Fourteen months. [short pause] Your daughter will be walking before a spot opens up. [short pause] You add your name to five lists. [short pause] You finally find a spot at a center twenty minutes away, starting when she's four months old. [short pause] The price: seventeen hundred dollars a month."],
+["NARRATOR", "[interest] You're not unusual. [short pause] Child Care Aware of America found that the national average price of child care reached about thirteen thousand two hundred dollars a year in 2025. [short pause] Infant care in big cities often costs far more. [short pause] In every state where they had data, center care for two children cost more than the typical rent. [thoughtful] And that night, Maya asks the question almost every parent asks. [short pause] [serious] \"After taxes, I take home about forty-four hundred a month. [short pause] Daycare is seventeen hundred. [short pause] Am I going back to work just to pay for someone else to raise her?\""],
+S("Chapter 6: The career math"),
+["NARRATOR", "[authoritative] Chapter six. [short pause] The career math. [natural pace] It's a fair question. [short pause] And it's usually asked the wrong way. [interest] Economist Henrik Kleven and his colleagues studied what happens to parents' earnings after their first child. [short pause] In the United States, they found that mothers' earnings fall by about thirty-one percent in the long run, compared to fathers. [short pause] Fathers' earnings barely move. [short pause] Researchers call it the child penalty. [natural] Part of that is choice, and many parents choose it happily."],
+["NARRATOR", "[short pause] But part of it is what happens when someone steps away from a career for a few years. [short pause] Missed raises. Missed promotions. [short pause] Missed retirement contributions, and the company match that came with them. [thoughtful] So you and Maya try to look at it differently. [short pause] Daycare isn't a cost of Maya's job. [short pause] It's a cost of your family. [short pause] You split it from both paychecks, not just hers. [short pause] And it's temporary. [short pause] Five years of heavy childcare costs, against thirty more years of a career."],
+S("Chapter 6: The career math  \u2192  Chapter 7: The bigger everything"),
+["NARRATOR", "[natural] For some families, one parent staying home really is the right choice. [short pause] For you two, it isn't. [short pause] Maya loves her work as a physical therapist. [short pause] She decides to go back after twelve weeks, and to go part-time for three months first. [slow pace] The decision is hers. [medium pause] But now it's a decision, not a default. [authoritative] Chapter seven. [short pause] The bigger everything. [natural pace] Remember how housing is the biggest piece of the cost? [short pause] You're about to find out why. [natural] Your one-bedroom apartment was perfect for two people."],
+S("Chapter 7: The bigger everything"),
+["NARRATOR", "[short pause] It is not perfect for two people, a crib, a changing table, and a baby who wakes up every three hours. [short pause] You move to a two-bedroom in the same neighborhood. [short pause] Rent goes from nineteen hundred dollars to twenty-five hundred. [short pause] Six hundred dollars a month, just for one small extra room. [amused] Then there's the car. [short pause] You own a small two-door coupe you've loved since college. [short pause] You try to install the rear-facing car seat. [short pause] It takes forty minutes, and the passenger seat now touches the dashboard."],
+["NARRATOR", "[thoughtful] You sell the coupe and buy a used hatchback with four doors, in cash, for the same price. [short pause] It's the least exciting car you've ever owned. [short pause] It's perfect. [serious] This is how the real bill works. [short pause] A child doesn't just add new costs. [short pause] She quietly makes every old cost a little bigger. [short pause] The apartment, the car, the grocery cart, the water bill, and the vacations. [short pause] That's why the average family spends so much, even though no single item seems huge."],
+S("Chapter 8: The real first-year bill"),
+["NARRATOR", "[authoritative] Chapter eight. [short pause] The real first-year bill. [natural pace] By the end of the pregnancy, your spreadsheet is finished. [short pause] Here's the whole first year, line by line. [interest] The birth, out of pocket: about thirty-two hundred dollars. [short pause] The family health insurance increase: about forty-eight hundred. [short pause] Maya's lost income during leave: about eleven thousand three hundred. [short pause] Gear: twenty-five hundred. [short pause] Diapers and wipes: almost a thousand. [interest] Formula and food: about fifteen hundred. [short pause] Daycare, from month four: nine months at seventeen hundred dollars, fifteen thousand three hundred. [short pause] The bigger apartment: seventy-two hundred. [short pause] And fifteen hundred more for doctor copays, clothes, and everything else. [serious] Total: about forty-eight thousand dollars."],
+["NARRATOR", "[medium pause] Not seventeen thousand. [short pause] Almost three times the yearly average that the famous three hundred thousand dollar number suggests. [thoughtful] Your household earns about a hundred and fifty thousand dollars a year, before taxes. [short pause] So in year one, having a baby costs almost a third of your gross income. [short pause] Some of that is one-time, like the birth and the gear. [short pause] But the daycare, the rent, and the insurance will keep coming every single month, for years. [slow pace] You close the laptop. [short pause] For the first time, you understand why so many people say they can't afford kids. [medium pause] And you start looking for help."],
+S("Chapter 9: The help nobody explains"),
+["NARRATOR", "[authoritative] Chapter nine. [short pause] The help nobody explains. [natural pace] It turns out there's more help than you knew. [short pause] It's just scattered across the tax code, where nobody reads it. [interest] First, the child tax credit. [short pause] Starting in 2025, it's up to twenty-two hundred dollars per child each year, cut straight from your tax bill. [interest] Second, the dependent care FSA. [short pause] If your employer offers one, you can set aside money before taxes to pay for daycare. [short pause] Starting in 2026, the limit went up from five thousand dollars to seventy-five hundred per household."],
+["NARRATOR", "[short pause] It was the first permanent increase since 1986. [short pause] For your family, paying seventy-five hundred dollars of daycare with pre-tax money saves roughly twenty-five hundred dollars in taxes. [natural] There's also the child and dependent care tax credit. [short pause] You generally can't use the same daycare dollars for both. [short pause] But families with lower incomes, or with no FSA at work, can use the credit instead. [curiosity] And then there's something new. [short pause] Trump Accounts. [short pause] A new kind of investment account for kids, created by the tax law passed in 2025."],
+["NARRATOR", "[short pause] For American babies born from 2025 through 2028, the government puts in a one-time seed of one thousand dollars. [short pause] Families can add up to five thousand dollars a year, and employers can chip in too. [short pause] The money goes into low-cost stock index funds, and it's generally locked until the child turns eighteen. [thoughtful] Add up the tax help, and your first-year bill drops by about five thousand dollars. [short pause] Plus a thousand dollars that starts growing in your daughter's name. [short pause] Not enough to change the whole picture. [short pause] But real money you'd have missed if you hadn't looked."],
+S("Chapter 10: Your cousin in Toronto"),
+["NARRATOR", "[authoritative] Chapter ten. [short pause] Your cousin in Toronto. [natural pace] Your cousin Priya had a baby in Canada the same year. [short pause] On a video call, you compare notes. [interest] In Canada, parents can share months of paid parental leave through the government's employment insurance program. [short pause] Families also get the Canada Child Benefit, a tax-free monthly payment based on income. [short pause] For a child under six, the maximum is close to eight thousand Canadian dollars a year. [interest] In the UK, many working parents in England can now get up to thirty hours a week of government-funded childcare, starting when their child is nine months old."],
+["NARRATOR", "[short pause] Australia has a childcare subsidy that can cover most of the fee for lower-income families. [thoughtful] None of these countries make kids cheap. [short pause] Priya still pays for daycare, and her rent in Toronto is brutal. [short pause] But in America, more of the bill lands directly on the parents, [short pause] especially in the first year. [natural] That's not a reason to move. [short pause] It's a reason to plan. [short pause] Because when the system doesn't catch you, your savings have to."],
+S("Chapter 11: Why fewer people are having kids"),
+["NARRATOR", "[authoritative] Chapter eleven. [short pause] Why fewer people are having kids. [natural pace] When you tell friends you're expecting, you notice something. [short pause] Many of them say the same thing. [short pause] Congratulations. [short pause] And then, quietly. [short pause] How can you afford it? [interest] You're not imagining it. [short pause] In 2024, the US fertility rate fell to about one point six children per woman, the lowest ever recorded, according to the CDC. [short pause] A generation ago, it was close to two point one, the level needed to keep a population stable without immigration."],
+["NARRATOR", "[natural] Money isn't the only reason. [short pause] People are marrying later, finishing school later, and choosing different lives. [short pause] But cost is a big part of it. [short pause] In LendingTree's survey, about two in five parents said money was limiting how many kids they have. [thoughtful] Childcare costs as much as rent. [short pause] Housing costs are high. [short pause] Student loans eat into paychecks. [short pause] For many couples, the question isn't whether they want children. [short pause] It's whether they can pay for the first five years without falling behind. [natural] Your mom doesn't quite get it. [short pause] [thoughtful] \"Your father and I raised two kids on one salary.\""],
+["NARRATOR", "[natural] She's not wrong. [short pause] She's just remembering a different price list. [short pause] Back then, she stayed home, so there was no daycare bill at all. [short pause] Their first house cost about three times your dad's salary. [short pause] Today, in many cities, a starter home costs six or seven times a typical income. [short pause] Same love. [short pause] Different math. [hope] But you're also learning something those numbers don't show. [short pause] The families who handle it best aren't always the ones with the biggest incomes. [short pause] They're the ones who saw the bill coming, [short pause] and practiced paying it before the baby arrived."],
+S("Chapter 12: The practice run"),
+["NARRATOR", "[authoritative] Chapter twelve. [short pause] The practice run. [natural pace] So in month three of the pregnancy, you and Maya try an experiment. [short pause] You decide to live as if the baby is already here. [interest] You add up the new monthly costs. [short pause] Daycare, seventeen hundred. [short pause] The bigger rent, six hundred. [short pause] The insurance, four hundred. [short pause] Diapers, formula, and extras, about three hundred. [short pause] Three thousand dollars a month. [short pause] And every month, you move exactly that amount into a separate savings account, before you can spend it."],
+["NARRATOR", "[natural] It's hard at first. [short pause] Fewer dinners out. [short pause] A cheaper vacation. [short pause] But after six months, two things have happened. [hope] First, you've saved eighteen thousand dollars. [short pause] Enough to cover Maya's lost income during leave, the hospital bills, and most of the gear, without touching a credit card. [short pause] Second, you've proven your budget works. [short pause] When the real bills arrive, nothing about your life has to change. [short pause] You've already changed it. [serious] You also do the two things new parents most often put off."],
+["NARRATOR", "[short pause] You both buy simple term life insurance, because if something happened to one of you, the other would still have to pay for everything. [short pause] And you write wills naming a guardian for your daughter. [short pause] Without one, a court could end up deciding who raises your child. [thoughtful] And you open a 529 college savings account, with two hundred dollars a month. [short pause] At a six percent return, that could grow to about seventy-seven thousand dollars by her eighteenth birthday."],
+["NARRATOR", "[short pause] Today, a year at an in-state public university costs about twenty-six thousand dollars, including room and board. [short pause] And if she doesn't go to college, newer rules let up to thirty-five thousand dollars roll into a retirement account in her name, if the account has been open at least fifteen years. [natural] But you set one rule first. [short pause] Your own retirement comes before college. [short pause] She can borrow for school. [short pause] Nobody lends you money to retire."],
+S("Chapter 13: What this means for you"),
+["NARRATOR", "[authoritative] Chapter thirteen. [short pause] What this means for you. [natural] Maybe you're expecting. [short pause] Maybe you're thinking about it. [short pause] Maybe you're years away. [short pause] Either way, here's what you and Maya learned. [interest] First. Ignore the average. [short pause] Plan for the spike. [short pause] The first five years cost far more per year than the famous three hundred thousand dollar number suggests. [interest] Second. Get on daycare waitlists early. [short pause] Earlier than feels reasonable. [natural] Third. Read your leave policy before you need it."],
+["NARRATOR", "[short pause] Know exactly how many weeks are paid, how many aren't, and what your state offers. [natural] Fourth. Use the tax help. [short pause] The child tax credit, the dependent care FSA, and, for babies born from 2025 through 2028, the thousand dollar Trump Account seed. [cautious] Fifth. Don't buy the registry. [short pause] Buy the car seat new. [short pause] Borrow almost everything else. [determination] Sixth. Do a practice run. [short pause] Live on the baby budget for a few months before the baby arrives, and save the difference."],
+S("Chapter 13: What this means for you  \u2192  Closing: the first birthday"),
+["NARRATOR", "[serious] And seventh. Protect the people you're doing this for. [short pause] Term life insurance, a will, and a named guardian. [short pause] It's the least fun part of becoming a parent, [short pause] and one of the most important. [slow pace] [thoughtful] One year later, it's six in the morning again. [short pause] But this time, you're not in the bathroom. [short pause] You're on the kitchen floor, with a baby in a paper crown, trying to eat a cupcake with both hands. [natural] Maya is laughing. [short pause] Your mom is filming."],
+S("Closing: the first birthday"),
+["NARRATOR", "[short pause] The kitchen is a mess. [natural] Later that night, you open the Baby spreadsheet one last time. [short pause] The first year cost almost exactly what you predicted. [short pause] Forty-eight thousand dollars, before the tax help. [short pause] And you paid every dollar of it without going into debt. [slow pace] [hope] You scroll to the bottom and add one more row. [medium pause] You don't write a number. [short pause] You just write, [short pause] first laugh. [medium pause] Some things are the real bill. [short pause] And some things are the reason you paid it."],
+];
+
+const CAT = {
+  "slow pace":"pace","natural pace":"pace","rushed pace":"pace",
+  "short pause":"pause","medium pause":"pause","long pause":"pause",
+  admiration:"emo",adoration:"emo",amused:"emo",awe:"emo",confusion:"emo",curiosity:"emo",determination:"emo",enthusiasm:"emo",excited:"emo",frustrated:"emo",happy:"emo",hope:"emo",interest:"emo",positive:"emo",surprised:"emo",thoughtful:"emo",
+  whisper:"style",authoritative:"style",bold:"style",cautious:"style",natural:"style",robotic:"style",sarcasm:"style",serious:"style",shouting:"style",
+  swallow:"sound",inhale:"sound",gasp:"sound",shush:"sound",urgh:"sound",snorts:"sound",giggles:"sound","clear throat":"sound"
+};
+
+let store = {};
+try { store = JSON.parse(localStorage.getItem("vo-done-kid-2026") || "{}"); } catch (e) { store = {}; }
+const save = () => { try { localStorage.setItem("vo-done-kid-2026", JSON.stringify(store)); } catch (e) {} };
+
+const list = document.getElementById("list");
+const esc = (s) => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (t) => esc(t).replace(/\[([a-z ]+)\]/g, (m, k) => `<span class="tag tg-${CAT[k] || "pause"}">[${k}]</span>`);
+
+let n = 0, sec = null;
+const voices = new Set();
+const rows = [];
+for (const item of D) {
+  if (item.section) {
+    sec = document.createElement("section");
+    sec.innerHTML = `<h2>${esc(item.section)} <span></span></h2>`;
+    list.appendChild(sec);
+    continue;
+  }
+  n++;
+  const [voice, text] = item;
+  voices.add(voice);
+  const id = String(n).padStart(3, "0");
+  const fname = `vo_${id}_${voice.toLowerCase()}`;
+  const el = document.createElement("article");
+  el.className = "chunk";
+  el.dataset.voice = voice;
+  el.dataset.id = id;
+  el.innerHTML = `<div class="num">${id}</div>
+    <div><div class="meta"><span class="voice v-${voice}">${voice}</span><span class="fname">${fname}</span></div>
+    <div class="text">${fmt(text)}</div></div>
+    <div class="side"><button class="copy" type="button" id="copy-${id}">Copy</button>
+    <label><input type="checkbox" id="done-${id}"> Done</label></div>`;
+  const btn = el.querySelector(".copy"), box = el.querySelector("input");
+  box.checked = !!store[id];
+  el.classList.toggle("is-done", box.checked);
+  btn.addEventListener("click", () => {
+    const ok = () => { btn.textContent = "Copied"; btn.classList.add("ok"); setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1400); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el.querySelector(".text")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Ctrl+C"; };
+    try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (e) { fallback(); }
+  });
+  box.addEventListener("change", () => { store[id] = box.checked; if (!box.checked) delete store[id]; save(); el.classList.toggle("is-done", box.checked); refresh(); });
+  sec.appendChild(el);
+  rows.push(el);
+}
+
+let active = "ALL";
+const filters = document.getElementById("filters");
+const order = ["ALL","NARRATOR","YOU","MOM","DAD","AGENT","CAROL","RYAN"].filter(v => v === "ALL" || voices.has(v));
+for (const v of order) {
+  const b = document.createElement("button");
+  b.className = "chipbtn"; b.type = "button"; b.id = "f-" + v;
+  b.addEventListener("click", () => { active = v; refresh(); });
+  filters.appendChild(b);
+}
+const hideDone = document.getElementById("hideDone");
+hideDone.addEventListener("change", refresh);
+
+function refresh() {
+  const total = rows.length;
+  const done = rows.filter(r => store[r.dataset.id]).length;
+  for (const b of filters.children) {
+    const v = b.id.slice(2);
+    const pool = v === "ALL" ? rows : rows.filter(r => r.dataset.voice === v);
+    const left = pool.filter(r => !store[r.dataset.id]).length;
+    b.textContent = `${v === "ALL" ? "All voices" : v} · ${left}`;
+    b.setAttribute("aria-pressed", String(v === active));
+  }
+  for (const r of rows) {
+    const show = (active === "ALL" || r.dataset.voice === active) && !(hideDone.checked && store[r.dataset.id]);
+    r.hidden = !show;
+  }
+  for (const s of list.children) {
+    const vis = [...s.querySelectorAll(".chunk")].filter(c => !c.hidden).length;
+    s.hidden = vis === 0;
+    s.querySelector("h2 span").textContent = `${vis} chunk${vis === 1 ? "" : "s"}`;
+  }
+  document.getElementById("prog").innerHTML = `<strong>${done}</strong> / ${total} generated`;
+  document.getElementById("meter").style.width = (done / total * 100) + "%";
+}
+refresh();
+</script>
