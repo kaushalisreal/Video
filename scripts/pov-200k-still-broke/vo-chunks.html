@@ -1,0 +1,248 @@
+<title>200K Still Broke VO Chunks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ground:#F2F3EE; --surface:#FFFFFF; --ink:#17191C; --muted:#5E645F; --line:#DCDFD6;
+  --accent:#17714A; --accent-ink:#FFFFFF; --done:#E7EAE2;
+  --t-pace:#1F5FA8; --t-pause:#6B6F75; --t-emo:#A8620B; --t-style:#7A3FA6; --t-sound:#0F7C7A;
+  --t-pace-bg:#E4EEF9; --t-pause-bg:#ECEDEF; --t-emo-bg:#FBF0DE; --t-style-bg:#F2E8F9; --t-sound-bg:#DDF3F1;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
+h1{font:800 clamp(28px,5vw,40px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 18px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0 0 22px}
+.how div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.how b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
+.barrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.prog{font:500 13px "IBM Plex Mono",monospace;color:var(--muted);margin-right:auto;font-variant-numeric:tabular-nums}
+.prog strong{color:var(--ink)}
+.meter{height:4px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.chipbtn{font:500 12.5px "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chipbtn:focus-visible,.copy:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.toggle{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+h2{font:700 13px "IBM Plex Sans",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;display:flex;gap:10px;align-items:baseline}
+h2 span{font:500 12px "IBM Plex Mono",monospace;letter-spacing:0;text-transform:none}
+.chunk{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:start}
+.chunk.is-done{background:var(--done)}
+.chunk.is-done .text{opacity:.55}
+.num{font:500 12px "IBM Plex Mono",monospace;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+.voice{font:600 11px "IBM Plex Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:5px;background:var(--ground);border:1px solid var(--line)}
+.voice.v-NARRATOR{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fname{font:500 11.5px "IBM Plex Mono",monospace;color:var(--muted)}
+.text{font-size:15.5px;overflow-wrap:anywhere}
+.tag{font:500 12.5px "IBM Plex Mono",monospace;padding:1px 5px;border-radius:4px;white-space:nowrap}
+.tg-pace{color:var(--t-pace);background:var(--t-pace-bg)}
+.tg-pause{color:var(--t-pause);background:var(--t-pause-bg)}
+.tg-emo{color:var(--t-emo);background:var(--t-emo-bg)}
+.tg-style{color:var(--t-style);background:var(--t-style-bg)}
+.tg-sound{color:var(--t-sound);background:var(--t-sound-bg)}
+.side{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.copy{font:600 13px "IBM Plex Sans",sans-serif;background:var(--accent);color:var(--accent-ink);border:0;border-radius:7px;padding:7px 14px;cursor:pointer;min-width:74px}
+.copy.ok{background:var(--ink);color:var(--ground)}
+.side label{font-size:12px;color:var(--muted);display:flex;gap:5px;align-items:center;cursor:pointer}
+.cast{font-size:13.5px;border-collapse:collapse;width:100%}
+.cast td{padding:4px 8px 4px 0;vertical-align:top;border-top:1px solid var(--line)}
+.cast td:first-child{white-space:nowrap;font-weight:600}
+.tablewrap{overflow-x:auto}
+@media (max-width:560px){.chunk{grid-template-columns:1fr}.num{display:none}.side{flex-direction:row;align-items:center;justify-content:space-between}}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+
+<div class="wrap">
+  <h1>POV: You Make $200K a Year and You're Still Broke. Voiceover chunks</h1>
+  <p class="lede">The script (about 20 minutes at your pace, 3,188 words) is split into short pieces of 1 to 4 sentences, ready for Google Vids. Paste one chunk per scene, generate it, then tick it off. Your ticks are saved in this browser.</p>
+
+  <div class="how">
+    <div><b>Workflow</b>Filter by one voice, set that voice once in Vids, and generate all of its chunks back to back. Then switch voice. Name each export with the file name shown, and the clips will sort into the right order for the edit.</div>
+    <div><b>Tags</b>Every tag comes from the Vids menus. If a tag gets read out loud instead of performed, delete it and re-add it with <em>Apply audio tags</em>.
+      <div class="legend"><span class="tag tg-pace">pace</span><span class="tag tg-pause">pause</span><span class="tag tg-emo">emotion</span><span class="tag tg-style">style</span><span class="tag tg-sound">sound</span></div></div>
+    <div><b>Casting</b>
+      <div class="tablewrap"><table class="cast">
+        <tr><td>NARRATOR</td><td>One voice reads everything, dialogue included. Calm, measured male voice, slow and serious, like a quiet documentary. No sarcasm.</td></tr>
+        <tr><td>In the story</td><td>Nina (your wife), Ava (9) and Max (4), Greg (neighbor), Luis (your cousin, an electrician). Their lines are in quotes inside the narration; read them slightly softer.</td></tr>
+      </table></div></div>
+  </div>
+
+  <div class="bar">
+    <div class="barrow">
+      <span class="prog" id="prog"></span>
+      <label class="toggle"><input type="checkbox" id="hideDone"> Hide done</label>
+    </div>
+    <div class="barrow" id="filters" style="margin-top:8px"></div>
+    <div class="meter"><i id="meter"></i></div>
+  </div>
+
+  <main id="list"></main>
+</div>
+
+<script>
+const S = (t) => ({section:t});
+const D = [
+S("Cold open: midnight in the kitchen"),
+["NARRATOR", "[slow pace] [thoughtful] It's midnight. You're standing in your kitchen in the dark, and the only light is your phone. [natural] Two days ago, you got promoted. [short pause] Director. [short pause] With your wife Nina's salary, your family now earns two hundred thousand dollars a year. [short pause] Your mom cried on the phone. Your friends bought you drinks. [short pause] Your LinkedIn post got four hundred likes. [slow pace] [serious] And right now, your checking account says three hundred and twelve dollars. [medium pause] Payday is in two days. [short pause] Your credit card balance is twenty-three thousand dollars."],
+["NARRATOR", "[thoughtful] You make more than twice what a typical American household earns. [short pause] You have a big house, two new cars, and kids in the best school district in the city. [short pause] From the outside, you're doing everything right. [slow pace] So how are you broke? [natural] Not poor. [short pause] You'll never be poor. [short pause] But broke. [short pause] One missed paycheck away from a very bad month. [serious] There's a name for people like you. [short pause] HENRY. [short pause] High Earner, Not Rich Yet. [medium pause] And this is how you became one."],
+S("Chapter 1: The raises that felt like finish lines"),
+["NARRATOR", "[authoritative] Chapter one. [short pause] The raises that felt like finish lines. [natural pace] Rewind twelve years. You're twenty-six, earning sixty-two thousand dollars. [short pause] You share a two-bedroom apartment with your college friend. [short pause] You drive a nine-year-old Honda. [short pause] And every month, somehow, you have money left over. [thoughtful] You don't budget. You don't need to. [short pause] Your life is simply smaller than your paycheck. [natural] Your first bonus is four thousand dollars. [short pause] You put half in savings and spend the other half on a trip to Mexico with friends."],
+["NARRATOR", "[short pause] You come home tanned, happy, and still ahead. [short pause] You don't know it yet, but that's the last time a raise will ever feel like extra money. [natural] At thirty, you get a big jump. [short pause] Ninety-five thousand dollars. [short pause] You celebrate by moving into your own apartment downtown. [short pause] It's twice the rent, but you can afford it now. [short pause] That's the point of earning more, right? [thoughtful] The new apartment has a doorman, a gym, and a rooftop pool you use four times in two years. [short pause] You tell yourself you're investing in your quality of life. [short pause] And for a while, you really are happier."],
+["NARRATOR", "[short pause] For about three months. [natural] At thirty-two, you marry Nina, a nurse who works three long shifts a week. [short pause] At thirty-three, your daughter Ava is born. [short pause] At thirty-four, you're making a hundred and twenty thousand. [short pause] At thirty-eight, as a director, a hundred and fifty. [short pause] Nina earns fifty. [serious] And here's the thing nobody tells you. [short pause] Every raise came with a new life to match it. [short pause] A better apartment. A better car. Better restaurants. [short pause] Each one felt earned. [short pause] Each one felt small. [slow pace] But added together, they became the life you have now. [short pause] And that life costs every dollar you make. [medium pause] And then some."],
+S("Chapter 2: Where two hundred thousand dollars actually goes"),
+["NARRATOR", "[authoritative] Chapter two. [short pause] Where two hundred thousand dollars actually goes. [natural pace] Let's follow your money. [short pause] Two hundred thousand dollars a year sounds like almost seventeen thousand dollars a month. [interest] But first, you put six percent into your 401k, to get the company match. [short pause] That's twelve thousand dollars a year. [short pause] Health insurance for a family of four takes another six thousand. [serious] Then Social Security and Medicare take about fifteen thousand. [short pause] Federal income tax takes around eighteen thousand, even after the credits for your two kids."],
+["NARRATOR", "[short pause] And your state takes about eight thousand more. [slow pace] What actually lands in your account? [medium pause] About eleven thousand eight hundred dollars a month. [thoughtful] Still a lot of money. [short pause] Most families would love that number. [short pause] But it's not seventeen thousand. [short pause] It's barely seventy percent of what you think you make. [natural] And here's the dangerous part. [short pause] When you signed for your house and your cars, you were thinking about the big number. [short pause] Two hundred thousand. [short pause] Your bills, though, get paid from the small one."],
+S("Chapter 3: The house in the right school district"),
+["NARRATOR", "[authoritative] Chapter three. [short pause] The house in the right school district. [natural pace] At thirty-five, with Ava about to start kindergarten, you and Nina go house hunting. [short pause] Every friend with kids says the same thing. [short pause] You have to be in the good school district. [natural] The good school district has good houses. [short pause] And good houses cost seven hundred and fifty thousand dollars. [natural] The one you fall in love with has a white kitchen, a backyard with an old oak tree, and a bedroom Ava immediately claims."],
+["NARRATOR", "[short pause] Standing in the empty living room, Nina whispers to you. [short pause] [cautious] \"Can we really afford this?\" [natural] And you say the sentence millions of people say every year. [short pause] The bank says we can. [interest] You put down a hundred and fifty thousand, almost everything you've both saved, plus a bonus. [short pause] You borrow six hundred thousand at six and a half percent for thirty years. [serious] Your payment for the loan alone is about three thousand eight hundred dollars a month. [short pause] Add property taxes and insurance, and it's about four thousand eight hundred."],
+["NARRATOR", "[thoughtful] The bank approves it easily. [short pause] By the bank's math, you can afford it. [short pause] But the bank's math uses your salary before taxes, before your 401k, before your health insurance, and before your kids. [natural] And a big house is hungry. [short pause] It needs furniture to fill four bedrooms. [short pause] A lawn service, because you're too tired on weekends. [short pause] A new roof on the garage in year two. [short pause] A water heater in year three. [slow pace] You didn't just buy a house. [short pause] You bought a monthly bill, [short pause] and a hundred smaller bills that come with it."],
+S("Chapter 4: Two cars in the driveway"),
+["NARRATOR", "[authoritative] Chapter four. [short pause] Two cars in the driveway. [natural pace] A big house in a nice neighborhood feels strange with an old Honda in the driveway. [short pause] Nobody says anything. [short pause] Nobody has to. [natural] So Nina gets a new SUV, because the kids need space, and safety matters. [short pause] Seven hundred and eighty dollars a month. [short pause] You get a new sedan, because you're a director now, and you drive clients to lunch. [short pause] Five hundred and ninety a month. [interest] Add insurance and gas, and your two cars cost about seventeen hundred dollars a month."],
+["NARRATOR", "[short pause] More than your whole rent was at twenty-six. [thoughtful] And notice how the dealer sold it to you. [short pause] Nobody asked what the car cost. [short pause] They asked what monthly payment you were comfortable with. [short pause] Then they stretched the loan to seven years to make the number fit. [short pause] A small monthly number is how a big price disappears. [thoughtful] And cars do something houses usually don't. [short pause] They lose value the moment you drive them home. [short pause] A new car can lose a big chunk of its value in the first few years."],
+S("Chapter 4: Two cars in the driveway  \u2192  Chapter 5: The cost of raising kids like everyone else"),
+["NARRATOR", "[short pause] You're paying interest on something that shrinks every day. [serious] Meanwhile, your old Honda, the one you sold for four thousand dollars, is still running somewhere. [short pause] Some twenty-two-year-old is driving it, with money left over every month. [short pause] Just like you used to. [authoritative] Chapter five. [short pause] The cost of raising kids like everyone else. [natural pace] Your son Max is four. [short pause] His full-time daycare costs sixteen hundred dollars a month. [short pause] That's normal in your city. [short pause] Some of your friends pay more."],
+S("Chapter 5: The cost of raising kids like everyone else"),
+["NARRATOR", "[thoughtful] One night, Nina does the math. [short pause] After taxes, her fifty thousand dollar salary brings home about thirty-three hundred a month. [short pause] Half of it goes straight to daycare, just so she can go to work. [short pause] She keeps working anyway, because nursing is her career, and careers are hard to restart. [short pause] But it's a strange feeling, working three twelve-hour shifts a week for half a paycheck. [natural] Ava is nine. [short pause] Soccer. Piano. Swimming. A summer camp that costs more than your first car. [short pause] Every parent at school does the same, and you don't want Ava to be the only kid who doesn't."],
+["NARRATOR", "[thoughtful] And none of it feels like a luxury. [short pause] Nobody wakes up and says, I'd like to overspend on my children today. [short pause] It feels like love. [short pause] It feels like doing your job as a parent. [serious] That's exactly what makes it so hard to cut. [short pause] Every expense has a face attached to it. [short pause] And every no feels like failing someone you love. [natural] Birthday parties with twenty kids. [short pause] Teacher gifts. Field trips. School fundraisers. [short pause] A new pair of sneakers every four months, because feet keep growing. [short pause] None of it is big. [short pause] All of it is constant."],
+S("Chapter 6: The exhaustion tax"),
+["NARRATOR", "[authoritative] Chapter six. [short pause] The exhaustion tax. [natural pace] Here's something the spreadsheets never show. [short pause] Your job is hard. [short pause] Director means more meetings, more pressure, and emails at ten at night. [thoughtful] And tired people spend money differently. [short pause] When you get home at seven thirty and the kids are hungry, you don't cook. [short pause] You order. [short pause] Forty dollars. [short pause] Three or four times a week. [natural] You pay for the car wash, the lawn service, the house cleaner every other week. [short pause] You pay extra for fast delivery on things you didn't need fast."],
+["NARRATOR", "[short pause] You buy things at eleven at night, scrolling on your phone, because it's the only quiet hour you get. [interest] And then there are the subscriptions. [short pause] Four streaming services. Two music apps. A gym you visit twice a month. Cloud storage. A meal kit you keep forgetting to cancel. [short pause] About two hundred and fifty dollars a month, most of it on autopilot. [serious] Economists sometimes call this time poverty. [short pause] When you're short on time, you trade money for convenience. [short pause] And the more you earn, the more convenience you can buy, [short pause] until convenience becomes a second mortgage you never signed."],
+S("Chapter 7: The neighbors"),
+["NARRATOR", "[authoritative] Chapter seven. [short pause] The neighbors. [natural pace] Your neighbor Greg just redid his kitchen. [short pause] White marble. A double oven. A fridge with a screen on the door. [short pause] At his housewarming party, you stand in that kitchen with a drink, smiling, and quietly hating your own kitchen. [interest] This feeling has been studied. [short pause] An economist named Erzo Luttmer found that people with the same income felt less happy when their neighbors earned more. [short pause] He called his paper Neighbors as Negatives."],
+["NARRATOR", "[thoughtful] Psychologists have a name for the other half of the trap. [short pause] The hedonic treadmill. [short pause] Every upgrade makes you happy for a while, and then it becomes normal. [short pause] So you need the next upgrade, just to feel the same. [natural] And today, the neighbors aren't just next door. [short pause] They're on your phone. [short pause] Every night, you scroll past a college friend's new boat, a coworker's trip to Japan, a cousin's renovated basement. [short pause] You never see the loans behind them. [short pause] You only see the photos. [short pause] So you compare your whole life, bills included, to everyone else's best day."],
+S("Chapter 7: The neighbors  \u2192  Chapter 8: The month everything went wrong"),
+["NARRATOR", "[natural] You don't redo your kitchen. [short pause] But you buy a new grill for the patio. [short pause] Nicer outdoor furniture. [short pause] And that summer, you book the same beach house Greg's family rented. [short pause] Six thousand dollars for one week. [slow pace] [serious] Here's what you don't know about Greg. [medium pause] He's more broke than you are. [authoritative] Chapter eight. [short pause] The month everything went wrong. [natural pace] Let's add it all up. [short pause] House, forty-eight hundred. Cars, seventeen hundred. Daycare, sixteen hundred. [short pause] Groceries, eleven hundred. Takeout, six hundred. Utilities and phones, five hundred. [short pause] Student loans, four fifty. Kids' activities, three fifty. [short pause] Subscriptions, two fifty."],
+S("Chapter 8: The month everything went wrong"),
+["NARRATOR", "Shopping, four hundred. Vacations, four hundred. Home repairs and everything else, three fifty. [serious] Twelve thousand five hundred dollars a month. [short pause] Against eleven thousand eight hundred coming in. [medium pause] Every month, you're about seven hundred dollars short. [short pause] And every month, it goes on the credit card. [interest] And a credit card balance has its own appetite. [short pause] At around twenty-two percent interest, twenty-three thousand dollars costs you about four hundred and twenty dollars a month in interest alone. [short pause] Money that buys you nothing. [short pause] Just the right to stay in debt. [natural] Then comes the month from hell. [short pause] The SUV needs new brakes and tires."],
+["NARRATOR", "Twenty-two hundred. [short pause] Max breaks his arm at the playground. Your health plan's deductible is three thousand. [short pause] And your company announces restructuring. [slow pace] [serious] You sit in a meeting where they explain that some roles will be eliminated. [short pause] And for the first time in years, you do a very simple calculation. [medium pause] If you lost your job tomorrow, how long could your family last? [cautious] The answer is three weeks. [thoughtful] You keep your job. [short pause] But that night, lying awake next to Nina, you finally say it out loud. [short pause] [serious] \"We make two hundred thousand dollars a year. [short pause] How do we have nothing?\""],
+S("Chapter 9: Rich versus wealthy"),
+["NARRATOR", "[authoritative] Chapter nine. [short pause] Rich versus wealthy. [natural pace] At a family barbecue, you end up talking to your cousin Luis. [short pause] He's an electrician. [short pause] He's never earned more than eighty-five thousand dollars a year in his life. [natural] Luis lives in a paid-off three-bedroom house. [short pause] He drives a twelve-year-old truck he bought used. [short pause] His kids play soccer in the local rec league. [short pause] And he and his wife have been investing a little every month for twenty years. [thoughtful] You ask him how he did it."],
+["NARRATOR", "[short pause] He shrugs, and flips a burger. [short pause] [natural] \"I never bought anything I had to keep paying for. [short pause] Except the house. [short pause] And I paid that off early.\" [interest] Luis's net worth, everything he owns minus everything he owes, is over six hundred thousand dollars. [short pause] Yours, after your house, your 401k, your car loans, your student loans, and your credit card, is less than half that. [thoughtful] In 1996, two researchers named Thomas Stanley and William Danko published a book called The Millionaire Next Door."],
+["NARRATOR", "[short pause] They found that many real millionaires in America were people like Luis. [short pause] Plumbers. Teachers. Small business owners. [short pause] People who drove used cars and lived well below what they earned. [interest] They even offered a simple rule of thumb. [short pause] Multiply your age by your yearly income, and divide by ten. [short pause] That's roughly what your net worth could be. [short pause] For your family, at thirty-eight and two hundred thousand, that's seven hundred and sixty thousand dollars. [short pause] You're not even halfway there. [serious] Income is what you earn. [short pause] Wealth is what you keep. [medium pause] You're rich. [short pause] Luis is wealthy."],
+S("Chapter 10: The audit"),
+["NARRATOR", "[authoritative] Chapter ten. [short pause] The audit. [natural pace] That Sunday, after the kids are asleep, you and Nina sit at the kitchen table with a laptop and three months of bank statements. [short pause] No blame. That's the only rule. [natural] You print every transaction. [short pause] You use three highlighters. [short pause] Green for things you truly need. Yellow for things you like. Red for things you forgot you were paying for. [thoughtful] The red pile is embarrassing. [short pause] A language app neither of you has opened in a year."],
+["NARRATOR", "[short pause] A premium credit card with a five-hundred-dollar annual fee. [short pause] Three separate cloud storage plans. [short pause] A car wash membership for a car that's always dirty anyway. [serious] The yellow pile is harder. [short pause] Takeout. The house cleaner. The beach week. [short pause] Things that genuinely made life better. [short pause] But you realize something important. [short pause] You never actually chose them. [short pause] They just happened, one tired evening at a time. [slow pace] And then Nina says the thing that changes everything. [short pause] [thoughtful] \"We don't have an income problem. [short pause] We have a fixed cost problem.\""],
+S("Chapter 11: The reset"),
+["NARRATOR", "[authoritative] Chapter eleven. [short pause] The reset. [natural pace] You don't sell the house. [short pause] Moving would cost tens of thousands in fees, and the kids love their school. [short pause] But everything else is on the table. [interest] First, the SUV. [short pause] You trade it for a reliable three-year-old car. [short pause] The payment drops from seven hundred and eighty dollars to about three hundred and twenty. [natural] Second, the red pile. [short pause] Every forgotten subscription, gone. [short pause] Two hundred and fifty dollars a month becomes ninety. [natural] Third, Sunday cooking. [short pause] You make big batches of three meals every Sunday afternoon, with the kids helping. [short pause] Takeout drops from six hundred a month to about two fifty."],
+["NARRATOR", "[thoughtful] Fourth, a forty-eight hour rule. [short pause] Anything over fifty dollars that isn't an emergency waits two days in the cart. [short pause] Most of it, you forget about. [short pause] Shopping drops by more than half. [natural] Fifth, vacations become road trips to a lake cabin three hours away. [short pause] Ava says it's the best summer she's ever had. [short pause] She means it. [natural] You also clear out the garage. [short pause] A treadmill used as a coat rack. A kayak. Two bikes. A pizza oven. [short pause] You sell it all online over a few weekends, and put twenty-three hundred dollars straight onto the credit card."],
+["NARRATOR", "[thoughtful] Telling the kids is the hardest part. [short pause] Ava asks if you're poor now. [short pause] You tell her the truth. [short pause] No. [short pause] We're just deciding on purpose, instead of by accident. [interest] Together, those changes save about fourteen hundred dollars a month. [short pause] You go from seven hundred short, to seven hundred ahead. [short pause] Every extra dollar goes to the credit card, starting with the highest interest rate. [hope] And next fall, Max starts kindergarten. [short pause] Sixteen hundred dollars of daycare becomes four hundred for after-school care. [short pause] That's another twelve hundred dollars a month. [short pause] And you promise each other one thing. [short pause] You won't spend it. [short pause] Not a single dollar."],
+S("Chapter 12: Two years later"),
+["NARRATOR", "[authoritative] Chapter twelve. [short pause] Two years later. [natural pace] Twenty-six months after the audit, you make the last credit card payment. [short pause] Nina takes a screenshot of the zero balance and sets it as her phone background. [natural] Then you build a cushion. [short pause] Six months of expenses in a plain savings account. [short pause] Not invested. Not touched. Just there. [interest] After that, every spare dollar goes to investing. [short pause] About two thousand dollars a month, on top of your 401k. [short pause] At seven percent a year, that alone could grow to more than a million dollars by the time you're sixty-five."],
+["NARRATOR", "[short pause] Not from a lottery ticket. [short pause] From takeout, subscriptions, and a car payment you decided not to have. [thoughtful] The strangest part isn't the money. [short pause] It's how you sleep. [short pause] When your company announces another round of restructuring, you read the email, and you go back to work. [short pause] For the first time, a layoff would be a problem. [short pause] Not a catastrophe. [natural] You get another raise that year. [short pause] Two hundred and twenty thousand. [short pause] And for the first time in your career, your life doesn't grow to match it. [short pause] The whole raise goes straight into investments, automatically, before you ever see it."],
+S("Chapter 12: Two years later  \u2192  Chapter 13: What this means for you"),
+["NARRATOR", "[slow pace] Greg redoes his bathroom. [short pause] You're genuinely happy for him. [short pause] And you don't feel the need to redo yours. [natural] One evening, Greg leans over the fence, a little embarrassed, and asks how you and Nina always seem so calm lately. [short pause] You invite him over for coffee. [short pause] And you bring out the highlighters. [authoritative] Chapter thirteen. [short pause] What this means for you. [natural] You don't need to earn two hundred thousand dollars for this story to be about you. [short pause] The same trap works at fifty thousand, or eighty, or a hundred and twenty."],
+S("Chapter 13: What this means for you"),
+["NARRATOR", "[interest] First. Plan your life around your take-home pay, not your salary. [short pause] The number on your offer letter isn't the number you live on. [interest] Second. Be careful with fixed costs. [short pause] Houses, car payments, and anything with a contract are the hardest things to undo. [short pause] Restaurants and clothes are easy to cut. [short pause] A mortgage isn't. [natural] Third. When your income goes up, raise your savings first. [short pause] Decide in advance what share of every raise goes to your future, before your lifestyle decides for you. [natural] Fourth. Track your net worth, not just your income."],
+["NARRATOR", "[short pause] Once a year, add up everything you own, and subtract everything you owe. [short pause] That number tells you whether you're actually getting ahead. [cautious] Fifth. Keep an emergency fund. [short pause] Even a few months of expenses turns a layoff, a broken arm, or a dead car from a crisis into an inconvenience. [natural] Sixth. Talk about money at home. [short pause] Not once a year, when something breaks. [short pause] Once a month, calmly, at the kitchen table. [short pause] Couples who plan together make fewer tired, lonely, midnight decisions. [thoughtful] And seventh. Stop comparing yourself to Greg. [short pause] You're seeing his kitchen. [short pause] You're not seeing his credit card statement."],
+S("Closing: midnight, again"),
+["NARRATOR", "[slow pace] [thoughtful] It's midnight again. [short pause] You're standing in the same kitchen, in the dark, with your phone. [natural] Checking account, eighteen thousand dollars. [short pause] Credit card, zero. [short pause] Investment account, growing every single month. [hope] Nothing about the house looks different. [short pause] Same fridge. Same marble you never bought. [short pause] Same kids asleep upstairs. [slow pace] [serious] You still earn the same kind of money. [medium pause] You just finally stopped letting it leave as fast as it arrives. [medium pause] And that's the difference between being rich, [short pause] and being free."],
+];
+
+const CAT = {
+  "slow pace":"pace","natural pace":"pace","rushed pace":"pace",
+  "short pause":"pause","medium pause":"pause","long pause":"pause",
+  admiration:"emo",adoration:"emo",amused:"emo",awe:"emo",confusion:"emo",curiosity:"emo",determination:"emo",enthusiasm:"emo",excited:"emo",frustrated:"emo",happy:"emo",hope:"emo",interest:"emo",positive:"emo",surprised:"emo",thoughtful:"emo",
+  whisper:"style",authoritative:"style",bold:"style",cautious:"style",natural:"style",robotic:"style",sarcasm:"style",serious:"style",shouting:"style",
+  swallow:"sound",inhale:"sound",gasp:"sound",shush:"sound",urgh:"sound",snorts:"sound",giggles:"sound","clear throat":"sound"
+};
+
+let store = {};
+try { store = JSON.parse(localStorage.getItem("vo-done-200k-still-broke") || "{}"); } catch (e) { store = {}; }
+const save = () => { try { localStorage.setItem("vo-done-200k-still-broke", JSON.stringify(store)); } catch (e) {} };
+
+const list = document.getElementById("list");
+const esc = (s) => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (t) => esc(t).replace(/\[([a-z ]+)\]/g, (m, k) => `<span class="tag tg-${CAT[k] || "pause"}">[${k}]</span>`);
+
+let n = 0, sec = null;
+const voices = new Set();
+const rows = [];
+for (const item of D) {
+  if (item.section) {
+    sec = document.createElement("section");
+    sec.innerHTML = `<h2>${esc(item.section)} <span></span></h2>`;
+    list.appendChild(sec);
+    continue;
+  }
+  n++;
+  const [voice, text] = item;
+  voices.add(voice);
+  const id = String(n).padStart(3, "0");
+  const fname = `vo_${id}_${voice.toLowerCase()}`;
+  const el = document.createElement("article");
+  el.className = "chunk";
+  el.dataset.voice = voice;
+  el.dataset.id = id;
+  el.innerHTML = `<div class="num">${id}</div>
+    <div><div class="meta"><span class="voice v-${voice}">${voice}</span><span class="fname">${fname}</span></div>
+    <div class="text">${fmt(text)}</div></div>
+    <div class="side"><button class="copy" type="button" id="copy-${id}">Copy</button>
+    <label><input type="checkbox" id="done-${id}"> Done</label></div>`;
+  const btn = el.querySelector(".copy"), box = el.querySelector("input");
+  box.checked = !!store[id];
+  el.classList.toggle("is-done", box.checked);
+  btn.addEventListener("click", () => {
+    const ok = () => { btn.textContent = "Copied"; btn.classList.add("ok"); setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1400); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el.querySelector(".text")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Ctrl+C"; };
+    try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (e) { fallback(); }
+  });
+  box.addEventListener("change", () => { store[id] = box.checked; if (!box.checked) delete store[id]; save(); el.classList.toggle("is-done", box.checked); refresh(); });
+  sec.appendChild(el);
+  rows.push(el);
+}
+
+let active = "ALL";
+const filters = document.getElementById("filters");
+const order = ["ALL","NARRATOR","YOU","MOM","DAD","AGENT","CAROL","RYAN"].filter(v => v === "ALL" || voices.has(v));
+for (const v of order) {
+  const b = document.createElement("button");
+  b.className = "chipbtn"; b.type = "button"; b.id = "f-" + v;
+  b.addEventListener("click", () => { active = v; refresh(); });
+  filters.appendChild(b);
+}
+const hideDone = document.getElementById("hideDone");
+hideDone.addEventListener("change", refresh);
+
+function refresh() {
+  const total = rows.length;
+  const done = rows.filter(r => store[r.dataset.id]).length;
+  for (const b of filters.children) {
+    const v = b.id.slice(2);
+    const pool = v === "ALL" ? rows : rows.filter(r => r.dataset.voice === v);
+    const left = pool.filter(r => !store[r.dataset.id]).length;
+    b.textContent = `${v === "ALL" ? "All voices" : v} · ${left}`;
+    b.setAttribute("aria-pressed", String(v === active));
+  }
+  for (const r of rows) {
+    const show = (active === "ALL" || r.dataset.voice === active) && !(hideDone.checked && store[r.dataset.id]);
+    r.hidden = !show;
+  }
+  for (const s of list.children) {
+    const vis = [...s.querySelectorAll(".chunk")].filter(c => !c.hidden).length;
+    s.hidden = vis === 0;
+    s.querySelector("h2 span").textContent = `${vis} chunk${vis === 1 ? "" : "s"}`;
+  }
+  document.getElementById("prog").innerHTML = `<strong>${done}</strong> / ${total} generated`;
+  document.getElementById("meter").style.width = (done / total * 100) + "%";
+}
+refresh();
+</script>
