@@ -1,8 +1,8 @@
 # POV: You're a Billionaire Who Never Pays Taxes
 
 - **Format:** POV finance story, same style as "Lived With Your Parents Until 30" (calm, serious, one lesson per chapter)
-- **Runtime:** about 12.5 min (1,574 words at your measured 126.5 wpm)
-- **Voiceover page:** `vo-chunks.html` (18 boxes of 74–100 words, dialogue inline)
+- **Runtime:** about **20 min** (3,161 words at about **160 wpm**, the pace your last voiceover actually ran at: 1,960 words in 12:16)
+- **Voiceover page:** `vo-chunks.html` (35 boxes of 76–100 words, dialogue inline)
 - **Narration only:** `narration.txt`
 - **Visual style:** cinematic semi-realistic illustration. The hero (YOU) has shiny metallic gold skin; everyone else has porcelain-white skin.
 
@@ -10,17 +10,22 @@
 
 ## Structure
 
-| Chapter | Beat | Lesson |
-|---|---|---|
-| Cold open | Private bank, a quiet Tuesday: "Same as last year?" A $100M loan, zero income tax | The hook: legal, and it has three words |
-| 1. Buy | Founder at 30, IPO at 50, owns 25% of a $40B company = $10B on paper; $1 salary | Wealth is taxed only when you sell |
-| 2. The problem with selling | Life costs $100M a year; selling costs $23.8M federal, about $37M in California | Selling costs tax *and* future growth |
-| 3. Borrow | Line of credit backed by pledged shares at about 5%; a loan isn't income | $5M of interest vs. up to $37M of tax |
-| 4. The machine runs | 30 years: debt $6.6B vs. shares $76B. Rosa the nurse vs. ProPublica's 3.4% | Workers can't choose when they're taxed |
-| 5. The night it almost broke | 12 years in: a 45% crash and a margin call. 2008 example | The one real risk |
-| 6. Die | Step-up in basis erases the gains; the estate repays the loan; estate tax of 40% above $15M, cut down with trusts and foundations | The final piece |
-| 7. Why it's legal | Three sensible rules; combined they create the gap; proposals so far haven't become law | Balanced, no politics |
-| 8. What this means for you | Holding long term, step-up for heirs, don't borrow against assets when you're not rich | The real lesson + callback to the cold open |
+| Time | Chapter | Beat | Lesson |
+|---|---|---|---|
+| 0:00 | Cold open | Private bank, a quiet Tuesday: "Same as last year?" A $100M loan, zero income tax | The hook: legal, and it has three words |
+| 0:52 | 1. Buy | Founder at 30, brutal early years, IPO at 50, owns 25% of a $40B company = $10B on paper; $1 salary | Wealth is taxed only when you sell |
+| 2:21 | 2. The paper billionaire | Lockup period, founder sales are public, Lily (12): "why can't we afford a new house?" | Rich on paper, short of cash |
+| 3:38 | 3. The problem with selling | $100M a year; selling costs $23.8M federal, about $37M in California | Selling costs tax *and* future growth |
+| 4:32 | 4. Borrow | Line of credit on pledged shares at about 5%; a loan isn't income | $5M of interest vs. up to $37M of tax |
+| 5:39 | 5. Inside the private bank | The bank lends a fraction of a single stock's value, no fixed repayment date, a relationship business | For the rich, debt is a tool |
+| 6:49 | 6. Borrowed money buys more assets | Mortgage instead of cash, apartment buildings (depreciation), art, farmland as collateral | Borrowed money buys more assets that grow |
+| 8:00 | 7. The machine runs | Ages 60 and 70; debt $6.6B vs. shares $76B; Rosa sells her index fund and pays tax; ProPublica's 3.4% and $0 years | Two different games |
+| 10:46 | 8. The night it almost broke | 12 years in: a 45% crash, 2 a.m., margin call on the pledged shares, the 2008 real case | The one real risk |
+| 12:17 | 9. The foundation | Donating appreciated stock (no capital gains tax, deduct today's value, within limits); 5% minimum payout; family on the board | Generosity and strategy |
+| 13:11 | 10. Die | Step-up in basis; estate meeting; estate repays $6.6B with almost no taxable gain; estate tax 40% above $15M; trusts | The final piece |
+| 14:39 | 11. Lily inherits the machine | Same bank, same folder; she borrows instead of selling | The cycle repeats |
+| 15:18 | 12. Why it's legal | 1920 Supreme Court realization case, step-up since 1921; Canada, UK and Australia compared; proposals so far not law | Balanced, no politics |
+| 17:25 | 13. What this means for you | Six takeaways (hold, step-up, don't borrow on assets, Roth/ISA/TFSA, donate stock, keep inherited-value records), three habits, callback | The real lesson |
 
 ---
 
@@ -56,6 +61,17 @@
 | Some founders take a $1 salary (e.g., Mark Zuckerberg) | Meta proxy statements |
 | 25 richest Americans: wealth +$401B (2014–2018), $13.6B federal income tax, **3.4% "true tax rate"** | ProPublica, "The Secret IRS Files" (June 2021) |
 | A major energy CEO was forced to sell almost all his shares within days in 2008 to cover loans | Chesapeake Energy's Aubrey McClendon, October 2008 (widely reported). Not named in the script. |
+| IPO lockup: insiders usually can't sell for about 6 months | Standard IPO underwriting agreements (typically 180 days) |
+| Private foundations must pay out about 5% of assets a year | IRC §4942 minimum distribution requirement |
+| Donating appreciated stock: no capital gains tax, deduction at fair market value (with AGI limits) | IRS Publication 526 |
+| Real estate depreciation deductions | IRC §167/§168 (residential rental property: 27.5 years) |
+| ProPublica: some of the richest Americans paid $0 federal income tax in some years | ProPublica, "The Secret IRS Files" (June 2021) |
+| 1920 Supreme Court ruling that a gain generally must be realized before it's taxed as income | *Eisner v. Macomber* (1920) |
+| Step-up in basis in the tax code since 1921 | Revenue Act of 1921 |
+| Canada: capital property is generally treated as sold immediately before death (deemed disposition) | Canada Revenue Agency |
+| UK: no CGT at death; inheritance tax 40% above the £325,000 nil-rate band, plus a residence allowance | HMRC |
+| Australia: no inheritance tax; for assets acquired after Sept 20, 1985, heirs generally inherit the cost base | Australian Taxation Office |
+| Roth IRA qualified withdrawals are tax-free; UK ISA and Canada TFSA growth is tax-free | IRS, HMRC, CRA |
 | Proposals to tax unrealized gains of the richest haven't become law | e.g., the "Billionaire Minimum Income Tax" proposal (2022), not enacted |
 
 ⚠️ The founder, the company, Victoria, Daniel, Rosa and Lily are fictional. Only the rules and the ProPublica figures are real.
@@ -68,7 +84,7 @@
 - **VICTORIA (private banker):** woman in her 40s, sleek black bun, pearl earrings, charcoal tailored suit, leather folder.
 - **DANIEL (advisor):** man in his 50s, silver side-parted hair, rimless glasses, navy blazer, open collar.
 - **ROSA (nurse):** woman in her 30s, dark curly hair in a ponytail, teal scrubs, hospital badge.
-- **LILY (daughter):** late 30s (at the end), auburn bob, cream sweater.
+- **LILY (daughter):** 12 at the IPO (auburn hair in a ponytail, school uniform); early 40s at the end (auburn bob, cream sweater).
 - **Key locations:** the private bank (no sign, thick carpet, one painting), the rented office above a dry cleaner, the IPO stage, your glass mansion, a hospital nurses' station, an ocean-view bedroom.
 
 ---
@@ -83,7 +99,7 @@
 > You're worth $10 billion. You spend $100 million a year. And you pay almost nothing in income tax, completely legally. This is "Buy, Borrow, Die": the strategy the richest people in America use to live on borrowed money, never sell, and pass their fortune on with the gains erased. We follow one founder from a tiny office to a private bank, through a market crash and a margin call, all the way to the step-up in basis, and then show which parts of these rules work for ordinary people too.
 
 **Chapters (check against the final edit):**
-0:00 Same as last year · 1:05 Buy · 2:30 The problem with selling · 3:40 Borrow · 4:50 The machine runs · 6:30 The night it almost broke · 8:00 Die · 9:40 Why it's legal · 10:45 What this means for you
+0:00 Same as last year · 0:52 Buy · 2:21 The paper billionaire · 3:38 The problem with selling · 4:32 Borrow · 5:39 Inside the private bank · 6:49 Borrowed money buys more assets · 8:00 The machine runs · 10:46 The night it almost broke · 12:17 The foundation · 13:11 Die · 14:39 Lily inherits the machine · 15:18 Why it's legal · 17:25 What this means for you
 
 **Tags:** buy borrow die, how billionaires avoid taxes, billionaire taxes, step up in basis, securities based loan, borrow against stocks, unrealized gains, pov finance, how the rich avoid taxes, estate tax, propublica irs files, personal finance
 
