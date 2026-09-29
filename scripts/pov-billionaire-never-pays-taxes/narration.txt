@@ -1,0 +1,75 @@
+You're worth ten billion dollars. Last year, you spent one hundred million of it. And you paid zero dollars in income tax.
+Not because you cheated. Not because you hid money on an island. Everything you did was completely legal.
+It's a quiet Tuesday morning. You're sitting in a private bank with no sign on the door, in a room with thick carpet and one painting on the wall. Across the desk, your banker, Victoria, opens a folder with your name on it. "Same as last year?" "Same as last year."
+She slides a single page across the desk. A loan. One hundred million dollars. You sign it, and the money is in your account before lunch.
+Wall Street has a name for what you're doing. It has three words. Buy. Borrow. Die.
+And this is how it works.
+
+Chapter one. Buy.
+Rewind twenty years. You're thirty, with a laptop, a rented office above a dry cleaner, and an idea for software that helps hospitals schedule their staff.
+For years, you pay yourself almost nothing. Every dollar goes back into the company. And when you raise money from investors, you give away pieces of it, but you always keep the biggest piece for yourself.
+At fifty, your company goes public. On the first day of trading, it's worth forty billion dollars. You own a quarter of it.
+Ten billion dollars. On paper.
+And here's the first rule most people never learn. In America, you don't pay tax when your wealth grows. You pay tax when you sell.
+As long as you keep your shares, the government sees a gain that exists only on paper. It isn't taxed. It just grows.
+Some famous founders, like Mark Zuckerberg, have paid themselves a salary of just one dollar a year. No big salary. No big income tax bill.
+But that creates a problem. You're a billionaire with almost no cash.
+
+Chapter two. The problem with selling.
+Billionaires still have bills. The house. The staff. The jet. The security team. Your life costs about one hundred million dollars a year.
+The obvious answer is to sell some shares. So your advisor, Daniel, runs the numbers. "If you sell a hundred million in stock, federal capital gains tax takes about twenty-four percent. That's twenty-three point eight million dollars. And if you live somewhere like California, it's closer to thirty-seven million."
+Thirty-seven million dollars, just to spend your own money.
+And there's a second cost nobody sees. Every share you sell is a share that stops growing. If your company grows seven percent a year, those shares would have doubled in about ten years.
+So you ask Daniel the question every billionaire eventually asks. "What if I never sell?"
+Daniel smiles, because he's heard this question before.
+
+Chapter three. Borrow.
+Banks love lending to people like you. Your shares are the perfect collateral. They're valuable, easy to price, and easy to sell if something goes wrong.
+So Victoria's bank offers you a line of credit backed by your stock. You pledge part of your shares to the bank, and you can borrow against them whenever you want, at an interest rate of around five percent. Sometimes less, if you're rich enough.
+And here's the part that changes everything. A loan is not income. You have to pay it back, so the government doesn't tax it. Not one dollar.
+Compare the two options. Sell a hundred million, and you lose up to thirty-seven million to tax. Borrow a hundred million, and you pay about five million a year in interest.
+Meanwhile, your ten billion dollars in shares keeps growing. At seven percent, that's seven hundred million dollars in a single year. More than enough to cover the interest, many times over.
+So you never sell. You just borrow. Every year. Same folder. Same signature. Same Tuesday.
+
+Chapter four. The machine runs.
+Ten years pass. You've borrowed a billion dollars, and you've paid the interest with more borrowed money. Your debt grows. But your shares grow faster.
+Here's the math after thirty years. You've borrowed a hundred million every year, and let the interest pile on top. You now owe about six point six billion dollars.
+But your shares, growing seven percent a year, are now worth about seventy-six billion. Your debt is less than a tenth of your fortune.
+Now meet Rosa. She's a nurse at one of the hospitals that uses your software. She earns eighty-five thousand dollars a year.
+Rosa can't choose when to be taxed. Income tax, Social Security, and Medicare come out of every paycheck before she ever sees it. Almost one dollar in five.
+This isn't a made-up comparison. In 2021, the news organization ProPublica obtained years of IRS data on America's richest people. It found that between 2014 and 2018, the twenty-five richest Americans saw their wealth grow by four hundred and one billion dollars.
+They paid thirteen point six billion in federal income tax. A true tax rate of three point four percent.
+
+Chapter five. The night the machine almost broke.
+Buy, borrow, die sounds like a cheat code. It isn't. It has one weakness. And twelve years in, it arrives on a Thursday night.
+The market crashes. In six weeks, your company's stock falls forty-five percent. Billions of dollars of your fortune disappear, on paper.
+And your phone rings. It's Victoria. She isn't smiling this time. "The shares you pledged are worth far less than your loan allows. We need more shares pledged by Monday, or we'll have to start selling."
+This is called a margin call. If your shares keep falling, the bank can sell them for you, at the worst possible price, and the tax bill you avoided for years arrives all at once.
+It has happened to real people. In 2008, the chief executive of a major American energy company was forced to sell almost all of his shares in a matter of days to cover loans backed by his stock.
+But you planned for this. You kept most of your shares unpledged, and a separate pile of cash for exactly this night. You pledge more shares. You wait. And over the next two years, the market recovers.
+The machine keeps running.
+
+Chapter six. Die.
+You live to eighty. Your daughter, Lily, sits by your bed in a quiet room with a view of the ocean. You never sold a single share.
+And now comes the part that makes the whole strategy work. It's called the step-up in basis.
+When you die, the tax system treats the shares as if they were bought again, at their value on the day you die. Seventy-six billion dollars.
+Every dollar of growth, from the day you started the company until your last breath, is erased for income tax. Never taxed. Not for you. Not for Lily.
+Your estate sells about six point six billion dollars of shares to pay back the bank. Because of the step-up, that sale creates almost no taxable gain.
+There is still an estate tax. In 2026, anything above fifteen million dollars can be taxed at up to forty percent. That's why fortunes like yours pay entire teams of lawyers to set up trusts and charitable foundations years in advance, and many of them shrink that bill dramatically.
+Buy. Borrow. Die. Three words. One fortune that was almost never taxed as income.
+
+Chapter seven. Why it's legal.
+None of this is a secret loophole. It comes from rules that have been part of the American tax system for over a century.
+Rule one: gains are taxed only when you sell. Rule two: loans aren't income. Rule three: when you die, your assets get a fresh starting price.
+Each rule makes sense on its own. Charging income tax every year on a family's house, just because its price went up, would feel unfair to most people. And taxing a loan you have to repay makes no sense.
+The problem is what happens when you combine all three, with billions of dollars.
+Lawmakers have proposed fixes, like taxing the paper gains of the very richest households. Critics say that's unfair, hard to measure, and could push wealth out of the country. So far, none of those proposals has become law.
+
+Chapter eight. What this means for you.
+You're not a billionaire. But some of these rules work for you, too.
+First. You aren't taxed on investments you don't sell. Buying and holding for years is one of the simplest tax advantages anyone can use. And gains on investments held over a year are taxed at lower rates, sometimes zero for lower-income households.
+Second. The step-up in basis isn't just for billionaires. If you ever inherit shares or a house from your parents, the same fresh starting price can apply to you.
+Third, and this one matters most. Borrowing against your assets is dangerous when you're not rich. A billionaire can survive a margin call. A family with a home equity loan and one lost job often can't.
+And here's the real lesson. Rosa sells her time, and time is taxed every two weeks. You owned assets, and assets are only taxed when you let go of them.
+The rich don't pay less tax because they earn more. They pay less because they never have to sell.
+And every year, on a quiet Tuesday morning, somewhere behind a door with no sign, someone signs the same single page. Same as last year.

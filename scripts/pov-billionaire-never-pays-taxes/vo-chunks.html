@@ -1,0 +1,225 @@
+<title>Billionaire Tax VO Chunks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ground:#F2F3EE; --surface:#FFFFFF; --ink:#17191C; --muted:#5E645F; --line:#DCDFD6;
+  --accent:#17714A; --accent-ink:#FFFFFF; --done:#E7EAE2;
+  --t-pace:#1F5FA8; --t-pause:#6B6F75; --t-emo:#A8620B; --t-style:#7A3FA6; --t-sound:#0F7C7A;
+  --t-pace-bg:#E4EEF9; --t-pause-bg:#ECEDEF; --t-emo-bg:#FBF0DE; --t-style-bg:#F2E8F9; --t-sound-bg:#DDF3F1;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
+h1{font:800 clamp(28px,5vw,40px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 18px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0 0 22px}
+.how div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.how b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
+.barrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.prog{font:500 13px "IBM Plex Mono",monospace;color:var(--muted);margin-right:auto;font-variant-numeric:tabular-nums}
+.prog strong{color:var(--ink)}
+.meter{height:4px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.chipbtn{font:500 12.5px "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chipbtn:focus-visible,.copy:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.toggle{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+h2{font:700 13px "IBM Plex Sans",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;display:flex;gap:10px;align-items:baseline}
+h2 span{font:500 12px "IBM Plex Mono",monospace;letter-spacing:0;text-transform:none}
+.chunk{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:start}
+.chunk.is-done{background:var(--done)}
+.chunk.is-done .text{opacity:.55}
+.num{font:500 12px "IBM Plex Mono",monospace;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+.voice{font:600 11px "IBM Plex Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:5px;background:var(--ground);border:1px solid var(--line)}
+.voice.v-NARRATOR{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fname{font:500 11.5px "IBM Plex Mono",monospace;color:var(--muted)}
+.text{font-size:15.5px;overflow-wrap:anywhere}
+.tag{font:500 12.5px "IBM Plex Mono",monospace;padding:1px 5px;border-radius:4px;white-space:nowrap}
+.tg-pace{color:var(--t-pace);background:var(--t-pace-bg)}
+.tg-pause{color:var(--t-pause);background:var(--t-pause-bg)}
+.tg-emo{color:var(--t-emo);background:var(--t-emo-bg)}
+.tg-style{color:var(--t-style);background:var(--t-style-bg)}
+.tg-sound{color:var(--t-sound);background:var(--t-sound-bg)}
+.side{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.copy{font:600 13px "IBM Plex Sans",sans-serif;background:var(--accent);color:var(--accent-ink);border:0;border-radius:7px;padding:7px 14px;cursor:pointer;min-width:74px}
+.copy.ok{background:var(--ink);color:var(--ground)}
+.side label{font-size:12px;color:var(--muted);display:flex;gap:5px;align-items:center;cursor:pointer}
+.cast{font-size:13.5px;border-collapse:collapse;width:100%}
+.cast td{padding:4px 8px 4px 0;vertical-align:top;border-top:1px solid var(--line)}
+.cast td:first-child{white-space:nowrap;font-weight:600}
+.tablewrap{overflow-x:auto}
+@media (max-width:560px){.chunk{grid-template-columns:1fr}.num{display:none}.side{flex-direction:row;align-items:center;justify-content:space-between}}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+
+<div class="wrap">
+  <h1>POV: You're a Billionaire Who Never Pays Taxes. Voiceover chunks</h1>
+  <p class="lede">The script (about 12.5 minutes at your pace) is split into short pieces of 1 to 4 sentences, ready for Google Vids. Paste one chunk per scene, generate it, then tick it off. Your ticks are saved in this browser.</p>
+
+  <div class="how">
+    <div><b>Workflow</b>Filter by one voice, set that voice once in Vids, and generate all of its chunks back to back. Then switch voice. Name each export with the file name shown, and the clips will sort into the right order for the edit.</div>
+    <div><b>Tags</b>Every tag comes from the Vids menus. If a tag gets read out loud instead of performed, delete it and re-add it with <em>Apply audio tags</em>.
+      <div class="legend"><span class="tag tg-pace">pace</span><span class="tag tg-pause">pause</span><span class="tag tg-emo">emotion</span><span class="tag tg-style">style</span><span class="tag tg-sound">sound</span></div></div>
+    <div><b>Casting</b>
+      <div class="tablewrap"><table class="cast">
+        <tr><td>NARRATOR</td><td>One voice reads everything, dialogue included. Calm, measured male voice, slow and serious, like a quiet documentary. No sarcasm.</td></tr>
+        <tr><td>In the story</td><td>Victoria (private banker), Daniel (your advisor), Rosa (a nurse), Lily (your daughter). Their lines are in quotes inside the narration; just read them slightly softer.</td></tr>
+      </table></div></div>
+  </div>
+
+  <div class="bar">
+    <div class="barrow">
+      <span class="prog" id="prog"></span>
+      <label class="toggle"><input type="checkbox" id="hideDone"> Hide done</label>
+    </div>
+    <div class="barrow" id="filters" style="margin-top:8px"></div>
+    <div class="meter"><i id="meter"></i></div>
+  </div>
+
+  <main id="list"></main>
+</div>
+
+<script>
+const S = (t) => ({section:t});
+const D = [
+S("Cold open: the private bank"),
+["NARRATOR", "[slow pace] [thoughtful] You're worth ten billion dollars. [short pause] Last year, you spent one hundred million of it. [medium pause] And you paid zero dollars in income tax. [serious] Not because you cheated. [short pause] Not because you hid money on an island. [short pause] Everything you did was completely legal. [natural pace] It's a quiet Tuesday morning. You're sitting in a private bank with no sign on the door, in a room with thick carpet and one painting on the wall. [short pause] Across the desk, your banker, Victoria, opens a folder with your name on it."],
+S("Cold open: the private bank  \u2192  Chapter 1: Buy"),
+["NARRATOR", "[short pause] [natural] \"Same as last year?\" [short pause] [natural] \"Same as last year.\" [natural] She slides a single page across the desk. [short pause] A loan. One hundred million dollars. [short pause] You sign it, and the money is in your account before lunch. [slow pace] [serious] Wall Street has a name for what you're doing. [short pause] It has three words. [medium pause] Buy. [short pause] Borrow. [short pause] Die. [thoughtful] And this is how it works. [authoritative] Chapter one. [short pause] Buy. [natural pace] Rewind twenty years. You're thirty, with a laptop, a rented office above a dry cleaner, and an idea for software that helps hospitals schedule their staff. [natural] For years, you pay yourself almost nothing."],
+S("Chapter 1: Buy"),
+["NARRATOR", "Every dollar goes back into the company. [short pause] And when you raise money from investors, you give away pieces of it, but you always keep the biggest piece for yourself. [hope] At fifty, your company goes public. [short pause] On the first day of trading, it's worth forty billion dollars. [medium pause] You own a quarter of it. [slow pace] Ten billion dollars. [short pause] On paper. [interest] And here's the first rule most people never learn. [short pause] In America, you don't pay tax when your wealth grows. [short pause] You pay tax when you sell. [natural] As long as you keep your shares, the government sees a gain that exists only on paper."],
+S("Chapter 1: Buy  \u2192  Chapter 2: The problem with selling"),
+["NARRATOR", "It isn't taxed. [short pause] It just grows. [thoughtful] Some famous founders, like Mark Zuckerberg, have paid themselves a salary of just one dollar a year. [short pause] No big salary. [short pause] No big income tax bill. [serious] But that creates a problem. [short pause] You're a billionaire with almost no cash. [authoritative] Chapter two. [short pause] The problem with selling. [natural] Billionaires still have bills. [short pause] The house. The staff. The jet. The security team. [short pause] Your life costs about one hundred million dollars a year. [natural pace] The obvious answer is to sell some shares. [short pause] So your advisor, Daniel, runs the numbers."],
+S("Chapter 2: The problem with selling"),
+["NARRATOR", "[short pause] [serious] \"If you sell a hundred million in stock, federal capital gains tax takes about twenty-four percent. [short pause] That's twenty-three point eight million dollars. [short pause] And if you live somewhere like California, it's closer to thirty-seven million.\" [thoughtful] Thirty-seven million dollars, just to spend your own money. [serious] And there's a second cost nobody sees. [short pause] Every share you sell is a share that stops growing. [short pause] If your company grows seven percent a year, those shares would have doubled in about ten years. [slow pace] So you ask Daniel the question every billionaire eventually asks. [medium pause] [short pause] [curiosity] \"What if I never sell?\" [natural] Daniel smiles, because he's heard this question before."],
+S("Chapter 3: Borrow"),
+["NARRATOR", "[authoritative] Chapter three. [short pause] Borrow. [natural pace] Banks love lending to people like you. [short pause] Your shares are the perfect collateral. They're valuable, easy to price, and easy to sell if something goes wrong. [interest] So Victoria's bank offers you a line of credit backed by your stock. [short pause] You pledge part of your shares to the bank, and you can borrow against them whenever you want, at an interest rate of around five percent. [short pause] Sometimes less, if you're rich enough. [serious] And here's the part that changes everything."],
+["NARRATOR", "[medium pause] A loan is not income. [short pause] You have to pay it back, so the government doesn't tax it. [short pause] Not one dollar. [natural] Compare the two options. [short pause] Sell a hundred million, and you lose up to thirty-seven million to tax. [short pause] Borrow a hundred million, and you pay about five million a year in interest. [thoughtful] Meanwhile, your ten billion dollars in shares keeps growing. [short pause] At seven percent, that's seven hundred million dollars in a single year. [short pause] More than enough to cover the interest, many times over. [slow pace] So you never sell. [short pause] You just borrow. [short pause] Every year. [short pause] Same folder. Same signature. Same Tuesday."],
+S("Chapter 4: The machine runs"),
+["NARRATOR", "[authoritative] Chapter four. [short pause] The machine runs. [natural pace] Ten years pass. You've borrowed a billion dollars, and you've paid the interest with more borrowed money. [short pause] Your debt grows. [short pause] But your shares grow faster. [interest] Here's the math after thirty years. [short pause] You've borrowed a hundred million every year, and let the interest pile on top. [short pause] You now owe about six point six billion dollars. [hope] But your shares, growing seven percent a year, are now worth about seventy-six billion. [short pause] Your debt is less than a tenth of your fortune. [natural] Now meet Rosa. She's a nurse at one of the hospitals that uses your software."],
+["NARRATOR", "She earns eighty-five thousand dollars a year. [serious] Rosa can't choose when to be taxed. [short pause] Income tax, Social Security, and Medicare come out of every paycheck before she ever sees it. [short pause] Almost one dollar in five. [thoughtful] This isn't a made-up comparison. [short pause] In 2021, the news organization ProPublica obtained years of IRS data on America's richest people. [short pause] It found that between 2014 and 2018, the twenty-five richest Americans saw their wealth grow by four hundred and one billion dollars. [slow pace] They paid thirteen point six billion in federal income tax. [medium pause] A true tax rate of three point four percent."],
+S("Chapter 5: The night the machine almost broke"),
+["NARRATOR", "[authoritative] Chapter five. [short pause] The night the machine almost broke. [serious] Buy, borrow, die sounds like a cheat code. [short pause] It isn't. [short pause] It has one weakness. [short pause] And twelve years in, it arrives on a Thursday night. [natural pace] The market crashes. In six weeks, your company's stock falls forty-five percent. [short pause] Billions of dollars of your fortune disappear, on paper. [cautious] And your phone rings. [short pause] It's Victoria. [short pause] She isn't smiling this time. [short pause] [serious] \"The shares you pledged are worth far less than your loan allows."],
+["NARRATOR", "[short pause] We need more shares pledged by Monday, or we'll have to start selling.\" [slow pace] [serious] This is called a margin call. [short pause] If your shares keep falling, the bank can sell them for you, at the worst possible price, and the tax bill you avoided for years arrives all at once. [thoughtful] It has happened to real people. [short pause] In 2008, the chief executive of a major American energy company was forced to sell almost all of his shares in a matter of days to cover loans backed by his stock."],
+S("Chapter 5: The night the machine almost broke  \u2192  Chapter 6: Die"),
+["NARRATOR", "[natural] But you planned for this. [short pause] You kept most of your shares unpledged, and a separate pile of cash for exactly this night. [short pause] You pledge more shares. You wait. [short pause] And over the next two years, the market recovers. [slow pace] The machine keeps running. [authoritative] Chapter six. [short pause] Die. [slow pace] [thoughtful] You live to eighty. [short pause] Your daughter, Lily, sits by your bed in a quiet room with a view of the ocean. [short pause] You never sold a single share. [serious] And now comes the part that makes the whole strategy work."],
+S("Chapter 6: Die"),
+["NARRATOR", "[short pause] It's called the step-up in basis. [natural] When you die, the tax system treats the shares as if they were bought again, at their value on the day you die. [short pause] Seventy-six billion dollars. [serious] Every dollar of growth, from the day you started the company until your last breath, is erased for income tax. [medium pause] Never taxed. [short pause] Not for you. Not for Lily. [natural pace] Your estate sells about six point six billion dollars of shares to pay back the bank."],
+["NARRATOR", "[short pause] Because of the step-up, that sale creates almost no taxable gain. [cautious] There is still an estate tax. [short pause] In 2026, anything above fifteen million dollars can be taxed at up to forty percent. [short pause] That's why fortunes like yours pay entire teams of lawyers to set up trusts and charitable foundations years in advance, and many of them shrink that bill dramatically. [slow pace] [thoughtful] Buy. [short pause] Borrow. [short pause] Die. [medium pause] Three words. [short pause] One fortune that was almost never taxed as income."],
+S("Chapter 7: Why it's legal"),
+["NARRATOR", "[authoritative] Chapter seven. [short pause] Why it's legal. [natural] None of this is a secret loophole. [short pause] It comes from rules that have been part of the American tax system for over a century. [interest] Rule one: gains are taxed only when you sell. [short pause] Rule two: loans aren't income. [short pause] Rule three: when you die, your assets get a fresh starting price. [thoughtful] Each rule makes sense on its own. [short pause] Charging income tax every year on a family's house, just because its price went up, would feel unfair to most people."],
+S("Chapter 7: Why it's legal  \u2192  Chapter 8: What this means for you"),
+["NARRATOR", "[short pause] And taxing a loan you have to repay makes no sense. [serious] The problem is what happens when you combine all three, with billions of dollars. [natural] Lawmakers have proposed fixes, like taxing the paper gains of the very richest households. [short pause] Critics say that's unfair, hard to measure, and could push wealth out of the country. [short pause] So far, none of those proposals has become law. [authoritative] Chapter eight. [short pause] What this means for you. [natural] You're not a billionaire. [short pause] But some of these rules work for you, too."],
+S("Chapter 8: What this means for you"),
+["NARRATOR", "[interest] First. You aren't taxed on investments you don't sell. [short pause] Buying and holding for years is one of the simplest tax advantages anyone can use. [short pause] And gains on investments held over a year are taxed at lower rates, sometimes zero for lower-income households. [natural] Second. The step-up in basis isn't just for billionaires. [short pause] If you ever inherit shares or a house from your parents, the same fresh starting price can apply to you. [cautious] Third, and this one matters most. [short pause] Borrowing against your assets is dangerous when you're not rich."],
+["NARRATOR", "[short pause] A billionaire can survive a margin call. [short pause] A family with a home equity loan and one lost job often can't. [thoughtful] And here's the real lesson. [short pause] Rosa sells her time, and time is taxed every two weeks. [short pause] You owned assets, and assets are only taxed when you let go of them. [slow pace] [serious] The rich don't pay less tax because they earn more. [medium pause] They pay less because they never have to sell. [slow pace] [thoughtful] And every year, on a quiet Tuesday morning, somewhere behind a door with no sign, someone signs the same single page. [medium pause] Same as last year."],
+];
+
+const CAT = {
+  "slow pace":"pace","natural pace":"pace","rushed pace":"pace",
+  "short pause":"pause","medium pause":"pause","long pause":"pause",
+  admiration:"emo",adoration:"emo",amused:"emo",awe:"emo",confusion:"emo",curiosity:"emo",determination:"emo",enthusiasm:"emo",excited:"emo",frustrated:"emo",happy:"emo",hope:"emo",interest:"emo",positive:"emo",surprised:"emo",thoughtful:"emo",
+  whisper:"style",authoritative:"style",bold:"style",cautious:"style",natural:"style",robotic:"style",sarcasm:"style",serious:"style",shouting:"style",
+  swallow:"sound",inhale:"sound",gasp:"sound",shush:"sound",urgh:"sound",snorts:"sound",giggles:"sound","clear throat":"sound"
+};
+
+let store = {};
+try { store = JSON.parse(localStorage.getItem("vo-done-billionaire-tax") || "{}"); } catch (e) { store = {}; }
+const save = () => { try { localStorage.setItem("vo-done-billionaire-tax", JSON.stringify(store)); } catch (e) {} };
+
+const list = document.getElementById("list");
+const esc = (s) => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (t) => esc(t).replace(/\[([a-z ]+)\]/g, (m, k) => `<span class="tag tg-${CAT[k] || "pause"}">[${k}]</span>`);
+
+let n = 0, sec = null;
+const voices = new Set();
+const rows = [];
+for (const item of D) {
+  if (item.section) {
+    sec = document.createElement("section");
+    sec.innerHTML = `<h2>${esc(item.section)} <span></span></h2>`;
+    list.appendChild(sec);
+    continue;
+  }
+  n++;
+  const [voice, text] = item;
+  voices.add(voice);
+  const id = String(n).padStart(3, "0");
+  const fname = `vo_${id}_${voice.toLowerCase()}`;
+  const el = document.createElement("article");
+  el.className = "chunk";
+  el.dataset.voice = voice;
+  el.dataset.id = id;
+  el.innerHTML = `<div class="num">${id}</div>
+    <div><div class="meta"><span class="voice v-${voice}">${voice}</span><span class="fname">${fname}</span></div>
+    <div class="text">${fmt(text)}</div></div>
+    <div class="side"><button class="copy" type="button" id="copy-${id}">Copy</button>
+    <label><input type="checkbox" id="done-${id}"> Done</label></div>`;
+  const btn = el.querySelector(".copy"), box = el.querySelector("input");
+  box.checked = !!store[id];
+  el.classList.toggle("is-done", box.checked);
+  btn.addEventListener("click", () => {
+    const ok = () => { btn.textContent = "Copied"; btn.classList.add("ok"); setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1400); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el.querySelector(".text")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Ctrl+C"; };
+    try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (e) { fallback(); }
+  });
+  box.addEventListener("change", () => { store[id] = box.checked; if (!box.checked) delete store[id]; save(); el.classList.toggle("is-done", box.checked); refresh(); });
+  sec.appendChild(el);
+  rows.push(el);
+}
+
+let active = "ALL";
+const filters = document.getElementById("filters");
+const order = ["ALL","NARRATOR","YOU","MOM","DAD","AGENT","CAROL","RYAN"].filter(v => v === "ALL" || voices.has(v));
+for (const v of order) {
+  const b = document.createElement("button");
+  b.className = "chipbtn"; b.type = "button"; b.id = "f-" + v;
+  b.addEventListener("click", () => { active = v; refresh(); });
+  filters.appendChild(b);
+}
+const hideDone = document.getElementById("hideDone");
+hideDone.addEventListener("change", refresh);
+
+function refresh() {
+  const total = rows.length;
+  const done = rows.filter(r => store[r.dataset.id]).length;
+  for (const b of filters.children) {
+    const v = b.id.slice(2);
+    const pool = v === "ALL" ? rows : rows.filter(r => r.dataset.voice === v);
+    const left = pool.filter(r => !store[r.dataset.id]).length;
+    b.textContent = `${v === "ALL" ? "All voices" : v} · ${left}`;
+    b.setAttribute("aria-pressed", String(v === active));
+  }
+  for (const r of rows) {
+    const show = (active === "ALL" || r.dataset.voice === active) && !(hideDone.checked && store[r.dataset.id]);
+    r.hidden = !show;
+  }
+  for (const s of list.children) {
+    const vis = [...s.querySelectorAll(".chunk")].filter(c => !c.hidden).length;
+    s.hidden = vis === 0;
+    s.querySelector("h2 span").textContent = `${vis} chunk${vis === 1 ? "" : "s"}`;
+  }
+  document.getElementById("prog").innerHTML = `<strong>${done}</strong> / ${total} generated`;
+  document.getElementById("meter").style.width = (done / total * 100) + "%";
+}
+refresh();
+</script>
