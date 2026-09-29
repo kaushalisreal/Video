@@ -1,0 +1,251 @@
+<title>Mortgage 958K VO Chunks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ground:#F2F3EE; --surface:#FFFFFF; --ink:#17191C; --muted:#5E645F; --line:#DCDFD6;
+  --accent:#17714A; --accent-ink:#FFFFFF; --done:#E7EAE2;
+  --t-pace:#1F5FA8; --t-pause:#6B6F75; --t-emo:#A8620B; --t-style:#7A3FA6; --t-sound:#0F7C7A;
+  --t-pace-bg:#E4EEF9; --t-pause-bg:#ECEDEF; --t-emo-bg:#FBF0DE; --t-style-bg:#F2E8F9; --t-sound-bg:#DDF3F1;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
+h1{font:800 clamp(28px,5vw,40px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 18px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0 0 22px}
+.how div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.how b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
+.barrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.prog{font:500 13px "IBM Plex Mono",monospace;color:var(--muted);margin-right:auto;font-variant-numeric:tabular-nums}
+.prog strong{color:var(--ink)}
+.meter{height:4px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.chipbtn{font:500 12.5px "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chipbtn:focus-visible,.copy:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.toggle{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+h2{font:700 13px "IBM Plex Sans",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;display:flex;gap:10px;align-items:baseline}
+h2 span{font:500 12px "IBM Plex Mono",monospace;letter-spacing:0;text-transform:none}
+.chunk{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:start}
+.chunk.is-done{background:var(--done)}
+.chunk.is-done .text{opacity:.55}
+.num{font:500 12px "IBM Plex Mono",monospace;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+.voice{font:600 11px "IBM Plex Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:5px;background:var(--ground);border:1px solid var(--line)}
+.voice.v-NARRATOR{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fname{font:500 11.5px "IBM Plex Mono",monospace;color:var(--muted)}
+.text{font-size:15.5px;overflow-wrap:anywhere}
+.tag{font:500 12.5px "IBM Plex Mono",monospace;padding:1px 5px;border-radius:4px;white-space:nowrap}
+.tg-pace{color:var(--t-pace);background:var(--t-pace-bg)}
+.tg-pause{color:var(--t-pause);background:var(--t-pause-bg)}
+.tg-emo{color:var(--t-emo);background:var(--t-emo-bg)}
+.tg-style{color:var(--t-style);background:var(--t-style-bg)}
+.tg-sound{color:var(--t-sound);background:var(--t-sound-bg)}
+.side{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.copy{font:600 13px "IBM Plex Sans",sans-serif;background:var(--accent);color:var(--accent-ink);border:0;border-radius:7px;padding:7px 14px;cursor:pointer;min-width:74px}
+.copy.ok{background:var(--ink);color:var(--ground)}
+.side label{font-size:12px;color:var(--muted);display:flex;gap:5px;align-items:center;cursor:pointer}
+.cast{font-size:13.5px;border-collapse:collapse;width:100%}
+.cast td{padding:4px 8px 4px 0;vertical-align:top;border-top:1px solid var(--line)}
+.cast td:first-child{white-space:nowrap;font-weight:600}
+.tablewrap{overflow-x:auto}
+@media (max-width:560px){.chunk{grid-template-columns:1fr}.num{display:none}.side{flex-direction:row;align-items:center;justify-content:space-between}}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+
+<div class="wrap">
+  <h1>POV: Your $400K Mortgage Costs You $958K. Voiceover chunks</h1>
+  <p class="lede">The script (about 20 minutes at your pace, 3,154 words) is split into short pieces of 1 to 4 sentences, ready for Google Vids. Paste one chunk per scene, generate it, then tick it off. Your ticks are saved in this browser.</p>
+
+  <div class="how">
+    <div><b>Workflow</b>Filter by one voice, set that voice once in Vids, and generate all of its chunks back to back. Then switch voice. Name each export with the file name shown, and the clips will sort into the right order for the edit.</div>
+    <div><b>Tags</b>Every tag comes from the Vids menus. If a tag gets read out loud instead of performed, delete it and re-add it with <em>Apply audio tags</em>.
+      <div class="legend"><span class="tag tg-pace">pace</span><span class="tag tg-pause">pause</span><span class="tag tg-emo">emotion</span><span class="tag tg-style">style</span><span class="tag tg-sound">sound</span></div></div>
+    <div><b>Casting</b>
+      <div class="tablewrap"><table class="cast">
+        <tr><td>NARRATOR</td><td>One voice reads everything, dialogue included. Calm, measured male voice, slow and serious, like a quiet documentary. No sarcasm.</td></tr>
+        <tr><td>In the story</td><td>Elena (your partner), Beth (title agent), Uncle Ray, Harold (neighbor), Sofia (your daughter). Their lines are in quotes inside the narration; read them slightly softer.</td></tr>
+      </table></div></div>
+  </div>
+
+  <div class="bar">
+    <div class="barrow">
+      <span class="prog" id="prog"></span>
+      <label class="toggle"><input type="checkbox" id="hideDone"> Hide done</label>
+    </div>
+    <div class="barrow" id="filters" style="margin-top:8px"></div>
+    <div class="meter"><i id="meter"></i></div>
+  </div>
+
+  <main id="list"></main>
+</div>
+
+<script>
+const S = (t) => ({section:t});
+const D = [
+S("Cold open: page five"),
+["NARRATOR", "[slow pace] [thoughtful] You're thirty-one, sitting in a title office with your partner Elena, and a stack of papers taller than your coffee cup. [short pause] After four years of saving, today is the day. [short pause] You're buying your first home. [natural] A five-hundred-thousand-dollar house. [short pause] Three bedrooms. A small backyard. A kitchen Elena fell in love with. [short pause] You've put down a hundred thousand dollars, and borrowed four hundred thousand. [natural pace] You sign. And sign. And initial. And sign. [short pause] Then you turn to page five of a document called the Closing Disclosure, and your pen stops. [slow pace] [serious] There's a line called Total of Payments."],
+["NARRATOR", "[medium pause] Nine hundred and fifty-eight thousand, and thirty-six dollars. [natural] You read it again. [short pause] You borrowed four hundred thousand. [short pause] And by the time this loan is paid off, you'll have paid the bank almost a million. [short pause] [cautious] \"Is that right?\" [natural] The title agent, Beth, doesn't even look up. [short pause] She's seen this face a thousand times. [short pause] [natural] \"That's a thirty-year mortgage, sweetheart. [short pause] Everybody pays that.\" [slow pace] [serious] You sign anyway. [short pause] Almost everyone does. [medium pause] But that night, you open a spreadsheet, and try to understand what you just bought. [short pause] And what you found changed how you'd think about money for the rest of your life."],
+S("Chapter 1: The dream"),
+["NARRATOR", "[authoritative] Chapter one. [short pause] The dream. [natural pace] Rewind four years. You and Elena are renting a two-bedroom apartment for twenty-four hundred dollars a month. [short pause] Every spring, the landlord raises it. [short pause] Every month, the money disappears, and you own nothing. [natural] One year it's a hundred dollars more. [short pause] The next year, a hundred and fifty. [short pause] The dishwasher breaks and takes three weeks to fix. [short pause] The upstairs neighbors learn to play the drums. [short pause] And every lease renewal feels like someone else deciding your future."],
+["NARRATOR", "[thoughtful] Your parents told you the same thing their parents told them. [short pause] Renting is throwing money away. [short pause] Buy a house. Build equity. [short pause] It's the American dream. [natural] So you start saving. [short pause] You skip vacations. You cook at home. [short pause] Elena picks up weekend shifts. [short pause] And every month, you watch the down payment fund grow, a few thousand dollars at a time. [interest] You save twenty percent, because your loan officer explains that if you put down less on a normal loan, you'll usually pay something called private mortgage insurance."],
+S("Chapter 1: The dream  \u2192  Chapter 2: The number on page five"),
+["NARRATOR", "[short pause] Extra money every month that protects the bank, not you. [natural] You get pre-approved. [short pause] The bank says you can borrow up to five hundred and fifty thousand. [short pause] You're proud of yourselves for choosing less. [slow pace] You tour eleven houses. [short pause] You lose two bidding wars. [short pause] And then, one rainy Saturday, you walk into the one with the yellow kitchen, [short pause] and Elena squeezes your hand. [short pause] This is it. [authoritative] Chapter two. [short pause] The number on page five. [natural pace] Back to that night with the spreadsheet."],
+S("Chapter 2: The number on page five"),
+["NARRATOR", "[short pause] Your mortgage is four hundred thousand dollars at seven percent, for thirty years. [short pause] That's close to where many rates sat in 2023 and 2024. [interest] Your monthly payment for the loan is two thousand six hundred and sixty-one dollars. [short pause] Multiply that by three hundred and sixty months. [short pause] Nine hundred and fifty-eight thousand dollars. [serious] Four hundred thousand is the house. [short pause] Five hundred and fifty-eight thousand is interest. [medium pause] You're paying more for the loan than for the home itself. [thoughtful] And the law requires lenders to show you this number. [short pause] It's right there, on page five, in black and white."],
+S("Chapter 2: The number on page five  \u2192  Chapter 3: Why thirty years?"),
+["NARRATOR", "[short pause] Most people sign right past it, because by the time they see it, the moving truck is already booked. [natural] Next to it, there's another number called the Annual Percentage Rate. [short pause] It's slightly higher than your seven percent, because it includes fees you paid to get the loan. [short pause] That's the real price of borrowing. [slow pace] You close the laptop. [short pause] But you can't stop thinking about one question. [medium pause] Where does all that interest actually go? [short pause] And when? [authoritative] Chapter three. [short pause] Why thirty years? [natural pace] Here's something most Americans never think about. [short pause] The thirty-year fixed-rate mortgage is not normal everywhere. [short pause] It's mostly an American invention."],
+S("Chapter 3: Why thirty years?"),
+["NARRATOR", "[interest] Before the Great Depression, American home loans were often short. [short pause] Five or ten years. [short pause] Borrowers usually paid only interest, then owed the entire balance at the end, and often needed a big down payment to begin with. [short pause] When the Depression hit, millions couldn't pay, and waves of families lost their homes. [natural] So in the 1930s, the government stepped in. [short pause] The Federal Housing Administration, created in 1934, helped spread long, fully paid-off loans with small, steady monthly payments. [short pause] Over the following decades, the thirty-year fixed mortgage became the standard. [thoughtful] In many other countries, it looks very different."],
+["NARRATOR", "[short pause] In the United Kingdom, most people fix their rate for two or five years, and then have to find a new deal. [short pause] In Canada, a typical mortgage is paid off over about twenty-five years, but the rate usually resets every five. [short pause] In Australia, many home loans have rates that move up and down with the market. [serious] That means a family in Toronto, London, or Sydney can see their payment jump when rates rise. [short pause] Yours can't. [short pause] Your seven percent is locked for thirty years. [short pause] You pay for that safety with more total interest. [short pause] But it is a kind of safety."],
+S("Chapter 4: Your first payment"),
+["NARRATOR", "[authoritative] Chapter four. [short pause] Your first payment. [natural pace] On the first of the next month, you make your first mortgage payment. [short pause] Two thousand six hundred and sixty-one dollars. [short pause] You feel like a real homeowner. [interest] Then you look at the statement. [short pause] Of that payment, two thousand three hundred and thirty-three dollars went to interest. [medium pause] Three hundred and twenty-eight dollars went to your house. [serious] Eighty-eight percent of your first payment was the bank's. [short pause] Twelve percent was yours. [thoughtful] This isn't a trick."],
+["NARRATOR", "[short pause] It's math. [short pause] Interest is charged on what you still owe. [short pause] In month one, you owe the full four hundred thousand, so the interest is huge. [short pause] Each month, you owe a tiny bit less, so the interest shrinks a tiny bit, and a tiny bit more goes to the principal. [natural] Bankers call this amortization. [short pause] Your payment stays the same for thirty years. [short pause] But what's inside it slowly flips. [thoughtful] If you draw it as a chart, it looks like two lines."],
+S("Chapter 4: Your first payment  \u2192  Chapter 5: The first ten years"),
+["NARRATOR", "[short pause] Interest starts high and slides slowly down. [short pause] Principal starts low and climbs slowly up. [short pause] For most of your loan, the bank's line sits on top. [slow pace] [serious] And here's the part that shocks almost everyone. [medium pause] On a loan like yours, the moment when more of your payment goes to your house than to the bank doesn't arrive until month two hundred and forty-two. [short pause] More than twenty years from now. [authoritative] Chapter five. [short pause] The first ten years. [natural pace] Five years go by. [short pause] You've made sixty payments. [short pause] About a hundred and sixty thousand dollars. [short pause] You paint the kitchen. You plant tomatoes."],
+S("Chapter 5: The first ten years"),
+["NARRATOR", "Your daughter Sofia is born in the room with the blue curtains. [interest] Then you check the loan balance. [short pause] You still owe three hundred and seventy-six thousand dollars. [short pause] Of the hundred and sixty thousand you paid, only about twenty-three thousand went toward the house. [short pause] The other hundred and thirty-six thousand was interest. [natural] Ten years. [short pause] A hundred and twenty payments. [short pause] Over three hundred and nineteen thousand dollars. [short pause] You still owe three hundred and forty-three thousand. [short pause] Two hundred and sixty-two thousand of what you paid was interest. [thoughtful] Now imagine something most homeowners do. [short pause] You sell and move after seven or ten years."],
+["NARRATOR", "[short pause] A bigger house, a new job, a new city. [short pause] You start a brand new thirty-year loan. [short pause] And you go right back to month one, where almost everything goes to interest again. [serious] Some families do this three or four times in their lives. [short pause] They pay interest for decades, and some never get past the part of the loan where the bank takes most of every payment. [hope] But here's the good news hidden in the same numbers. [short pause] Your house probably went up in value too. [short pause] And that, plus what you paid down, is your equity. [short pause] The part that's really yours."],
+S("Chapter 6: The costs nobody puts in the ad"),
+["NARRATOR", "[authoritative] Chapter six. [short pause] The costs nobody puts in the ad. [natural pace] The mortgage isn't your only bill. [short pause] Not even close. [interest] Property taxes. [short pause] In your town, about one point one percent of the home's value every year. [short pause] Fifty-five hundred dollars. [short pause] And they usually rise as your home's value rises. [natural] Homeowners insurance. [short pause] About two thousand dollars a year, and in many parts of the country, it's been climbing fast because of storms, fires, and rebuilding costs. [thoughtful] And then, maintenance."],
+["NARRATOR", "[short pause] A common rule of thumb is to budget about one percent of your home's value every year. [short pause] For you, five thousand dollars. [short pause] It doesn't come evenly. [short pause] It comes as a water heater in year three, a roof in year twelve, and a furnace on the coldest night of year seventeen. [natural] Closing costs, when you bought, were about fifteen thousand dollars. [short pause] Appraisal. Title insurance. Lender fees. Recording fees. [short pause] Money that disappeared on the day you got your keys."],
+["NARRATOR", "[natural] Some of your friends pay even more every month. [short pause] Those who put down less than twenty percent often pay private mortgage insurance until they build enough equity. [short pause] And those in newer neighborhoods pay homeowners association fees, sometimes hundreds of dollars a month, for rules about what color your front door can be. [serious] And when you eventually sell, agent commissions and fees have traditionally taken around five to six percent of the price. [short pause] On a five-hundred-thousand-dollar house, that's twenty-five to thirty thousand dollars. [slow pace] The listing said five hundred thousand. [short pause] Nobody listed the rest."],
+S("Chapter 7: The true thirty-year cost"),
+["NARRATOR", "[authoritative] Chapter seven. [short pause] The true thirty-year cost. [natural pace] So you add it all up, over thirty years. [short pause] Assuming taxes, insurance, and repairs rise about three percent a year. [interest] The loan payments: nine hundred and fifty-eight thousand. [short pause] The down payment: a hundred thousand. [short pause] Closing costs: fifteen thousand. [short pause] Taxes, insurance, and maintenance over thirty years: about five hundred and ninety-five thousand. [slow pace] [serious] The total. [medium pause] About one point six seven million dollars. [medium pause] For a five-hundred-thousand-dollar house. [thoughtful] You stare at the number for a long time."],
+S("Chapter 7: The true thirty-year cost  \u2192  Chapter 8: But is renting better?"),
+["NARRATOR", "[short pause] Then Elena asks the question you should have asked first. [short pause] [curiosity] \"Okay. [short pause] But what would renting have cost us?\" [natural] And that's where the story gets more honest. [short pause] Because the one point six seven million isn't the price of a house. [short pause] It's the price of living somewhere for thirty years. [short pause] And living somewhere is never free. [authoritative] Chapter eight. [short pause] But is renting better? [natural pace] Your old apartment was twenty-four hundred dollars a month. [short pause] If rent rises three percent a year for thirty years, you'd pay about one point three seven million dollars in rent."],
+S("Chapter 8: But is renting better?"),
+["NARRATOR", "[short pause] And at the end, you'd own nothing. [interest] Now the house. [short pause] If it rises about three and a half percent a year, a five-hundred-thousand-dollar home could be worth around one point four million dollars in thirty years. [short pause] Fully paid off. [short pause] And your mortgage payment never went up, not once. [thoughtful] That's the hidden power of a fixed-rate mortgage. [short pause] Inflation raises almost every price in your life, including rent. [short pause] But your loan payment is frozen. [short pause] Thirty years from now, two thousand six hundred and sixty-one dollars could feel like about thirteen hundred dollars today. [cautious] But renting isn't always the wrong choice."],
+["NARRATOR", "[short pause] A renter who invests the money they save, on the down payment, the repairs, the taxes, can also build real wealth. [short pause] Renting gives you flexibility to move for a better job. [short pause] And if you sell a house after just a few years, the buying and selling costs can wipe out your gains. [interest] Here's one way to see it. [short pause] Your down payment and closing costs added up to a hundred and fifteen thousand dollars. [short pause] If a renter invested that same amount and it grew seven percent a year for thirty years, it could become about eight hundred and seventy-five thousand dollars."],
+["NARRATOR", "[short pause] Not a paid-off house. [short pause] But not nothing, either. [cautious] That only works if the renter actually invests the money, every year, through every crash. [short pause] Most people don't. [short pause] A mortgage forces you to save. [short pause] Investing on your own requires discipline. [natural] So the real answer depends on how long you stay, what homes and rents cost where you live, and what you do with the difference. [short pause] A house isn't automatically an investment. [short pause] It's a very expensive way to live somewhere, that can turn into wealth, if you do it right."],
+S("Chapter 9: The mortgage interest myth"),
+["NARRATOR", "[authoritative] Chapter nine. [short pause] The mortgage interest myth. [natural pace] At a family barbecue, your uncle Ray tells you not to worry about the interest. [short pause] [enthusiasm] \"You get it all back at tax time! [short pause] That interest is a write-off.\" [interest] For many people today, that's no longer true. [short pause] Since the tax changes in 2018, the standard deduction became much bigger. [short pause] Now roughly nine out of ten tax filers take the standard deduction, and don't itemize at all. [short pause] If you don't itemize, the mortgage interest deduction gives you nothing."],
+["NARRATOR", "[thoughtful] And even if you do itemize, a deduction doesn't give you the money back. [short pause] It only lowers the income you're taxed on. [short pause] Spending a dollar on interest to save maybe twenty or thirty cents in tax is still spending a dollar. [natural] Ray means well. [short pause] He bought his house in 1994, when the rules were different. [short pause] But you realize something. [short pause] Most of what people believe about mortgages, they learned from someone who bought under different rules, in a different decade."],
+S("Chapter 10: The moves that save six figures"),
+["NARRATOR", "[authoritative] Chapter ten. [short pause] The moves that save six figures. [natural pace] So you do the one thing most homeowners never do. [short pause] You start playing with the numbers. [interest] First experiment. [short pause] What if you pay an extra two hundred dollars a month toward the principal? [short pause] Just two hundred. [short pause] Your loan would be paid off in about twenty-four years instead of thirty. [short pause] And you'd save about a hundred and twenty-seven thousand dollars in interest. [interest] Second. [short pause] What if you make one extra full payment a year?"],
+["NARRATOR", "[short pause] For example, by putting your tax refund or part of a bonus toward the loan. [short pause] Also about twenty-four years, and about a hundred and thirty-one thousand saved. [natural] Some people do this automatically with biweekly payments. [short pause] Half a payment every two weeks. [short pause] Because there are twenty-six two-week periods in a year, that adds up to thirteen full payments instead of twelve. [short pause] Just check that your lender applies the money right away, and doesn't charge a fee for the service."],
+["NARRATOR", "[interest] Third. [short pause] Five hundred extra a month? [short pause] Paid off in about nineteen years. [short pause] Almost two hundred and thirty thousand dollars of interest, gone. [natural] Then you compare loans you didn't choose. [short pause] A fifteen-year mortgage usually has a lower rate. [short pause] At six point three percent, your payment would have been about thirty-four hundred and forty dollars a month. [short pause] Higher. [short pause] But the total interest would be about two hundred and nineteen thousand, instead of five hundred and fifty-eight. [cautious] Before you pay extra, make sure it counts."],
+S("Chapter 10: The moves that save six figures  \u2192  Chapter 11: The refinance trap"),
+["NARRATOR", "[short pause] Tell your lender it's a principal-only payment. [short pause] Check that your loan has no prepayment penalty. [short pause] And never do it before you have an emergency fund, and before you're getting your full employer retirement match. [short pause] A paid-down house can't pay for a surprise medical bill. [authoritative] Chapter eleven. [short pause] The refinance trap. [natural pace] Five years in, mortgage rates fall to five and a half percent. [short pause] Your phone lights up with offers. [short pause] Lower your payment by over five hundred dollars a month!"],
+S("Chapter 11: The refinance trap"),
+["NARRATOR", "[interest] And it's true. [short pause] Refinancing your remaining three hundred and seventy-six thousand dollars into a new thirty-year loan at five and a half percent would drop your payment to about twenty-one hundred and forty. [serious] But look closer. [short pause] You'd restart the clock. [short pause] Thirty more years, on top of the five you've already paid. [short pause] Thirty-five years in total. [short pause] Your future interest would be about three hundred and ninety-three thousand. [short pause] Without refinancing, it's about four hundred and twenty-two thousand. [short pause] After closing costs, the savings almost disappear. [hope] So you do it differently."],
+["NARRATOR", "[short pause] You refinance into a twenty-five-year loan, so you finish on the original schedule. [short pause] Your payment drops to about twenty-three hundred and ten. [short pause] And your future interest falls to about three hundred and seventeen thousand. [short pause] More than a hundred thousand dollars saved, just by refusing to restart the clock. [cautious] And you avoid the other trap entirely. [short pause] The cash-out refinance, or the home equity line of credit, that lets you borrow against your house for a new truck or a vacation. [short pause] It feels like free money. [short pause] It's just a new debt, secured by the roof over your daughter's head."],
+S("Chapter 12: The mortgage burning party"),
+["NARRATOR", "[authoritative] Chapter twelve. [short pause] The mortgage burning party. [natural pace] Your neighbor Harold is seventy-four. [short pause] Retired mail carrier. Tomato grower. [short pause] One summer evening, he invites the whole street to his backyard. [thoughtful] In the middle of the yard, there's a small metal fire pit. [short pause] Harold stands next to it holding an old folded document. [short pause] His mortgage. [short pause] Paid off this morning. [natural] It's an old American tradition, the mortgage burning party. [short pause] Harold drops the paper into the flames, and everyone cheers. [short pause] [hope] \"Twenty-six years. [short pause] I paid a little extra every single month."],
+["NARRATOR", "[short pause] My wife called it our freedom fund.\" [natural] Later, over paper plates of potato salad, Harold tells you the rest. [short pause] He never earned much. [short pause] He never refinanced to take cash out. [short pause] He drove the same pickup for eighteen years. [short pause] And every month, he rounded his mortgage payment up to the next hundred dollars. [short pause] That was the whole secret. [slow pace] You watch the paper curl and turn black. [short pause] And for the first time, you understand what a house really is. [medium pause] It's not the kitchen or the yard. [short pause] It's the day you stop paying for the right to live in it."],
+S("Chapter 13: What this means for you"),
+["NARRATOR", "[authoritative] Chapter thirteen. [short pause] What this means for you. [natural] You don't have to fear a mortgage. [short pause] For most families, it's the only way to buy a home. [short pause] But you should know exactly what you're signing. [interest] First. Read page five. [short pause] Look at the Total of Payments and the Annual Percentage Rate before closing day, not during it. [interest] Second. Borrow less than the bank offers. [short pause] The bank approves what you can technically pay, not what lets you sleep at night."],
+["NARRATOR", "[natural] Third. Budget for the whole house, not just the loan. [short pause] Taxes, insurance, repairs, and closing costs can add hundreds of thousands of dollars over the years. [natural] Fourth. If you can, pay a little extra toward principal, after your emergency fund and your retirement match. [short pause] Even small amounts, early in the loan, save the most. [cautious] Fifth. When you refinance, don't restart the clock unless you truly need the lower payment. [short pause] And don't turn your home's equity into a vacation."],
+S("Chapter 13: What this means for you  \u2192  Closing: thirty years later"),
+["NARRATOR", "[natural] Sixth. Know your rate type. [short pause] If you live in a country where mortgage rates reset every few years, plan ahead for the day yours renews, and test whether you could handle a higher payment. [short pause] Surprises are expensive. [short pause] Plans are cheap. [thoughtful] And seventh. Stay long enough to win. [short pause] Buying and selling costs are huge. [short pause] A house usually rewards the people who stay, and punishes the people who keep starting over. [slow pace] [thoughtful] Twenty-six years after that day in the title office, you and Elena stand in your backyard around a small metal fire pit."],
+S("Closing: thirty years later"),
+["NARRATOR", "[short pause] Sofia is home from college. [short pause] The neighbors are there. [short pause] Harold's old chair sits by the fence, where his daughter left it. [natural] You paid a little extra every month. [short pause] You refinanced once, without restarting the clock. [short pause] And this morning, you made the last payment. [short pause] Four years early. [hope] You hold the old Closing Disclosure over the fire, open to page five. [short pause] Nine hundred and fifty-eight thousand, thirty-six dollars. [short pause] You never paid all of it. [short pause] You made sure of that. [slow pace] [serious] The paper catches. [medium pause] The house is the same house. [short pause] The yellow kitchen. The blue curtains. The tomatoes. [medium pause] It just finally belongs to you."],
+];
+
+const CAT = {
+  "slow pace":"pace","natural pace":"pace","rushed pace":"pace",
+  "short pause":"pause","medium pause":"pause","long pause":"pause",
+  admiration:"emo",adoration:"emo",amused:"emo",awe:"emo",confusion:"emo",curiosity:"emo",determination:"emo",enthusiasm:"emo",excited:"emo",frustrated:"emo",happy:"emo",hope:"emo",interest:"emo",positive:"emo",surprised:"emo",thoughtful:"emo",
+  whisper:"style",authoritative:"style",bold:"style",cautious:"style",natural:"style",robotic:"style",sarcasm:"style",serious:"style",shouting:"style",
+  swallow:"sound",inhale:"sound",gasp:"sound",shush:"sound",urgh:"sound",snorts:"sound",giggles:"sound","clear throat":"sound"
+};
+
+let store = {};
+try { store = JSON.parse(localStorage.getItem("vo-done-mortgage-958k") || "{}"); } catch (e) { store = {}; }
+const save = () => { try { localStorage.setItem("vo-done-mortgage-958k", JSON.stringify(store)); } catch (e) {} };
+
+const list = document.getElementById("list");
+const esc = (s) => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (t) => esc(t).replace(/\[([a-z ]+)\]/g, (m, k) => `<span class="tag tg-${CAT[k] || "pause"}">[${k}]</span>`);
+
+let n = 0, sec = null;
+const voices = new Set();
+const rows = [];
+for (const item of D) {
+  if (item.section) {
+    sec = document.createElement("section");
+    sec.innerHTML = `<h2>${esc(item.section)} <span></span></h2>`;
+    list.appendChild(sec);
+    continue;
+  }
+  n++;
+  const [voice, text] = item;
+  voices.add(voice);
+  const id = String(n).padStart(3, "0");
+  const fname = `vo_${id}_${voice.toLowerCase()}`;
+  const el = document.createElement("article");
+  el.className = "chunk";
+  el.dataset.voice = voice;
+  el.dataset.id = id;
+  el.innerHTML = `<div class="num">${id}</div>
+    <div><div class="meta"><span class="voice v-${voice}">${voice}</span><span class="fname">${fname}</span></div>
+    <div class="text">${fmt(text)}</div></div>
+    <div class="side"><button class="copy" type="button" id="copy-${id}">Copy</button>
+    <label><input type="checkbox" id="done-${id}"> Done</label></div>`;
+  const btn = el.querySelector(".copy"), box = el.querySelector("input");
+  box.checked = !!store[id];
+  el.classList.toggle("is-done", box.checked);
+  btn.addEventListener("click", () => {
+    const ok = () => { btn.textContent = "Copied"; btn.classList.add("ok"); setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1400); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el.querySelector(".text")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Ctrl+C"; };
+    try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (e) { fallback(); }
+  });
+  box.addEventListener("change", () => { store[id] = box.checked; if (!box.checked) delete store[id]; save(); el.classList.toggle("is-done", box.checked); refresh(); });
+  sec.appendChild(el);
+  rows.push(el);
+}
+
+let active = "ALL";
+const filters = document.getElementById("filters");
+const order = ["ALL","NARRATOR","YOU","MOM","DAD","AGENT","CAROL","RYAN"].filter(v => v === "ALL" || voices.has(v));
+for (const v of order) {
+  const b = document.createElement("button");
+  b.className = "chipbtn"; b.type = "button"; b.id = "f-" + v;
+  b.addEventListener("click", () => { active = v; refresh(); });
+  filters.appendChild(b);
+}
+const hideDone = document.getElementById("hideDone");
+hideDone.addEventListener("change", refresh);
+
+function refresh() {
+  const total = rows.length;
+  const done = rows.filter(r => store[r.dataset.id]).length;
+  for (const b of filters.children) {
+    const v = b.id.slice(2);
+    const pool = v === "ALL" ? rows : rows.filter(r => r.dataset.voice === v);
+    const left = pool.filter(r => !store[r.dataset.id]).length;
+    b.textContent = `${v === "ALL" ? "All voices" : v} · ${left}`;
+    b.setAttribute("aria-pressed", String(v === active));
+  }
+  for (const r of rows) {
+    const show = (active === "ALL" || r.dataset.voice === active) && !(hideDone.checked && store[r.dataset.id]);
+    r.hidden = !show;
+  }
+  for (const s of list.children) {
+    const vis = [...s.querySelectorAll(".chunk")].filter(c => !c.hidden).length;
+    s.hidden = vis === 0;
+    s.querySelector("h2 span").textContent = `${vis} chunk${vis === 1 ? "" : "s"}`;
+  }
+  document.getElementById("prog").innerHTML = `<strong>${done}</strong> / ${total} generated`;
+  document.getElementById("meter").style.width = (done / total * 100) + "%";
+}
+refresh();
+</script>
