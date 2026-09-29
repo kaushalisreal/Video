@@ -1,0 +1,251 @@
+<title>Secret Millionaire VO Chunks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ground:#F2F3EE; --surface:#FFFFFF; --ink:#17191C; --muted:#5E645F; --line:#DCDFD6;
+  --accent:#17714A; --accent-ink:#FFFFFF; --done:#E7EAE2;
+  --t-pace:#1F5FA8; --t-pause:#6B6F75; --t-emo:#A8620B; --t-style:#7A3FA6; --t-sound:#0F7C7A;
+  --t-pace-bg:#E4EEF9; --t-pause-bg:#ECEDEF; --t-emo-bg:#FBF0DE; --t-style-bg:#F2E8F9; --t-sound-bg:#DDF3F1;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
+h1{font:800 clamp(28px,5vw,40px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 18px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0 0 22px}
+.how div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.how b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
+.barrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.prog{font:500 13px "IBM Plex Mono",monospace;color:var(--muted);margin-right:auto;font-variant-numeric:tabular-nums}
+.prog strong{color:var(--ink)}
+.meter{height:4px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.chipbtn{font:500 12.5px "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chipbtn:focus-visible,.copy:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.toggle{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+h2{font:700 13px "IBM Plex Sans",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;display:flex;gap:10px;align-items:baseline}
+h2 span{font:500 12px "IBM Plex Mono",monospace;letter-spacing:0;text-transform:none}
+.chunk{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:start}
+.chunk.is-done{background:var(--done)}
+.chunk.is-done .text{opacity:.55}
+.num{font:500 12px "IBM Plex Mono",monospace;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+.voice{font:600 11px "IBM Plex Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:5px;background:var(--ground);border:1px solid var(--line)}
+.voice.v-NARRATOR{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fname{font:500 11.5px "IBM Plex Mono",monospace;color:var(--muted)}
+.text{font-size:15.5px;overflow-wrap:anywhere}
+.tag{font:500 12.5px "IBM Plex Mono",monospace;padding:1px 5px;border-radius:4px;white-space:nowrap}
+.tg-pace{color:var(--t-pace);background:var(--t-pace-bg)}
+.tg-pause{color:var(--t-pause);background:var(--t-pause-bg)}
+.tg-emo{color:var(--t-emo);background:var(--t-emo-bg)}
+.tg-style{color:var(--t-style);background:var(--t-style-bg)}
+.tg-sound{color:var(--t-sound);background:var(--t-sound-bg)}
+.side{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.copy{font:600 13px "IBM Plex Sans",sans-serif;background:var(--accent);color:var(--accent-ink);border:0;border-radius:7px;padding:7px 14px;cursor:pointer;min-width:74px}
+.copy.ok{background:var(--ink);color:var(--ground)}
+.side label{font-size:12px;color:var(--muted);display:flex;gap:5px;align-items:center;cursor:pointer}
+.cast{font-size:13.5px;border-collapse:collapse;width:100%}
+.cast td{padding:4px 8px 4px 0;vertical-align:top;border-top:1px solid var(--line)}
+.cast td:first-child{white-space:nowrap;font-weight:600}
+.tablewrap{overflow-x:auto}
+@media (max-width:560px){.chunk{grid-template-columns:1fr}.num{display:none}.side{flex-direction:row;align-items:center;justify-content:space-between}}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+
+<div class="wrap">
+  <h1>POV: You're a Secret Millionaire Driving a 2012 Camry. Voiceover chunks</h1>
+  <p class="lede">The script (about 20 minutes at your pace, 3,171 words) is split into short pieces of 1 to 4 sentences, ready for Google Vids. Paste one chunk per scene, generate it, then tick it off. Your ticks are saved in this browser.</p>
+
+  <div class="how">
+    <div><b>Workflow</b>Filter by one voice, set that voice once in Vids, and generate all of its chunks back to back. Then switch voice. Name each export with the file name shown, and the clips will sort into the right order for the edit.</div>
+    <div><b>Tags</b>Every tag comes from the Vids menus. If a tag gets read out loud instead of performed, delete it and re-add it with <em>Apply audio tags</em>.
+      <div class="legend"><span class="tag tg-pace">pace</span><span class="tag tg-pause">pause</span><span class="tag tg-emo">emotion</span><span class="tag tg-style">style</span><span class="tag tg-sound">sound</span></div></div>
+    <div><b>Casting</b>
+      <div class="tablewrap"><table class="cast">
+        <tr><td>NARRATOR</td><td>One voice reads everything, dialogue included. Calm, warm, measured male voice, slow and quietly confident. No sarcasm.</td></tr>
+        <tr><td>In the story</td><td>Derek (brother-in-law), Frank (your first boss), Dana (your wife), Jake (your son). Their lines are in quotes inside the narration; read them slightly softer.</td></tr>
+      </table></div></div>
+  </div>
+
+  <div class="bar">
+    <div class="barrow">
+      <span class="prog" id="prog"></span>
+      <label class="toggle"><input type="checkbox" id="hideDone"> Hide done</label>
+    </div>
+    <div class="barrow" id="filters" style="margin-top:8px"></div>
+    <div class="meter"><i id="meter"></i></div>
+  </div>
+
+  <main id="list"></main>
+</div>
+
+<script>
+const S = (t) => ({section:t});
+const D = [
+S("Cold open: the valet line"),
+["NARRATOR", "[slow pace] [thoughtful] It's a Saturday evening, and you're in line for the valet at a fancy hotel, on your way to your niece's wedding. [natural] In front of you, a white Range Rover. [short pause] Behind you, a black Porsche. [short pause] And you're sitting in a silver 2012 Toyota Camry, with two hundred and fourteen thousand miles on it and a dent in the rear bumper from 2019. [natural] The valet hesitates for half a second before he takes your keys. [short pause] Then the Porsche's window rolls down. [short pause] It's your brother-in-law, Derek. [short pause] [amused] \"Still driving that thing?"],
+["NARRATOR", "[short pause] Man, you've gotta treat yourself one of these days.\" [natural] You smile, and you say what you always say. [short pause] It still runs great. [slow pace] [serious] Here's what Derek doesn't know. [medium pause] You're worth just over two million dollars. [short pause] Your house is paid off. [short pause] You could buy his Porsche with cash, today, and your life wouldn't change at all. [thoughtful] Nobody at this wedding knows. [short pause] Not your neighbors. Not your coworkers. [short pause] Not even most of your family. [slow pace] You're a secret millionaire. [medium pause] And this is how you got here, why you keep it quiet, [short pause] and what it really costs to be rich where nobody can see it."],
+S("Chapter 1: The ordinary life"),
+["NARRATOR", "[authoritative] Chapter one. [short pause] The ordinary life. [natural pace] You're fifty-two. [short pause] You're a civil engineer. You design drainage systems and bridges for the county. [short pause] Your wife Dana is a nurse. [short pause] Two kids, one in college, one in high school. [natural] You live in a three-bedroom house you bought in 2002, in a neighborhood with good schools and nothing fancy. [short pause] You shop at the same grocery store as everyone else. [short pause] You wear a watch you got for your fortieth birthday. [short pause] Your phone is four years old."],
+["NARRATOR", "[thoughtful] You never earned a huge salary. [short pause] Together, you and Dana have never made more than about a hundred and seventy thousand dollars a year, and for most of your careers, a lot less. [interest] But you did something very few people do. [short pause] For twenty-eight years, you kept a gap between what you earned and what you spent. [short pause] Not a huge gap at first. [short pause] Seven hundred dollars a month in your twenties. [short pause] Fifteen hundred in your thirties. [short pause] Twenty-six hundred in your forties. [slow pace] You put in about six hundred thousand dollars over those years."],
+S("Chapter 1: The ordinary life  \u2192  Chapter 2: Big hat, no cattle"),
+["NARRATOR", "[short pause] And time did the rest. [short pause] Today, your investments are worth about one point four seven million dollars. [short pause] Add the paid-off house, and you're past two million. [serious] None of it happened because you were lucky, or brilliant, or because you picked the right stock. [short pause] It happened because you were boring, for a very long time. [authoritative] Chapter two. [short pause] Big hat, no cattle. [natural pace] It started when you were twenty-four. [short pause] Your first boss, an old engineer named Frank who wore the same brown cardigan every Friday, handed you a book with a torn cover."],
+S("Chapter 2: Big hat, no cattle"),
+["NARRATOR", "[short pause] [natural] \"Read this before you buy your first new car. [short pause] Trust me.\" [interest] It was called The Millionaire Next Door, published in 1996 by two researchers, Thomas Stanley and William Danko. [short pause] They had spent years studying who America's millionaires actually were. [natural] And the answer surprised everyone. [short pause] Most weren't celebrities or heirs. [short pause] Many were business owners, engineers, teachers, and tradespeople. [short pause] Many drove older cars, lived in modest houses, and spent far less than they could afford. [thoughtful] The book borrowed an old Texas saying to describe the opposite type of person."],
+["NARRATOR", "[short pause] Big hat, no cattle. [short pause] Someone who looks rich, with the hat, the boots, the truck, [short pause] but doesn't actually own the herd. [natural] You read the whole book on a weekend. [short pause] And on Monday, you told Frank you'd decided to keep driving your college car. [natural] Back then, you earned thirty-eight thousand dollars a year. [short pause] You shared an apartment with a roommate who played video games until three in the morning. [short pause] Seven hundred dollars a month into savings felt impossible. [short pause] So you started with two hundred, and raised it every time you got a raise. [short pause] [amused] \"Good. [short pause] Now go be boring for thirty years.\""],
+S("Chapter 3: The car you didn't buy"),
+["NARRATOR", "[authoritative] Chapter three. [short pause] The car you didn't buy. [natural pace] You bought your Camry in 2015. [short pause] It was three years old, with thirty-eight thousand miles, and you paid fourteen thousand dollars in cash. [short pause] It's been the most boring, reliable thing you've ever owned. [interest] Today, a new car in America sells for close to fifty thousand dollars on average. [short pause] And the average car on American roads is now almost thirteen years old. [short pause] So your Camry isn't strange. [short pause] It's normal."],
+["NARRATOR", "[short pause] It just doesn't look normal in a hotel valet line. [thoughtful] Now here's the math that changed your life. [short pause] Many of your friends replaced their car every five or six years, with a monthly payment that never ended. [short pause] If you had done the same, you'd probably have paid around five hundred and fifty dollars more per month than you actually spent on cars. [interest] You didn't. [short pause] You invested that difference instead. [short pause] Five hundred and fifty dollars a month, for twenty-eight years, growing at seven percent a year."],
+["NARRATOR", "[medium pause] That alone could be worth about five hundred and seventy thousand dollars today. [slow pace] [serious] Half a million dollars. [short pause] From the car you didn't buy. [short pause] It's sitting in your brokerage account right now, while Derek's Porsche loses value in the parking lot. [cautious] And to be clear, this isn't about suffering. [short pause] Your Camry has heated seats. [short pause] It's safe, comfortable, and paid for. [short pause] You just refused to pay for the part of a car that's only there to impress strangers."],
+S("Chapter 3: The car you didn't buy  \u2192  Chapter 4: The house you didn't upgrade"),
+["NARRATOR", "[interest] And the savings go beyond the payment. [short pause] An older car usually costs less to insure. [short pause] It has already done most of its losing value. [short pause] And a well-maintained Camry can run for many years past two hundred thousand miles. [short pause] Your mechanic, Luis, jokes that he'll retire before your car does. [authoritative] Chapter four. [short pause] The house you didn't upgrade. [natural pace] In 2002, you and Dana bought your house for two hundred and forty thousand dollars. [short pause] At the time, it felt huge."],
+S("Chapter 4: The house you didn't upgrade"),
+["NARRATOR", "[short pause] Three bedrooms. A big backyard. A basement you'd finish yourself, slowly, over four years. [natural] Every few years, your friends moved up. [short pause] A bigger house. A better neighborhood. [short pause] A bigger mortgage, reset to thirty years, every single time. [thoughtful] You came close once. [short pause] In 2012, you toured a five-bedroom house with a three-car garage. [short pause] It was beautiful. [short pause] It was also double the price, with double the property taxes, double the heating bill, and two extra rooms you had no idea what to do with. [short pause] You drove home in silence, and never went back. [interest] You stayed."],
+["NARRATOR", "[short pause] You paid a little extra on your mortgage every month. [short pause] And at fifty, you made the final payment. [short pause] Today, your house is worth about five hundred and sixty thousand dollars. [short pause] And you owe nothing. [thoughtful] Think about what that means every month. [short pause] No mortgage. No car payment. [short pause] Your family can live comfortably on a fraction of your income. [short pause] Everything else becomes freedom. [natural] You still spend money on the house. [short pause] You redid the kitchen in 2018, with good cabinets and simple counters. [short pause] You replaced the roof. [short pause] You just never bought a house to show people. [short pause] You bought one to live in."],
+S("Chapter 5: The boring machine"),
+["NARRATOR", "[authoritative] Chapter five. [short pause] The boring machine. [natural pace] So where does the money actually go? [short pause] Nowhere exciting. [interest] First, your 401k at work, always enough to get the full employer match. [short pause] Free money you never left on the table. [short pause] Then Roth IRAs for you and Dana, filled whenever you could. [short pause] And then, a plain brokerage account. [natural] Inside all of them, almost the same thing. [short pause] Low-cost index funds that own tiny slices of thousands of companies. [short pause] No hot stocks. No trading apps. No tips from Derek at Thanksgiving."],
+["NARRATOR", "[thoughtful] And the most important part. [short pause] It's automatic. [short pause] The money leaves your paycheck before you ever see it. [short pause] You don't decide to save every month. [short pause] You decided once, years ago, and never undid it. [serious] You lived through the dot-com crash, the 2008 financial crisis, the pandemic crash of 2020, and the drop in 2022. [short pause] Every time, your account fell by tens of thousands of dollars. [short pause] Some years, by hundreds of thousands. [short pause] Every time, you kept buying. [thoughtful] You still remember one night in early 2009. [short pause] Your account had fallen from about three hundred thousand dollars to one hundred and ninety."],
+["NARRATOR", "[short pause] Dana found you at the kitchen table at midnight, staring at the screen. [short pause] She asked if you should sell everything, before it got worse. [natural] You almost said yes. [short pause] Instead, you closed the laptop, and you let the automatic investments keep running. [short pause] Every month, your money bought more shares at lower prices. [short pause] Within a few years, the account had not only recovered, it had grown past where it was before the crash. [slow pace] That was the whole strategy. [short pause] Spend less than you earn. [short pause] Invest the difference. [short pause] Don't panic. [medium pause] Repeat for three decades."],
+S("Chapter 6: Why you keep it secret"),
+["NARRATOR", "[authoritative] Chapter six. [short pause] Why you keep it secret. [natural pace] You could tell people. [short pause] Sometimes you want to. [short pause] Especially when Derek makes another joke about your car. [thoughtful] But you've seen what happens when people find out. [short pause] A coworker who won a small lottery prize suddenly had cousins he'd never met. [short pause] A friend who posted about selling his business started getting investment pitches, loan requests, and phone calls from people pretending to be his bank. [serious] Money that everyone can see becomes a target."],
+["NARRATOR", "[short pause] For scammers. For thieves. [short pause] And sometimes, for people you love. [natural] There's a quieter reason, too. [short pause] People treat you differently when they know. [short pause] Every dinner becomes a question of who pays. [short pause] Every conversation carries a little weight it didn't have before. [interest] And the biggest reason of all. [short pause] Invisible money gives you something visible money never can. [short pause] Nobody expects anything from you. [short pause] No one expects you to upgrade, to host, to impress. [short pause] You get to live exactly the life you want, without an audience."],
+S("Chapter 6: Why you keep it secret  \u2192  Chapter 7: The real secret millionaires"),
+["NARRATOR", "[thoughtful] And there's a strange kind of peace in being underestimated. [short pause] At work, people judge your ideas, not your bank account. [short pause] At family dinners, you're just the uncle who fixes things. [short pause] Nobody performs for you, and you don't perform for anyone. [short pause] Your relationships are real, because money was never part of them. [slow pace] Being secretly rich isn't a trick. [medium pause] It's privacy. [authoritative] Chapter seven. [short pause] The real secret millionaires. [natural pace] Your story isn't unusual. [short pause] Some of the most remarkable fortunes in America belonged to people nobody noticed."],
+S("Chapter 7: The real secret millionaires"),
+["NARRATOR", "[interest] Ronald Read grew up poor on a Vermont farm. [short pause] He worked as a gas station attendant, and later as a janitor. [short pause] He used a safety pin to hold his worn jacket together. [short pause] When he died in 2014, at ninety-two, the town learned he'd built a fortune of almost eight million dollars, by quietly buying and holding dividend-paying stocks for decades. [natural] He left four point eight million dollars to his local hospital, and one point two million to the town library."],
+["NARRATOR", "[interest] Grace Groner was a secretary at Abbott Laboratories for forty-three years. [short pause] In 1935, she bought three shares of the company's stock, for sixty dollars each. [short pause] She never sold them. [short pause] She reinvested the dividends, lived in a small cottage, and when she died in 2010, she left seven million dollars to Lake Forest College. [thoughtful] And the most famous investor alive, Warren Buffett, still lives in the house in Omaha, Nebraska, that he bought in 1958 for thirty-one thousand five hundred dollars. [slow pace] [serious] None of them looked rich. [medium pause] All of them were."],
+S("Chapter 8: The quiet luxury era"),
+["NARRATOR", "[authoritative] Chapter eight. [short pause] The quiet luxury era. [natural pace] Something strange has happened in recent years. [short pause] Even among the truly rich, looking rich has started to go out of style. [interest] Around 2023, fashion magazines started talking about quiet luxury. [short pause] Plain sweaters without logos. [short pause] Simple watches. [short pause] Expensive things designed to look ordinary, recognized only by people who already know. [thoughtful] Part of it is taste. [short pause] But part of it is safety. [short pause] In a world where every photo can be shared, searched, and saved forever, showing off your wealth online can make you a target, for scammers, for thieves, and for people who suddenly want something from you."],
+S("Chapter 8: The quiet luxury era  \u2192  Chapter 9: The cost of being invisible"),
+["NARRATOR", "[natural] Your version is simpler, and much cheaper. [short pause] No logos, because you never bought the expensive thing in the first place. [short pause] But the idea is the same. [short pause] Real security comes from what you own, not from what people see. [authoritative] Chapter nine. [short pause] The cost of being invisible. [natural pace] But being a secret millionaire isn't all quiet victory. [short pause] It has a price, too. [thoughtful] When your son Jake was twelve, he asked if your family was poor. [short pause] His friends had new phones and ski trips."],
+S("Chapter 9: The cost of being invisible"),
+["NARRATOR", "[short pause] He had a hand-me-down tablet and a summer at the lake. [short pause] That question hurt more than any of Derek's jokes. [natural] Dana has her own frustrations. [short pause] For years, she wanted to see Italy. [short pause] And for years, you said, maybe next year. [short pause] One night, she finally said it. [short pause] [serious] \"What's the point of having money if we never use it for anything we love?\" [slow pace] She was right. [short pause] And it forced you to learn the difference between frugal and cheap."],
+["NARRATOR", "[short pause] Frugal means spending less on what doesn't matter, so you can spend freely on what does. [short pause] Cheap means refusing to spend, even on the things that matter most. [hope] That summer, you took the whole family to Italy for three weeks. [short pause] You paid cash. [short pause] Jake still says it was the best trip of his life. [short pause] And your net worth barely noticed. [thoughtful] You also sat Jake down, when he turned eighteen, and told him the truth. [short pause] Not the exact number. [short pause] But the story. [short pause] How the family built it, and what it's for."],
+S("Chapter 10: Derek's side of the street"),
+["NARRATOR", "[authoritative] Chapter ten. [short pause] Derek's side of the street. [natural pace] Derek earns more than you. [short pause] He's a regional sales director. [short pause] Big bonuses. Nice suits. [short pause] A leased Porsche, a boat he uses four weekends a year, and a house twice the size of yours. [natural] Six months after the wedding, his company gets bought. [short pause] His job disappears. [short pause] And within weeks, it becomes clear that almost everything he owns, he owes on. [serious] The Porsche lease. [short pause] The boat loan. [short pause] A big mortgage he refinanced to pay for a pool."],
+["NARRATOR", "[short pause] Credit cards. [short pause] He has very little in savings, and a lifestyle that costs more every month than most families earn. [interest] When he finally writes it all down, the monthly bills look like this. [short pause] Mortgage, fifty-two hundred. [short pause] Porsche lease, fourteen hundred. [short pause] Boat loan and marina, nine hundred. [short pause] Credit card minimums, eleven hundred. [short pause] Over eight thousand dollars a month, before he's bought a single grocery. [short pause] With no paycheck, his savings would last about six weeks. [thoughtful] One Sunday, he shows up at your door, embarrassed, and asks if you could lend him some money until he finds something new."],
+["NARRATOR", "[slow pace] You invite him in. [short pause] You make coffee. [short pause] And for the first time, you tell him a little about how you've lived. [short pause] Not to lecture. [short pause] Just to help. [hope] You help him with rent money while he sells the boat and returns the car. [short pause] Quietly. [short pause] No one else in the family ever finds out. [short pause] Three months later, he calls you with a new job, [short pause] and a question you never expected to hear from him. [short pause] [thoughtful] \"So, what was the name of that book?\""],
+S("Chapter 11: Does money buy happiness?"),
+["NARRATOR", "[authoritative] Chapter eleven. [short pause] Does money buy happiness? [natural pace] So after all this, are you happier than Derek was? [short pause] Researchers have argued about this question for years. [interest] In 2010, two Nobel-winning researchers, Daniel Kahneman and Angus Deaton, published a famous study suggesting that day-to-day happiness stopped rising once income reached about seventy-five thousand dollars a year. [short pause] Later research by Matthew Killingsworth found that, for most people, happiness keeps rising with income. [short pause] In 2023, Kahneman and Killingsworth worked together to settle the debate. [short pause] For most people, more money did go with more happiness."],
+["NARRATOR", "[short pause] Only for the least happy group did the benefits level off. [thoughtful] But notice what money actually buys, in your life. [short pause] Not the car. Not the kitchen. [short pause] It buys control. [short pause] The ability to say no to a bad job. [short pause] To take care of a family member. [short pause] To sleep through a market crash. [short pause] To take three weeks in Italy without asking anyone's permission. [serious] Psychologists often find that a feeling of control over your own life is one of the strongest predictors of well-being. [short pause] That's what your savings really are. [short pause] Stored-up freedom. [slow pace] Derek's money bought things. [short pause] Yours bought time."],
+S("Chapter 12: The choice at fifty-two"),
+["NARRATOR", "[authoritative] Chapter twelve. [short pause] The choice at fifty-two. [natural pace] This spring, your boss offers you a big promotion. [short pause] Department head. [short pause] Thirty thousand dollars more a year. [short pause] More meetings, more stress, and a lot more nights away from home. [thoughtful] Ten years ago, you would have said yes without thinking. [short pause] But you don't need the money anymore. [short pause] And for the first time in your life, you can choose purely on what you want. [interest] A common rule of thumb says a portfolio can support withdrawals of around four percent a year for a long retirement."],
+["NARRATOR", "[short pause] It isn't a guarantee. [short pause] But on one point four seven million, that's close to sixty thousand dollars a year, on top of Social Security later, with no mortgage and no car payment. [hope] So you say no to the promotion. [short pause] Instead, you ask to work four days a week. [short pause] Your boss is shocked, but agrees. [short pause] And every Friday, you volunteer, teaching high school kids how to build small bridges out of wood and wire. [natural] That night, Dana asks if you're sure. [short pause] Thirty thousand dollars is a lot of money to walk away from."],
+S("Chapter 12: The choice at fifty-two  \u2192  Chapter 13: What this means for you"),
+["NARRATOR", "[short pause] You tell her the truth. [short pause] For twenty-eight years, the money worked for your future. [short pause] Now, it's finally working for your present. [slow pace] Nobody at the school knows you're a millionaire. [short pause] They just know you're the engineer who shows up every Friday in the old silver Camry. [authoritative] Chapter thirteen. [short pause] What this means for you. [natural] You don't need a big salary to become a secret millionaire. [short pause] You need a gap, and time. [interest] First. Build the gap. [short pause] Whatever you earn, spend less than that, on purpose, and invest the difference automatically. [interest] Second. Be careful with the big three. [short pause] Housing, cars, and debt."],
+S("Chapter 13: What this means for you"),
+["NARRATOR", "[short pause] Small daily purchases matter, but these three decide most people's financial lives. [natural] Third. Buy boring investments, and keep them. [short pause] Low-cost, diversified index funds, held through every crash. [short pause] The market rewards patience more than intelligence. [natural] Fourth. Spend on what you love, and cut what you don't. [short pause] Be frugal, not cheap. [short pause] A trip that creates memories is not the same as a car that impresses strangers. [cautious] Fifth. Protect your privacy. [short pause] You don't have to post your wins. [short pause] The less people know about your money, the fewer people will try to take it. [natural] Sixth. Teach your kids the story, not just the rules."],
+S("Chapter 13: What this means for you  \u2192  Closing: the valet line, again"),
+["NARRATOR", "[short pause] Let them see you choose. [short pause] The used car, the paid-off house, the trip to Italy. [short pause] The most valuable thing you can pass on isn't the money. [short pause] It's knowing how to keep it. [thoughtful] And seventh. Remember what it's for. [short pause] The goal isn't to die with the biggest number. [short pause] It's to live with the most freedom, and to be able to help the people you love when they need it. [slow pace] [thoughtful] Back at the wedding, the evening ends. [short pause] You and Dana stand in the valet line again, her head on your shoulder, her shoes in her hand."],
+S("Closing: the valet line, again"),
+["NARRATOR", "[natural] The Range Rover pulls up. [short pause] Then the Porsche. [short pause] And then, finally, your silver Camry, with its dent and its two hundred and fourteen thousand miles. [hope] You hand the valet a fifty-dollar bill. [short pause] He looks at the car, then at the tip, then at you, confused. [short pause] You just smile. [natural] Derek's new car pulls up behind you. [short pause] A used Honda. [short pause] He catches your eye through the windshield, grins, and gives you a small thumbs up. [slow pace] [serious] He'll never know. [medium pause] Nobody will. [medium pause] And that's exactly the point."],
+];
+
+const CAT = {
+  "slow pace":"pace","natural pace":"pace","rushed pace":"pace",
+  "short pause":"pause","medium pause":"pause","long pause":"pause",
+  admiration:"emo",adoration:"emo",amused:"emo",awe:"emo",confusion:"emo",curiosity:"emo",determination:"emo",enthusiasm:"emo",excited:"emo",frustrated:"emo",happy:"emo",hope:"emo",interest:"emo",positive:"emo",surprised:"emo",thoughtful:"emo",
+  whisper:"style",authoritative:"style",bold:"style",cautious:"style",natural:"style",robotic:"style",sarcasm:"style",serious:"style",shouting:"style",
+  swallow:"sound",inhale:"sound",gasp:"sound",shush:"sound",urgh:"sound",snorts:"sound",giggles:"sound","clear throat":"sound"
+};
+
+let store = {};
+try { store = JSON.parse(localStorage.getItem("vo-done-secret-millionaire") || "{}"); } catch (e) { store = {}; }
+const save = () => { try { localStorage.setItem("vo-done-secret-millionaire", JSON.stringify(store)); } catch (e) {} };
+
+const list = document.getElementById("list");
+const esc = (s) => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (t) => esc(t).replace(/\[([a-z ]+)\]/g, (m, k) => `<span class="tag tg-${CAT[k] || "pause"}">[${k}]</span>`);
+
+let n = 0, sec = null;
+const voices = new Set();
+const rows = [];
+for (const item of D) {
+  if (item.section) {
+    sec = document.createElement("section");
+    sec.innerHTML = `<h2>${esc(item.section)} <span></span></h2>`;
+    list.appendChild(sec);
+    continue;
+  }
+  n++;
+  const [voice, text] = item;
+  voices.add(voice);
+  const id = String(n).padStart(3, "0");
+  const fname = `vo_${id}_${voice.toLowerCase()}`;
+  const el = document.createElement("article");
+  el.className = "chunk";
+  el.dataset.voice = voice;
+  el.dataset.id = id;
+  el.innerHTML = `<div class="num">${id}</div>
+    <div><div class="meta"><span class="voice v-${voice}">${voice}</span><span class="fname">${fname}</span></div>
+    <div class="text">${fmt(text)}</div></div>
+    <div class="side"><button class="copy" type="button" id="copy-${id}">Copy</button>
+    <label><input type="checkbox" id="done-${id}"> Done</label></div>`;
+  const btn = el.querySelector(".copy"), box = el.querySelector("input");
+  box.checked = !!store[id];
+  el.classList.toggle("is-done", box.checked);
+  btn.addEventListener("click", () => {
+    const ok = () => { btn.textContent = "Copied"; btn.classList.add("ok"); setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1400); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el.querySelector(".text")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Ctrl+C"; };
+    try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (e) { fallback(); }
+  });
+  box.addEventListener("change", () => { store[id] = box.checked; if (!box.checked) delete store[id]; save(); el.classList.toggle("is-done", box.checked); refresh(); });
+  sec.appendChild(el);
+  rows.push(el);
+}
+
+let active = "ALL";
+const filters = document.getElementById("filters");
+const order = ["ALL","NARRATOR","YOU","MOM","DAD","AGENT","CAROL","RYAN"].filter(v => v === "ALL" || voices.has(v));
+for (const v of order) {
+  const b = document.createElement("button");
+  b.className = "chipbtn"; b.type = "button"; b.id = "f-" + v;
+  b.addEventListener("click", () => { active = v; refresh(); });
+  filters.appendChild(b);
+}
+const hideDone = document.getElementById("hideDone");
+hideDone.addEventListener("change", refresh);
+
+function refresh() {
+  const total = rows.length;
+  const done = rows.filter(r => store[r.dataset.id]).length;
+  for (const b of filters.children) {
+    const v = b.id.slice(2);
+    const pool = v === "ALL" ? rows : rows.filter(r => r.dataset.voice === v);
+    const left = pool.filter(r => !store[r.dataset.id]).length;
+    b.textContent = `${v === "ALL" ? "All voices" : v} · ${left}`;
+    b.setAttribute("aria-pressed", String(v === active));
+  }
+  for (const r of rows) {
+    const show = (active === "ALL" || r.dataset.voice === active) && !(hideDone.checked && store[r.dataset.id]);
+    r.hidden = !show;
+  }
+  for (const s of list.children) {
+    const vis = [...s.querySelectorAll(".chunk")].filter(c => !c.hidden).length;
+    s.hidden = vis === 0;
+    s.querySelector("h2 span").textContent = `${vis} chunk${vis === 1 ? "" : "s"}`;
+  }
+  document.getElementById("prog").innerHTML = `<strong>${done}</strong> / ${total} generated`;
+  document.getElementById("meter").style.width = (done / total * 100) + "%";
+}
+refresh();
+</script>
