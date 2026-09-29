@@ -1,0 +1,250 @@
+<title>Money Leaks VO Chunks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ground:#F2F3EE; --surface:#FFFFFF; --ink:#17191C; --muted:#5E645F; --line:#DCDFD6;
+  --accent:#17714A; --accent-ink:#FFFFFF; --done:#E7EAE2;
+  --t-pace:#1F5FA8; --t-pause:#6B6F75; --t-emo:#A8620B; --t-style:#7A3FA6; --t-sound:#0F7C7A;
+  --t-pace-bg:#E4EEF9; --t-pause-bg:#ECEDEF; --t-emo-bg:#FBF0DE; --t-style-bg:#F2E8F9; --t-sound-bg:#DDF3F1;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
+h1{font:800 clamp(28px,5vw,40px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 18px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0 0 22px}
+.how div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.how b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
+.barrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.prog{font:500 13px "IBM Plex Mono",monospace;color:var(--muted);margin-right:auto;font-variant-numeric:tabular-nums}
+.prog strong{color:var(--ink)}
+.meter{height:4px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.chipbtn{font:500 12.5px "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chipbtn:focus-visible,.copy:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.toggle{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+h2{font:700 13px "IBM Plex Sans",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;display:flex;gap:10px;align-items:baseline}
+h2 span{font:500 12px "IBM Plex Mono",monospace;letter-spacing:0;text-transform:none}
+.chunk{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:start}
+.chunk.is-done{background:var(--done)}
+.chunk.is-done .text{opacity:.55}
+.num{font:500 12px "IBM Plex Mono",monospace;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+.voice{font:600 11px "IBM Plex Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:5px;background:var(--ground);border:1px solid var(--line)}
+.voice.v-NARRATOR{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fname{font:500 11.5px "IBM Plex Mono",monospace;color:var(--muted)}
+.text{font-size:15.5px;overflow-wrap:anywhere}
+.tag{font:500 12.5px "IBM Plex Mono",monospace;padding:1px 5px;border-radius:4px;white-space:nowrap}
+.tg-pace{color:var(--t-pace);background:var(--t-pace-bg)}
+.tg-pause{color:var(--t-pause);background:var(--t-pause-bg)}
+.tg-emo{color:var(--t-emo);background:var(--t-emo-bg)}
+.tg-style{color:var(--t-style);background:var(--t-style-bg)}
+.tg-sound{color:var(--t-sound);background:var(--t-sound-bg)}
+.side{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.copy{font:600 13px "IBM Plex Sans",sans-serif;background:var(--accent);color:var(--accent-ink);border:0;border-radius:7px;padding:7px 14px;cursor:pointer;min-width:74px}
+.copy.ok{background:var(--ink);color:var(--ground)}
+.side label{font-size:12px;color:var(--muted);display:flex;gap:5px;align-items:center;cursor:pointer}
+.cast{font-size:13.5px;border-collapse:collapse;width:100%}
+.cast td{padding:4px 8px 4px 0;vertical-align:top;border-top:1px solid var(--line)}
+.cast td:first-child{white-space:nowrap;font-weight:600}
+.tablewrap{overflow-x:auto}
+@media (max-width:560px){.chunk{grid-template-columns:1fr}.num{display:none}.side{flex-direction:row;align-items:center;justify-content:space-between}}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+
+<div class="wrap">
+  <h1>POV: Your Money Leaks $1,000 a Month and You Don't Notice. Voiceover chunks</h1>
+  <p class="lede">The script (about 20 minutes at your pace, 3,167 words) is split into short pieces of 1 to 4 sentences, ready for Google Vids. Paste one chunk per scene, generate it, then tick it off. Your ticks are saved in this browser.</p>
+
+  <div class="how">
+    <div><b>Workflow</b>Filter by one voice, set that voice once in Vids, and generate all of its chunks back to back. Then switch voice. Name each export with the file name shown, and the clips will sort into the right order for the edit.</div>
+    <div><b>Tags</b>Every tag comes from the Vids menus. If a tag gets read out loud instead of performed, delete it and re-add it with <em>Apply audio tags</em>.
+      <div class="legend"><span class="tag tg-pace">pace</span><span class="tag tg-pause">pause</span><span class="tag tg-emo">emotion</span><span class="tag tg-style">style</span><span class="tag tg-sound">sound</span></div></div>
+    <div><b>Casting</b>
+      <div class="tablewrap"><table class="cast">
+        <tr><td>NARRATOR</td><td>One voice reads everything, dialogue included. Calm, friendly, slightly amused male voice; practical, never preachy. No sarcasm.</td></tr>
+        <tr><td>In the story</td><td>Tess (your partner). Her lines are in quotes inside the narration; read them slightly softer.</td></tr>
+      </table></div></div>
+  </div>
+
+  <div class="bar">
+    <div class="barrow">
+      <span class="prog" id="prog"></span>
+      <label class="toggle"><input type="checkbox" id="hideDone"> Hide done</label>
+    </div>
+    <div class="barrow" id="filters" style="margin-top:8px"></div>
+    <div class="meter"><i id="meter"></i></div>
+  </div>
+
+  <main id="list"></main>
+</div>
+
+<script>
+const S = (t) => ({section:t});
+const D = [
+S("Cold open: declined"),
+["NARRATOR", "[slow pace] [thoughtful] It's a Tuesday night at the grocery store. [short pause] You're at the self-checkout with sixty-two dollars of groceries. [short pause] Milk, eggs, chicken, a bag of apples. [short pause] You tap your card. [medium pause] Declined. [natural] You try again. [short pause] Declined. [short pause] The person behind you pretends not to notice. [short pause] You pay with the credit card instead, the one that already has a balance you don't like to look at. [serious] Here's what makes no sense. [short pause] You're thirty-four. [short pause] You and your partner Tess earn about a hundred and ten thousand dollars a year together."],
+["NARRATOR", "[short pause] You don't have a car payment. [short pause] You don't take fancy vacations. [short pause] And payday was only nine days ago. [thoughtful] Money has become the thing you and Tess argue about most. [short pause] Not big fights. [short pause] Small, tired ones. [short pause] Who ordered takeout again. [short pause] Why the credit card balance never goes down. [short pause] Each of you secretly thinks the other one is the problem. [natural pace] In the parking lot, you open your banking app and scroll. [short pause] Four ninety-nine. [short pause] Fifteen ninety-nine. [short pause] Twelve dollars."],
+S("Cold open: declined  \u2192  Chapter 1: The guess"),
+["NARRATOR", "[short pause] Thirty-five dollars. [short pause] Eight forty-seven. [short pause] Hundreds of tiny charges, and you don't recognize half of them. [slow pace] You sit in the car and ask the question millions of people ask every month. [medium pause] Where does all the money go? [medium pause] This is the story of how you found out. [short pause] About a thousand dollars a month, leaking out of your life, [short pause] one small charge at a time. [authoritative] Chapter one. [short pause] The guess. [natural pace] That night, Tess asks you a simple question. [short pause] How much do we spend on subscriptions every month?"],
+S("Chapter 1: The guess"),
+["NARRATOR", "[natural] You think about it. [short pause] Two streaming services, maybe three. [short pause] Music. [short pause] The gym. [short pause] You guess about sixty dollars. [interest] You're not alone in guessing low. [short pause] In a 2022 survey by C+R Research, Americans guessed they spent about eighty-six dollars a month on subscriptions. [short pause] When they actually listed every charge, the real number was about two hundred and nineteen dollars. [short pause] More than two and a half times their guess. [natural] So you and Tess sit on the couch with a laptop, and go through three months of bank and credit card statements, line by line."],
+["NARRATOR", "[short pause] Every time you find a recurring charge, Tess writes it on a sticky note and puts it on the coffee table. [surprised] By midnight, the table is covered. [short pause] Seventeen sticky notes. [short pause] Seventeen subscriptions. [medium pause] Two hundred and forty-seven dollars a month. [natural] Four streaming services. [short pause] Two music accounts, one each, when a duo plan would cover you both. [short pause] Two cloud storage plans, holding the same photos. [short pause] A gym. A fitness app. [short pause] A language app you opened twice. [short pause] A news site, a magazine, a meditation app, a phone warranty, and a delivery membership."],
+S("Chapter 1: The guess  \u2192  Chapter 2: Why you don't notice"),
+["NARRATOR", "[short pause] And one charge neither of you can explain at all. [thoughtful] And that's only the first leak. [short pause] Before the week is over, you'll find seven more. [authoritative] Chapter two. [short pause] Why you don't notice. [natural pace] You're not careless. [short pause] You're not bad with money. [short pause] You're up against something much bigger than you. [interest] In 1998, researchers Drazen Prelec and George Loewenstein described what they called the pain of paying. [short pause] When you hand over cash, you feel it. [short pause] When a payment is separated from the moment you use something, that feeling fades."],
+S("Chapter 2: Why you don't notice"),
+["NARRATOR", "[short pause] It's one reason people often spend more with cards than with cash. [natural] Now take that idea to the extreme. [short pause] A charge that happens automatically, every month, on a day you're not thinking about it, for an amount too small to worry about. [short pause] You never feel it at all. [interest] Marketers even have a trick for making prices feel smaller. [short pause] Instead of saying a hundred and twenty dollars a year, they say less than the price of a coffee a week."],
+["NARRATOR", "[short pause] Your brain compares it to a coffee, not to a hundred and twenty dollars. [short pause] And it says yes. [thoughtful] Companies know this. [short pause] That's why so many services offer a free trial that turns into a paid plan unless you cancel. [short pause] It's why prices end in ninety-nine cents. [short pause] And it's why so many charges are small. [short pause] Nobody cancels a five-dollar charge. [short pause] But nobody notices when they have twenty of them. [slow pace] A leak doesn't feel like spending. [medium pause] That's what makes it a leak."],
+S("Chapter 3: The subscription maze"),
+["NARRATOR", "[authoritative] Chapter three. [short pause] The subscription maze. [natural pace] So you start canceling. [short pause] Some are easy. [short pause] Two clicks, and the language app you opened twice is gone. [natural] Others are not. [short pause] Your gym, which you haven't visited since March, says you can only cancel in person, or by certified letter. [short pause] The meditation app hides the cancel button four screens deep. [short pause] One streaming service offers you three months at half price, twice, before it lets you leave. [interest] In 2024, the Federal Trade Commission approved a click-to-cancel rule. [short pause] The idea was simple. [short pause] Canceling should be as easy as signing up."],
+["NARRATOR", "[short pause] But in July 2025, a federal appeals court threw out the rule on procedural grounds, just days before it was supposed to take effect. [natural] Other protections still exist. [short pause] A federal law from 2010 requires online sellers to clearly disclose the terms, get your consent, and offer a simple way to stop recurring charges. [short pause] Many states have their own automatic renewal laws. [short pause] And in 2025, Amazon agreed to pay two and a half billion dollars to settle FTC charges that it had signed people up for Prime without clear consent and made it hard to cancel. [determination] Still, the lesson is clear."],
+["NARRATOR", "[short pause] Nobody is going to cancel for you. [short pause] You sit down, write one certified letter, and mail it. [short pause] The gym charge disappears the next month. [natural] You also learn a few tricks for next time. [short pause] Many banks and card apps now show a list of your recurring charges in one place, and some let you block a merchant with one tap. [short pause] Some cards let you create a virtual card number just for one subscription, which you can shut off anytime. [short pause] And when you start a free trial, you set a reminder right away, for two days before it ends."],
+S("Chapter 4: Streamflation"),
+["NARRATOR", "[authoritative] Chapter four. [short pause] Streamflation. [natural pace] While you're looking at the sticky notes, you notice something else. [short pause] You're paying for four streaming services. [short pause] Seventy-two dollars a month. [interest] When streaming started, it was the cheap alternative to cable. [short pause] One low monthly price, no ads, cancel anytime. [short pause] But over the last few years, most major services have raised their prices again and again. [short pause] Many added cheaper plans with ads, and pushed the ad-free plan higher. [short pause] Some started charging extra for sharing a password with someone outside your home. [short pause] People even have a name for it."],
+["NARRATOR", "[short pause] Streamflation. [natural] Each price increase arrived as a polite email. [short pause] Your price is changing. [short pause] A dollar here. Two dollars there. [short pause] You never opened most of them. [thoughtful] Then you ask a better question. [short pause] Which of these do we actually watch? [short pause] The honest answer is one, most months. [short pause] Sometimes two. [natural] So you make a new rule. [short pause] Rotate. [short pause] Keep one or two services at a time. [short pause] When you finish the show you wanted, cancel, and switch to another one next month. [short pause] You'll never run out of things to watch. [short pause] You'll just stop paying for four libraries at once."],
+S("Chapter 5: The convenience tax"),
+["NARRATOR", "[authoritative] Chapter five. [short pause] The convenience tax. [natural pace] The second leak is bigger, and it smells like takeout. [interest] You look at one order from last Friday. [short pause] A burrito that costs about fifteen dollars at the restaurant. [short pause] On the delivery app, the menu price was higher. [short pause] Then came a delivery fee. [short pause] A service fee. [short pause] A small order fee. [short pause] Tax on all of it. [short pause] And a tip. [short pause] Total: twenty-eight dollars. [short pause] For the same burrito. [natural] You and Tess ordered delivery about twenty times last month. [short pause] You don't count the food as a leak. [short pause] You'd eat anyway."],
+["NARRATOR", "[short pause] But the extra you paid for having it carried to your door, the markups, fees, and tips, [short pause] came to about two hundred and ten dollars. [thoughtful] That's the convenience tax. [short pause] It shows up everywhere once you look for it. [short pause] Rush shipping. [short pause] Rideshare instead of the bus when you're running late. [short pause] Pre-cut fruit. [short pause] Each one is a small fee for saving a few minutes. [short pause] Sometimes, that's worth it. [short pause] The problem is paying it every single day, without deciding to. [natural] You don't give up takeout. [short pause] You just start picking it up yourselves, on the way home. [short pause] Same food. [short pause] Half the leak."],
+S("Chapter 6: The bank that charges you to be broke"),
+["NARRATOR", "[authoritative] Chapter six. [short pause] The bank that charges you to be broke. [natural pace] Remember the declined card at the grocery store? [short pause] That night was actually lucky. [short pause] Two weeks earlier, your debit card didn't get declined. [short pause] Your bank let the purchase go through, and then charged you an overdraft fee. [short pause] Thirty-five dollars, for a nine-dollar lunch. [interest] Overdraft fees at many big banks have been around thirty-five dollars for years. [short pause] In late 2024, the Consumer Financial Protection Bureau finalized a rule that would have capped them at five dollars at large banks, in many cases."],
+["NARRATOR", "[short pause] In May 2025, Congress and the President overturned it, before it ever took effect. [natural] Your bank also charges a twelve-dollar monthly maintenance fee, because your balance dips below the minimum. [short pause] And a few out-of-network ATM fees, three or four dollars each, twice. [short pause] Add it up, and your bank quietly takes about fifty-five dollars a month. [determination] The fix takes one afternoon. [short pause] You turn off overdraft coverage for debit card purchases, so a card gets declined instead of charged thirty-five dollars."],
+S("Chapter 6: The bank that charges you to be broke  \u2192  Chapter 7: The interest you don't see"),
+["NARRATOR", "[short pause] You move your checking account to a bank with no monthly fee and no minimum. [short pause] And you set up a low-balance alert on your phone. [short pause] Fifty-five dollars a month, gone. [authoritative] Chapter seven. [short pause] The interest you don't see. [natural pace] Then there's the credit card. [short pause] Your balance is about sixty-seven hundred dollars. [short pause] You always pay more than the minimum, so you've never worried about it. [interest] But credit cards often charge around twenty-two percent a year for people who carry a balance, according to Federal Reserve data."],
+S("Chapter 7: The interest you don't see"),
+["NARRATOR", "[short pause] At that rate, a sixty-seven hundred dollar balance costs you about a hundred and twenty-three dollars a month in interest alone. [short pause] Money that buys you absolutely nothing. [serious] You run the numbers. [short pause] Paying a hundred and fifty dollars a month, like you have been, the card would take almost eight years to pay off. [short pause] You'd pay about seventy-four hundred dollars in interest. [medium pause] More than the balance itself. [thoughtful] That's the sneakiest leak of all. [short pause] It doesn't show up as a new charge."],
+["NARRATOR", "[short pause] It hides inside a payment you're already making. [short pause] Most of what you send the card company every month isn't paying for the past. [short pause] It's renting it. [interest] The card company actually tells you this, in a box on every statement. [short pause] Since the Credit CARD Act of 2009, statements must show how long it would take to pay off your balance if you only made the minimum payment, and how much it would cost. [short pause] You'd never read that box. [short pause] Now you can't stop looking at it."],
+S("Chapter 8: The loyalty tax"),
+["NARRATOR", "[authoritative] Chapter eight. [short pause] The loyalty tax. [natural pace] Next, you look at the bills you never question. [short pause] Your phone plan. [short pause] Your car insurance. [natural] You and Tess are on an unlimited family plan, a hundred and sixty dollars a month for two lines. [short pause] You check your data usage. [short pause] You each use about five gigabytes a month, mostly on Wi-Fi at home and at work. [short pause] A prepaid plan on the same network would cost about seventy dollars. [short pause] Ninety dollars a month, for data you never use."],
+["NARRATOR", "[interest] Then the car insurance. [short pause] You've been with the same company for eight years. [short pause] Every year the price crept up, and every year you renewed without looking. [short pause] Many insurers use what's called price optimization, charging more to customers they predict won't shop around. [short pause] In the UK, the problem got so big that the financial regulator banned the practice of charging renewing customers more than new ones for home and car insurance, starting in 2022. [natural] You get three quotes online in one evening."],
+["NARRATOR", "[short pause] Same coverage, forty-five dollars a month cheaper. [short pause] When you call to cancel, your old insurer suddenly offers to match it. [natural] The internet bill has the same story. [short pause] Your promotional price ended a year ago, and the bill quietly jumped twenty-five dollars. [short pause] You call and ask one question. [short pause] What can you do to keep me as a customer? [short pause] Ten minutes later, you're back at the old price. [short pause] You didn't even count that one in your leak total. [short pause] It's a bonus. [thoughtful] That's the loyalty tax. [short pause] A hundred and thirty-five dollars a month, for the crime of not asking."],
+S("Chapter 9: Lazy cash"),
+["NARRATOR", "[authoritative] Chapter nine. [short pause] Lazy cash. [natural pace] Here's a leak that doesn't look like spending at all. [natural] You and Tess have about fifteen thousand dollars saved for emergencies. [short pause] You're proud of it. [short pause] It sits in a savings account at your big bank, earning point zero one percent. [interest] According to the FDIC, the national average savings rate in September 2026 was about point three seven percent. [short pause] But many online high-yield savings accounts, also FDIC insured, were paying around four percent. [short pause] On fifteen thousand dollars, that difference is about six hundred dollars a year."],
+["NARRATOR", "[short pause] Fifty dollars a month, just for leaving your money in the wrong place. [thoughtful] Your emergency fund should be safe and easy to reach. [short pause] That's exactly what a high-yield savings account is. [short pause] It just pays you for it. [short pause] You move the money in ten minutes. [short pause] It's the easiest raise you've ever gotten. [cautious] Just check two things. [short pause] Make sure the bank is FDIC insured, which covers up to two hundred and fifty thousand dollars per depositor, per bank, for each account ownership category. [short pause] And remember that savings rates can change at any time. [short pause] High-yield today doesn't mean high-yield forever."],
+S("Chapter 10: The one-click economy"),
+["NARRATOR", "[authoritative] Chapter ten. [short pause] The one-click economy. [natural pace] The last leaks are the hardest to see, because they feel like choices. [natural] A phone case at eleven at night, because an ad showed up while you were scrolling. [short pause] A kitchen gadget you saw in a video. [short pause] A shirt you meant to return, until the return window closed. [short pause] None of it expensive. [short pause] All of it one click. [interest] And then there's buy now, pay later. [short pause] A two hundred dollar jacket becomes four payments of fifty."],
+["NARRATOR", "[short pause] It feels like a fifty dollar decision. [short pause] You had three of those plans running at once, and paid two late fees you'd forgotten about. [natural] Last are the annual charges. [short pause] A credit card with a ninety-five dollar annual fee whose perks you never use. [short pause] A roadside assistance plan you already get through your car insurance. [short pause] Extended warranties on things that are already under warranty. [short pause] Divided by twelve, they add about sixty-two dollars a month."],
+["NARRATOR", "[serious] Impulse buys, late fees, and annual charges together: [short pause] about two hundred and seventy dollars a month. [medium pause] Nothing you'd miss. [short pause] Nothing you even remember. [determination] So you make it harder to buy on autopilot. [short pause] You delete your saved card from shopping apps. [short pause] You unsubscribe from marketing emails, two dozen of them. [short pause] And you start a simple rule. [short pause] Anything that isn't groceries or a need sits in the cart for forty-eight hours. [short pause] After two days, you delete most of it. [short pause] You don't even remember why you wanted it."],
+S("Chapter 11: The audit"),
+["NARRATOR", "[authoritative] Chapter eleven. [short pause] The audit. [natural pace] On Sunday, you and Tess add everything up. [interest] Forgotten and unused subscriptions: about a hundred and sixty-eight dollars. [short pause] The convenience tax: two hundred and ten. [short pause] Bank fees: fifty-five. [short pause] Credit card interest: a hundred and twenty-three. [short pause] The loyalty tax: a hundred and thirty-five. [short pause] Lazy cash: fifty. [short pause] Impulse buys, late fees, and annual charges: about two hundred and seventy. [serious] Total: about one thousand and thirteen dollars a month. [medium pause] More than twelve thousand dollars a year."],
+["NARRATOR", "[short pause] Money that didn't buy you a vacation, a memory, or a single thing you'd choose again. [short pause] [surprised] \"We're not bad with money. [short pause] We're just not paying attention.\" [thoughtful] And here's the part that surprises you most. [short pause] You don't have to give up anything you love to fix it. [short pause] You keep the streaming service you actually watch. [short pause] You keep Friday takeout, picked up. [short pause] You keep your four dollar coffee every morning. [natural] Some finance experts have blamed coffee for years."],
+["NARRATOR", "[short pause] They call it the latte factor. [short pause] But your coffee was never the problem. [short pause] You notice it, you enjoy it, and you'd pay for it again. [short pause] That's the difference between spending and leaking. [short pause] Spending is a choice. [short pause] A leak is a choice you forgot you made. [hope] By the end of the month, you've plugged about eight hundred dollars of the thousand. [short pause] Without feeling poorer at all. [natural] Something else changes too. [short pause] The small, tired fights mostly stop. [short pause] It turns out neither of you was the problem. [short pause] The problem was a hundred invisible charges that nobody was watching."],
+S("Chapter 12: Where the thousand dollars goes"),
+["NARRATOR", "[authoritative] Chapter twelve. [short pause] Where the thousand dollars goes. [natural pace] Now comes the most important step. [short pause] Because money you save by accident usually gets spent by accident. [determination] So you set up an automatic transfer. [short pause] Every payday, eight hundred dollars leaves your checking account before you ever see it. [interest] First, it goes to the credit card. [short pause] With the eight hundred dollars, plus the hundred and fifty you were already paying, the card is gone in eight months, instead of eight years."],
+["NARRATOR", "[interest] Then the same eight hundred dollars a month goes into a retirement account, invested in simple, low-cost index funds. [short pause] If it earns seven percent a year on average, in thirty years, that becomes close to a million dollars. [thoughtful] Think about that. [short pause] Seventeen sticky notes, a few phone calls, and one certified letter. [short pause] The difference between retiring with worry, [short pause] and retiring with close to a million dollars more. [natural] You also set a new habit. [short pause] The first Sunday of every month, a fifteen-minute money check-in."],
+["NARRATOR", "[short pause] Coffee, the banking app, and one question. [short pause] Did anything new sneak in? [short pause] Usually, something did. [natural] Tess adds one more idea. [short pause] Each of you gets a hundred dollars a month of fun money. [short pause] No questions, no explaining. [short pause] Spend it on coffee, games, or a new jacket. [short pause] It comes out of what you already spend, not the eight hundred. [short pause] Once it's gone, it's gone. [short pause] It turns out guilt-free spending is the best protection against sneaky spending."],
+S("Chapter 13: What this means for you"),
+["NARRATOR", "[authoritative] Chapter thirteen. [short pause] What this means for you. [natural] You don't need to earn more to find a thousand dollars. [short pause] You just need to look. [short pause] Here's what you and Tess learned. [interest] First. List every recurring charge. [short pause] Go through three months of statements, not your memory. [short pause] Your guess will be too low. [interest] Second. Put a reminder in your calendar the day you start any free trial, two days before it ends. [natural] Third. Rotate your streaming. [short pause] One or two services at a time, never four."],
+S("Chapter 13: What this means for you  \u2192  Closing: the grocery store"),
+["NARRATOR", "[natural] Fourth. Turn off overdraft coverage on your debit card, and leave any bank that charges you to have an account. [cautious] Fifth. Shop your insurance and phone plan every year. [short pause] Loyalty is often the most expensive thing you own. [determination] Sixth. Move your emergency fund to a high-yield savings account, and kill credit card interest before anything else. [thoughtful] And seventh. Automate the money you save. [short pause] If you don't give it a job, a new leak will. [slow pace] [thoughtful] Three months later, it's a Tuesday night at the grocery store again."],
+S("Closing: the grocery store"),
+["NARRATOR", "[short pause] Sixty-some dollars of groceries. [short pause] You tap your card. [medium pause] Approved. [natural] In the parking lot, your phone buzzes. [short pause] An email. [short pause] Your price is changing. [amused] You open it for the first time in your life. [short pause] A streaming service you rotated back on last month is going up two dollars. [short pause] You smile, open the app, and cancel. [short pause] It takes thirty seconds. [slow pace] [hope] You're not richer than you were three months ago. [medium pause] You just finally stopped paying for things you didn't choose. [short pause] And every month now, eight hundred dollars that used to disappear [short pause] is quietly building your future instead."],
+];
+
+const CAT = {
+  "slow pace":"pace","natural pace":"pace","rushed pace":"pace",
+  "short pause":"pause","medium pause":"pause","long pause":"pause",
+  admiration:"emo",adoration:"emo",amused:"emo",awe:"emo",confusion:"emo",curiosity:"emo",determination:"emo",enthusiasm:"emo",excited:"emo",frustrated:"emo",happy:"emo",hope:"emo",interest:"emo",positive:"emo",surprised:"emo",thoughtful:"emo",
+  whisper:"style",authoritative:"style",bold:"style",cautious:"style",natural:"style",robotic:"style",sarcasm:"style",serious:"style",shouting:"style",
+  swallow:"sound",inhale:"sound",gasp:"sound",shush:"sound",urgh:"sound",snorts:"sound",giggles:"sound","clear throat":"sound"
+};
+
+let store = {};
+try { store = JSON.parse(localStorage.getItem("vo-done-money-leaks") || "{}"); } catch (e) { store = {}; }
+const save = () => { try { localStorage.setItem("vo-done-money-leaks", JSON.stringify(store)); } catch (e) {} };
+
+const list = document.getElementById("list");
+const esc = (s) => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (t) => esc(t).replace(/\[([a-z ]+)\]/g, (m, k) => `<span class="tag tg-${CAT[k] || "pause"}">[${k}]</span>`);
+
+let n = 0, sec = null;
+const voices = new Set();
+const rows = [];
+for (const item of D) {
+  if (item.section) {
+    sec = document.createElement("section");
+    sec.innerHTML = `<h2>${esc(item.section)} <span></span></h2>`;
+    list.appendChild(sec);
+    continue;
+  }
+  n++;
+  const [voice, text] = item;
+  voices.add(voice);
+  const id = String(n).padStart(3, "0");
+  const fname = `vo_${id}_${voice.toLowerCase()}`;
+  const el = document.createElement("article");
+  el.className = "chunk";
+  el.dataset.voice = voice;
+  el.dataset.id = id;
+  el.innerHTML = `<div class="num">${id}</div>
+    <div><div class="meta"><span class="voice v-${voice}">${voice}</span><span class="fname">${fname}</span></div>
+    <div class="text">${fmt(text)}</div></div>
+    <div class="side"><button class="copy" type="button" id="copy-${id}">Copy</button>
+    <label><input type="checkbox" id="done-${id}"> Done</label></div>`;
+  const btn = el.querySelector(".copy"), box = el.querySelector("input");
+  box.checked = !!store[id];
+  el.classList.toggle("is-done", box.checked);
+  btn.addEventListener("click", () => {
+    const ok = () => { btn.textContent = "Copied"; btn.classList.add("ok"); setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1400); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el.querySelector(".text")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Ctrl+C"; };
+    try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (e) { fallback(); }
+  });
+  box.addEventListener("change", () => { store[id] = box.checked; if (!box.checked) delete store[id]; save(); el.classList.toggle("is-done", box.checked); refresh(); });
+  sec.appendChild(el);
+  rows.push(el);
+}
+
+let active = "ALL";
+const filters = document.getElementById("filters");
+const order = ["ALL","NARRATOR","YOU","MOM","DAD","AGENT","CAROL","RYAN"].filter(v => v === "ALL" || voices.has(v));
+for (const v of order) {
+  const b = document.createElement("button");
+  b.className = "chipbtn"; b.type = "button"; b.id = "f-" + v;
+  b.addEventListener("click", () => { active = v; refresh(); });
+  filters.appendChild(b);
+}
+const hideDone = document.getElementById("hideDone");
+hideDone.addEventListener("change", refresh);
+
+function refresh() {
+  const total = rows.length;
+  const done = rows.filter(r => store[r.dataset.id]).length;
+  for (const b of filters.children) {
+    const v = b.id.slice(2);
+    const pool = v === "ALL" ? rows : rows.filter(r => r.dataset.voice === v);
+    const left = pool.filter(r => !store[r.dataset.id]).length;
+    b.textContent = `${v === "ALL" ? "All voices" : v} · ${left}`;
+    b.setAttribute("aria-pressed", String(v === active));
+  }
+  for (const r of rows) {
+    const show = (active === "ALL" || r.dataset.voice === active) && !(hideDone.checked && store[r.dataset.id]);
+    r.hidden = !show;
+  }
+  for (const s of list.children) {
+    const vis = [...s.querySelectorAll(".chunk")].filter(c => !c.hidden).length;
+    s.hidden = vis === 0;
+    s.querySelector("h2 span").textContent = `${vis} chunk${vis === 1 ? "" : "s"}`;
+  }
+  document.getElementById("prog").innerHTML = `<strong>${done}</strong> / ${total} generated`;
+  document.getElementById("meter").style.width = (done / total * 100) + "%";
+}
+refresh();
+</script>
