@@ -1,0 +1,248 @@
+<title>Money Isn't Real VO Chunks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --ground:#F2F3EE; --surface:#FFFFFF; --ink:#17191C; --muted:#5E645F; --line:#DCDFD6;
+  --accent:#17714A; --accent-ink:#FFFFFF; --done:#E7EAE2;
+  --t-pace:#1F5FA8; --t-pause:#6B6F75; --t-emo:#A8620B; --t-style:#7A3FA6; --t-sound:#0F7C7A;
+  --t-pace-bg:#E4EEF9; --t-pause-bg:#ECEDEF; --t-emo-bg:#FBF0DE; --t-style-bg:#F2E8F9; --t-sound-bg:#DDF3F1;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --ground:#121412; --surface:#1B1E1B; --ink:#E8EBE5; --muted:#9BA39B; --line:#2D322D;
+  --accent:#3FB27F; --accent-ink:#0B130E; --done:#161916;
+  --t-pace:#8DB8EC; --t-pause:#A9ADB3; --t-emo:#F0B25A; --t-style:#C79BEB; --t-sound:#6FD3CF;
+  --t-pace-bg:#1C2A3B; --t-pause-bg:#262A2E; --t-emo-bg:#34270F; --t-style-bg:#2C2036; --t-sound-bg:#132F2E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
+h1{font:800 clamp(28px,5vw,40px)/1.05 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+.lede{color:var(--muted);max-width:62ch;margin:0 0 18px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:0 0 22px}
+.how div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+.how b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--line);padding:10px 0;margin-bottom:8px}
+.barrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.prog{font:500 13px "IBM Plex Mono",monospace;color:var(--muted);margin-right:auto;font-variant-numeric:tabular-nums}
+.prog strong{color:var(--ink)}
+.meter{height:4px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.chipbtn{font:500 12.5px "IBM Plex Sans",sans-serif;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.chipbtn:focus-visible,.copy:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+label.toggle{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center;cursor:pointer}
+h2{font:700 13px "IBM Plex Sans",sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:28px 0 10px;display:flex;gap:10px;align-items:baseline}
+h2 span{font:500 12px "IBM Plex Mono",monospace;letter-spacing:0;text-transform:none}
+.chunk{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:auto 1fr auto;gap:6px 12px;align-items:start}
+.chunk.is-done{background:var(--done)}
+.chunk.is-done .text{opacity:.55}
+.num{font:500 12px "IBM Plex Mono",monospace;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:4px}
+.voice{font:600 11px "IBM Plex Sans",sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:5px;background:var(--ground);border:1px solid var(--line)}
+.voice.v-NARRATOR{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.fname{font:500 11.5px "IBM Plex Mono",monospace;color:var(--muted)}
+.text{font-size:15.5px;overflow-wrap:anywhere}
+.tag{font:500 12.5px "IBM Plex Mono",monospace;padding:1px 5px;border-radius:4px;white-space:nowrap}
+.tg-pace{color:var(--t-pace);background:var(--t-pace-bg)}
+.tg-pause{color:var(--t-pause);background:var(--t-pause-bg)}
+.tg-emo{color:var(--t-emo);background:var(--t-emo-bg)}
+.tg-style{color:var(--t-style);background:var(--t-style-bg)}
+.tg-sound{color:var(--t-sound);background:var(--t-sound-bg)}
+.side{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.copy{font:600 13px "IBM Plex Sans",sans-serif;background:var(--accent);color:var(--accent-ink);border:0;border-radius:7px;padding:7px 14px;cursor:pointer;min-width:74px}
+.copy.ok{background:var(--ink);color:var(--ground)}
+.side label{font-size:12px;color:var(--muted);display:flex;gap:5px;align-items:center;cursor:pointer}
+.cast{font-size:13.5px;border-collapse:collapse;width:100%}
+.cast td{padding:4px 8px 4px 0;vertical-align:top;border-top:1px solid var(--line)}
+.cast td:first-child{white-space:nowrap;font-weight:600}
+.tablewrap{overflow-x:auto}
+@media (max-width:560px){.chunk{grid-template-columns:1fr}.num{display:none}.side{flex-direction:row;align-items:center;justify-content:space-between}}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+
+<div class="wrap">
+  <h1>POV: You Find Out Money Isn't Real. Voiceover chunks</h1>
+  <p class="lede">The script (about 20 minutes at your pace, 3,155 words) is split into short pieces of 1 to 4 sentences, ready for Google Vids. Paste one chunk per scene, generate it, then tick it off. Your ticks are saved in this browser.</p>
+
+  <div class="how">
+    <div><b>Workflow</b>Filter by one voice, set that voice once in Vids, and generate all of its chunks back to back. Then switch voice. Name each export with the file name shown, and the clips will sort into the right order for the edit.</div>
+    <div><b>Tags</b>Every tag comes from the Vids menus. If a tag gets read out loud instead of performed, delete it and re-add it with <em>Apply audio tags</em>.
+      <div class="legend"><span class="tag tg-pace">pace</span><span class="tag tg-pause">pause</span><span class="tag tg-emo">emotion</span><span class="tag tg-style">style</span><span class="tag tg-sound">sound</span></div></div>
+    <div><b>Casting</b>
+      <div class="tablewrap"><table class="cast">
+        <tr><td>NARRATOR</td><td>One voice reads everything, dialogue included. Calm, measured male voice, slow and curious, like a quiet documentary. No doom, no sarcasm.</td></tr>
+        <tr><td>In the story</td><td>Denise (bank teller), Aunt Ruth (retired bank examiner), Jake (your friend), your daughter. Their lines are in quotes inside the narration; read them slightly softer.</td></tr>
+      </table></div></div>
+  </div>
+
+  <div class="bar">
+    <div class="barrow">
+      <span class="prog" id="prog"></span>
+      <label class="toggle"><input type="checkbox" id="hideDone"> Hide done</label>
+    </div>
+    <div class="barrow" id="filters" style="margin-top:8px"></div>
+    <div class="meter"><i id="meter"></i></div>
+  </div>
+
+  <main id="list"></main>
+</div>
+
+<script>
+const S = (t) => ({section:t});
+const D = [
+S("Cold open: the note in the attic"),
+["NARRATOR", "[slow pace] [thoughtful] It's a rainy Sunday, and you're cleaning out your late grandfather's attic. [short pause] Under a stack of old newspapers, you find a small tin box. [natural] Inside, folded in half, there's a one-dollar bill from 1957. [short pause] It looks almost like the ones in your wallet. [short pause] But the words across the top are different. [interest] This certifies that there is on deposit in the Treasury of the United States of America, one dollar in silver, payable to the bearer on demand."],
+["NARRATOR", "[natural] You pull a twenty-dollar bill out of your own wallet and look at it. [short pause] It doesn't promise silver. [short pause] It doesn't promise gold. [short pause] It says just one thing. [short pause] This note is legal tender for all debts, public and private. [thoughtful] Your grandfather's dollar promised you something real. [short pause] Your twenty promises nothing. [short pause] So what is it, exactly? [natural] Under the bill, there's a note in your grandfather's handwriting. [short pause] Keep this. It's real money. [short pause] He was a machinist."],
+["NARRATOR", "He worked the same factory for forty-one years. [short pause] And he never trusted anything he couldn't hold. [natural] The next day, you take the old bill to your bank, half as a joke, and ask for your silver. [short pause] The teller, Denise, smiles. [short pause] [amused] \"Honey, they stopped doing that in 1968.\" [slow pace] [serious] That night, you can't sleep. [short pause] You've worked your whole life for pieces of paper, and numbers on a screen. [medium pause] And you're starting to wonder if any of it is real."],
+S("Chapter 1: The island of stone money"),
+["NARRATOR", "[authoritative] Chapter one. [short pause] The island of stone money. [natural pace] To understand your twenty-dollar bill, start on a tiny island in the Pacific Ocean called Yap. [interest] For centuries, the people of Yap used giant stone discs as money. [short pause] They're called rai stones. [short pause] Some are taller than a person and weigh several tons. [short pause] The stone was carved on other islands hundreds of miles away and carried back across the sea. [natural] Here's the strange part. [short pause] When a big stone changed owners, it often didn't move at all."],
+["NARRATOR", "[short pause] It stayed where it was, leaning against a house or a path. [short pause] Everyone simply remembered who owned it now. [thoughtful] There's a famous story, told by a visitor in the early nineteen hundreds and later made famous by the economist Milton Friedman. [short pause] A family's giant stone fell into the ocean while being carried home. [short pause] Nobody ever saw it again. [short pause] But the village agreed it still counted. [short pause] So the family stayed rich, owning a stone at the bottom of the sea."],
+S("Chapter 1: The island of stone money  \u2192  Chapter 2: From gold to paper"),
+["NARRATOR", "[cautious] Some historians now question the details of that story. [short pause] But Friedman's point still stands. [slow pace] [serious] Money was never really about the stone. [short pause] It was about what everyone agreed the stone meant. [medium pause] Money is a shared memory. [short pause] A shared promise. [authoritative] Chapter two. [short pause] From gold to paper. [natural pace] For most of modern history, paper money was a receipt. [short pause] Carrying heavy gold and silver was dangerous and slow, so banks and governments gave you paper instead, and promised you could swap it back for metal."],
+S("Chapter 2: From gold to paper"),
+["NARRATOR", "[interest] In 1944, at a hotel in Bretton Woods, New Hampshire, the world built a new system around the American dollar. [short pause] Other currencies were tied to the dollar, and foreign governments could trade their dollars for American gold, at thirty-five dollars an ounce. [natural] At home, Americans could still swap silver certificates like your grandfather's for real silver, until the late 1960s. [short pause] Silver had become worth more than the paper promised, so the government ended the promise. [serious] And then came the big one."],
+["NARRATOR", "[short pause] By 1971, America had printed far more dollars than it had gold to back them. [short pause] Other countries started asking for their gold. [short pause] The pile in the vaults was shrinking. [slow pace] On the evening of August 15, 1971, President Richard Nixon went on television and announced that the United States would stop exchanging dollars for gold. [short pause] Temporarily, he said. [thoughtful] It was never switched back on. [medium pause] From that night, the dollar, and soon every major currency on Earth, was backed by nothing you could hold. [short pause] Economists call it fiat money. [short pause] Fiat is Latin for, let it be done."],
+S("Chapter 3: What backs your dollar now"),
+["NARRATOR", "[authoritative] Chapter three. [short pause] What backs your dollar now. [natural pace] Your aunt Ruth spent thirty years as a bank examiner. [short pause] So on Wednesday, you take her to lunch, and put your grandfather's dollar on the table. [short pause] [curiosity] \"If nothing backs my money, why does anyone accept it?\" [natural] Ruth laughs, and holds up three fingers. [short pause] [natural] \"First, the law. [short pause] Dollars are legal tender, so they have to be accepted to settle debts. [short pause] Second, taxes. [short pause] The government only accepts dollars, so every business in America needs them."],
+["NARRATOR", "[short pause] And third, the thing most people forget. [short pause] The economy.\" [thoughtful] She points out the window. [short pause] Trucks. Stores. Offices. Farms. [short pause] Your dollar is a claim on everything the American economy can produce. [short pause] As long as people keep working, building, and trading, the dollar can buy something real. [interest] In a way, your twenty isn't backed by gold. [short pause] It's backed by your neighbor showing up to work tomorrow. [short pause] And by the trust that the people in charge won't create too many of them."],
+["NARRATOR", "[short pause] [natural] \"And there's a fourth reason, bigger than all of them. [short pause] The whole world uses it.\" [interest] The dollar is the world's main reserve currency. [short pause] Central banks around the globe hold more dollars than any other currency, and much of international trade, from oil to microchips, is priced in dollars. [short pause] That creates constant demand for dollars, far beyond America's borders. [short pause] Your twenty is trusted in places your grandfather never visited. [serious] That second part is where things get interesting. [short pause] Because it raises an obvious question. [medium pause] Who actually creates money?"],
+S("Chapter 4: Where money actually comes from"),
+["NARRATOR", "[authoritative] Chapter four. [short pause] Where money actually comes from. [natural pace] Most people imagine money being printed by the government, in a big building full of machines. [short pause] Some of it is. [short pause] But cash is only a small slice of all the money that exists. [interest] Most money today exists as numbers in bank accounts. [short pause] And here's the part that surprises almost everyone. [short pause] Much of that money is created by ordinary banks, when they make loans. [natural] In 2014, the Bank of England published a paper explaining it plainly. [short pause] When a bank gives you a loan, it doesn't hand you someone else's savings."],
+["NARRATOR", "[short pause] It adds new money to your account. [short pause] The loan creates the deposit. [thoughtful] Think about the day you bought your house. [short pause] The bank didn't open a vault. [short pause] It typed four hundred thousand dollars into the seller's account, and wrote down that you owe it four hundred thousand dollars. [short pause] New money, and new debt, born at the same moment. [natural] It works the same way with a car loan, a business loan, or a credit card purchase. [short pause] Every time someone borrows, new money enters the economy. [short pause] Every time a loan is paid off, some money disappears."],
+["NARRATOR", "[short pause] So in a very real sense, the amount of money in the world rises and falls with how much people are willing to borrow. [thoughtful] That's also why banks advertise loans so aggressively. [short pause] Your debt isn't a side business for them. [short pause] It's the product. [cautious] Banks can't do this without limits. [short pause] They need enough capital, they're watched by regulators, and they need borrowers who can pay them back. [short pause] And when you repay a loan, that money disappears again. [slow pace] [serious] But the core idea is simple, and a little dizzying. [medium pause] Most of the money in your life exists because someone, somewhere, borrowed it."],
+S("Chapter 5: The central bank's printer"),
+["NARRATOR", "[authoritative] Chapter five. [short pause] The central bank's printer. [natural pace] Above the ordinary banks sits the central bank. [short pause] In America, it's the Federal Reserve. [short pause] It sets interest rates, and in a crisis, it can create money on a scale nobody else can. [interest] In 2008, when the financial system nearly collapsed, the Federal Reserve started buying enormous amounts of government bonds and mortgage bonds, paying for them with money it created. [short pause] It's called quantitative easing. [natural] Before that crisis, the Fed held about nine hundred billion dollars of assets."],
+["NARRATOR", "[short pause] By 2022, after the pandemic, it held close to nine trillion. [short pause] Ten times more. [thoughtful] In 2020 alone, the broad supply of dollars in America grew by roughly a quarter. [short pause] The fastest jump since World War Two. [short pause] Stimulus checks. Business loans. Unemployment payments. [short pause] It kept millions of families afloat during the lockdowns. [serious] And then, in 2021 and 2022, prices started climbing. [short pause] By June 2022, inflation in America hit nine point one percent. [short pause] The highest in about forty years."],
+S("Chapter 5: The central bank's printer  \u2192  Chapter 6: The hidden tax"),
+["NARRATOR", "[natural] Economists still argue about how much of that inflation came from new money, and how much came from broken supply chains, energy prices, and war. [short pause] Probably all of them. [short pause] But you felt it the same way everyone did. [short pause] At the grocery store. [authoritative] Chapter six. [short pause] The hidden tax. [natural pace] Here's what inflation actually does. [short pause] It doesn't take money out of your wallet. [short pause] It quietly shrinks what that money can buy. [interest] A dollar from 1971, the year the gold window closed, buys about what thirteen cents buys today. [short pause] Your grandfather's silver certificate isn't worth less because the paper changed."],
+S("Chapter 6: The hidden tax"),
+["NARRATOR", "[short pause] It's worth less because everything else got more expensive. [natural] Central banks in most rich countries actually aim for a little inflation, around two percent a year. [short pause] A small, steady rise encourages people to spend and invest instead of hoarding cash, and it gives the central bank room to cut interest rates in a crisis. [thoughtful] But two percent a year adds up. [short pause] Over thirty-five years, it cuts the buying power of cash roughly in half. [natural] And inflation hides inside your paycheck, too. [short pause] In 2022, your boss gave you a three percent raise, and you thanked him."],
+["NARRATOR", "[short pause] But prices rose about eight percent that year. [short pause] On paper, you earned more. [short pause] In real life, you took a pay cut, and nobody had to tell you. [serious] So think about who gets hurt most. [short pause] Not people who own houses, businesses, or stocks. [short pause] Those usually rise with prices over time. [short pause] The people hurt most are the ones holding cash. [short pause] Savers. Retirees on fixed incomes. Workers whose wages rise slower than prices. [slow pace] Your savings account paid you almost nothing for most of the 2010s. [short pause] You thought your money was safe. [short pause] It was safe from crashes. [medium pause] It wasn't safe from time."],
+S("Chapter 7: When trust breaks"),
+["NARRATOR", "[authoritative] Chapter seven. [short pause] When trust breaks. [natural pace] If money is a shared promise, what happens when people stop believing it? [serious] In Germany after World War One, the government owed huge war reparations and printed money to pay its bills. [short pause] In 1923, prices exploded. [short pause] A loaf of bread in Berlin that cost around a hundred and sixty marks at the end of 1922 cost two hundred billion marks by late 1923. [short pause] By November, one US dollar was worth over four trillion marks."],
+["NARRATOR", "[natural] Workers were paid twice a day and ran to spend their wages before lunch. [short pause] Families burned banknotes in the stove because it was cheaper than buying firewood. [serious] In Zimbabwe, in 2008, inflation became so extreme that a one-hundred-trillion-dollar note could not pay for a bus ride. [short pause] The country eventually stopped using its own currency and switched to foreign money. [natural] And more recently, in Venezuela, collapsing oil income, falling production, and years of money printing sent prices soaring so fast that millions of people left the country."],
+["NARRATOR", "[short pause] Many families survived on dollars sent home by relatives abroad. [thoughtful] But here's what the scary videos online usually leave out. [short pause] Hyperinflation almost never comes from printing alone. [short pause] It comes when an economy collapses at the same time. [short pause] War. Farms and factories that stop producing. Debts owed in someone else's currency. [short pause] Governments that lose control, and people who lose all trust at once. [natural] That's very different from a big, productive economy with independent institutions. [short pause] Not impossible. [short pause] But very different."],
+S("Chapter 8: The debt that holds it together"),
+["NARRATOR", "[authoritative] Chapter eight. [short pause] The debt that holds it together. [natural pace] On October 23, 2025, America's national debt passed thirty-eight trillion dollars. [short pause] You've seen the headlines. [short pause] Maybe you've seen the debt clock ticking in some video, with dramatic music. [interest] So who is the country actually in debt to? [short pause] Much of it is owed to Americans themselves. [short pause] Pension funds. Banks. Insurance companies. Mutual funds in people's retirement accounts. [short pause] Some is held by the Federal Reserve, some by government trust funds like Social Security, and a large share by foreign investors and governments. [natural] When you own a Treasury bond, you're lending money to the government."],
+["NARRATOR", "[short pause] In a strange way, the national debt is also a giant pile of savings, owned by millions of people. [serious] But that doesn't make it harmless. [short pause] The government has to pay interest on all of it. [short pause] In 2024, America spent more on interest than on its entire military. [short pause] Every dollar spent on interest is a dollar that can't be spent on roads, schools, or lower taxes. [interest] Today, the interest bill alone is roughly a trillion dollars a year. [short pause] That's more than two and a half billion dollars, every single day, just to carry the debt."],
+S("Chapter 8: The debt that holds it together  \u2192  Chapter 9: The day the bank ran out"),
+["NARRATOR", "[thoughtful] The real danger isn't that America will suddenly be unable to pay. [short pause] It borrows in its own currency. [short pause] The danger is slower. [short pause] Higher interest rates. More pressure to let inflation run a little hot. [short pause] And a little less trust, every year. [authoritative] Chapter nine. [short pause] The day the bank ran out. [natural pace] If most money is numbers in banks, what happens when everyone wants their numbers back at once? [serious] In March 2023, Silicon Valley Bank, one of the biggest banks in America, announced a loss and tried to raise money."],
+S("Chapter 9: The day the bank ran out"),
+["NARRATOR", "[short pause] Its customers panicked. [short pause] Many of them were tech companies with millions in their accounts. [short pause] In a single day, they tried to withdraw about forty-two billion dollars. [natural] The next morning, regulators shut the bank down. [short pause] One of the largest bank failures in American history, in about forty-eight hours. [thoughtful] That weekend, the government announced it would protect every depositor at the bank, even those above the insurance limit, to stop the panic from spreading to other banks. [short pause] It worked. [short pause] But it showed how quickly a little doubt can turn into a stampede."],
+["NARRATOR", "[interest] Here's why. [short pause] A bank never keeps all its customers' money sitting in a vault. [short pause] Most of it is lent out or invested. [short pause] That works perfectly, as long as everyone doesn't show up on the same day. [thoughtful] That's why deposit insurance exists. [short pause] In America, the FDIC insures deposits up to two hundred and fifty thousand dollars per person, per bank, for each type of account. [short pause] When people know their money is protected, they don't run. [short pause] And when they don't run, the bank doesn't fall. [slow pace] [serious] Once again, the whole system rests on one thing. [medium pause] Belief."],
+S("Chapter 10: The alternatives"),
+["NARRATOR", "[authoritative] Chapter ten. [short pause] The alternatives. [natural pace] Your friend Jake has an answer for all of this. [short pause] He's been saying it for years, usually at barbecues. [short pause] [enthusiasm] \"Just buy gold and Bitcoin, man. [short pause] Real money.\" [interest] Gold has a strong argument. [short pause] People have valued it for thousands of years. [short pause] There isn't much of it. [short pause] All the gold ever mined, melted into one cube, would measure only about twenty-two meters on each side. [short pause] And no central bank can print more. [cautious] But gold pays no interest and no dividends. [short pause] Its price can drop sharply and stay low for years. [short pause] And it's only worth what the next person will pay."],
+["NARRATOR", "[short pause] Which, if you think about it, sounds a lot like the rai stones. [interest] Bitcoin, created in 2009, took the same idea into the digital world. [short pause] Its code limits the supply to twenty-one million coins. [short pause] No government controls it. [cautious] But its price has crashed by more than half several times. [short pause] Most people don't use it to buy groceries. [short pause] And like every form of money, it only works as long as people keep believing in it. [thoughtful] So Jake isn't wrong that they're alternatives. [short pause] He's just wrong that they escape the one rule every money follows. [medium pause] Its value lives in other people's minds."],
+S("Chapter 11: Why it still works"),
+["NARRATOR", "[authoritative] Chapter eleven. [short pause] Why it still works. [natural pace] After all this, you might think the gold standard was better. [short pause] Many people do. [interest] But look at the Great Depression. [short pause] Economists have found that countries that left the gold standard earlier tended to recover faster. [short pause] Because they could create money when their economies were starving for it. [short pause] Countries stuck on gold had to watch unemployment rise, while their money supply stayed tied to a pile of metal. [natural] Fiat money gives central banks a tool to fight crashes, recessions, and pandemics."],
+["NARRATOR", "[short pause] It's why 2008 didn't become another Great Depression, and why many families got checks in 2020 instead of losing everything. [thoughtful] The price of that flexibility is responsibility. [short pause] If the people in charge create too much money for too long, you pay for it at the grocery store. [short pause] That's why central bank independence matters, and why the trust the system runs on has to be earned, again and again. [slow pace] [serious] Money isn't real the way a rock or a tree is real. [medium pause] But neither is a promise. [short pause] And your whole life runs on promises that mostly get kept."],
+S("Chapter 12: What this means for you"),
+["NARRATOR", "[authoritative] Chapter twelve. [short pause] What this means for you. [natural] You don't need to fear money. [short pause] But you should understand the game it plays with time. [interest] First. Keep your emergency fund in cash, but don't keep your future there. [short pause] Put your emergency savings somewhere safe that pays interest, like a high-yield savings account. [short pause] Money for twenty years from now usually belongs in things that grow, like a diversified investment fund. [interest] Second. Own things that produce value. [short pause] Businesses make products and raise prices with inflation."],
+["NARRATOR", "[short pause] Over long periods, owning a slice of many businesses has historically beaten holding cash, though never in a straight line. [natural] Third. Understand your debt. [short pause] Inflation hurts savers, but it quietly helps people with fixed-rate loans. [short pause] If your mortgage payment is locked for thirty years, inflation makes it feel smaller every year, as your income rises. [cautious] Fourth. Keep your bank deposits under the insured limit. [short pause] If you have more than two hundred and fifty thousand dollars in one bank, spread it out."],
+["NARRATOR", "[cautious] Fifth. Be careful with anyone selling fear. [short pause] Videos that promise the dollar will collapse next month are often trying to sell you something. [short pause] Overpriced gold coins. A special retirement account. A course. [short pause] Real risks are slow and boring. [short pause] Scams are fast and exciting. [natural] Sixth. Make sure your income keeps up. [short pause] Know the inflation rate every year, and treat any raise below it as what it really is. [short pause] A pay cut. [short pause] Ask for more, learn new skills, or be ready to move to a job that pays you what you're worth today, not what you were worth three years ago."],
+S("Chapter 12: What this means for you  \u2192  Closing: the frame on the wall"),
+["NARRATOR", "[thoughtful] And seventh. If you want some gold or Bitcoin, treat them as small, optional parts of a bigger plan, never as your whole plan. [short pause] Diversification is just another word for not betting your life on one story. [slow pace] [thoughtful] A week later, you take your grandfather's silver certificate to a frame shop. [short pause] You ask them to put a modern twenty-dollar bill right next to it. [natural] Now they hang on your wall, side by side. [short pause] One promised silver. [short pause] The other promises nothing at all."],
+S("Closing: the frame on the wall"),
+["NARRATOR", "[interest] When your daughter asks what they are, you tell her the whole story. [short pause] The stone at the bottom of the sea. [short pause] The night in 1971. [short pause] The bank that ran out of money in two days. [short pause] [curiosity] \"So money isn't real?\" [slow pace] She asks it the same way you did, that rainy night in the attic. [medium pause] And you give her the answer it took you weeks of reading to understand. [slow pace] [serious] Money is as real as the people who keep their promises. [medium pause] So spend it carefully, save it wisely, [short pause] and make sure your future is built on more than paper."],
+];
+
+const CAT = {
+  "slow pace":"pace","natural pace":"pace","rushed pace":"pace",
+  "short pause":"pause","medium pause":"pause","long pause":"pause",
+  admiration:"emo",adoration:"emo",amused:"emo",awe:"emo",confusion:"emo",curiosity:"emo",determination:"emo",enthusiasm:"emo",excited:"emo",frustrated:"emo",happy:"emo",hope:"emo",interest:"emo",positive:"emo",surprised:"emo",thoughtful:"emo",
+  whisper:"style",authoritative:"style",bold:"style",cautious:"style",natural:"style",robotic:"style",sarcasm:"style",serious:"style",shouting:"style",
+  swallow:"sound",inhale:"sound",gasp:"sound",shush:"sound",urgh:"sound",snorts:"sound",giggles:"sound","clear throat":"sound"
+};
+
+let store = {};
+try { store = JSON.parse(localStorage.getItem("vo-done-money-isnt-real") || "{}"); } catch (e) { store = {}; }
+const save = () => { try { localStorage.setItem("vo-done-money-isnt-real", JSON.stringify(store)); } catch (e) {} };
+
+const list = document.getElementById("list");
+const esc = (s) => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt = (t) => esc(t).replace(/\[([a-z ]+)\]/g, (m, k) => `<span class="tag tg-${CAT[k] || "pause"}">[${k}]</span>`);
+
+let n = 0, sec = null;
+const voices = new Set();
+const rows = [];
+for (const item of D) {
+  if (item.section) {
+    sec = document.createElement("section");
+    sec.innerHTML = `<h2>${esc(item.section)} <span></span></h2>`;
+    list.appendChild(sec);
+    continue;
+  }
+  n++;
+  const [voice, text] = item;
+  voices.add(voice);
+  const id = String(n).padStart(3, "0");
+  const fname = `vo_${id}_${voice.toLowerCase()}`;
+  const el = document.createElement("article");
+  el.className = "chunk";
+  el.dataset.voice = voice;
+  el.dataset.id = id;
+  el.innerHTML = `<div class="num">${id}</div>
+    <div><div class="meta"><span class="voice v-${voice}">${voice}</span><span class="fname">${fname}</span></div>
+    <div class="text">${fmt(text)}</div></div>
+    <div class="side"><button class="copy" type="button" id="copy-${id}">Copy</button>
+    <label><input type="checkbox" id="done-${id}"> Done</label></div>`;
+  const btn = el.querySelector(".copy"), box = el.querySelector("input");
+  box.checked = !!store[id];
+  el.classList.toggle("is-done", box.checked);
+  btn.addEventListener("click", () => {
+    const ok = () => { btn.textContent = "Copied"; btn.classList.add("ok"); setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("ok"); }, 1400); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el.querySelector(".text")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = "Ctrl+C"; };
+    try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (e) { fallback(); }
+  });
+  box.addEventListener("change", () => { store[id] = box.checked; if (!box.checked) delete store[id]; save(); el.classList.toggle("is-done", box.checked); refresh(); });
+  sec.appendChild(el);
+  rows.push(el);
+}
+
+let active = "ALL";
+const filters = document.getElementById("filters");
+const order = ["ALL","NARRATOR","YOU","MOM","DAD","AGENT","CAROL","RYAN"].filter(v => v === "ALL" || voices.has(v));
+for (const v of order) {
+  const b = document.createElement("button");
+  b.className = "chipbtn"; b.type = "button"; b.id = "f-" + v;
+  b.addEventListener("click", () => { active = v; refresh(); });
+  filters.appendChild(b);
+}
+const hideDone = document.getElementById("hideDone");
+hideDone.addEventListener("change", refresh);
+
+function refresh() {
+  const total = rows.length;
+  const done = rows.filter(r => store[r.dataset.id]).length;
+  for (const b of filters.children) {
+    const v = b.id.slice(2);
+    const pool = v === "ALL" ? rows : rows.filter(r => r.dataset.voice === v);
+    const left = pool.filter(r => !store[r.dataset.id]).length;
+    b.textContent = `${v === "ALL" ? "All voices" : v} · ${left}`;
+    b.setAttribute("aria-pressed", String(v === active));
+  }
+  for (const r of rows) {
+    const show = (active === "ALL" || r.dataset.voice === active) && !(hideDone.checked && store[r.dataset.id]);
+    r.hidden = !show;
+  }
+  for (const s of list.children) {
+    const vis = [...s.querySelectorAll(".chunk")].filter(c => !c.hidden).length;
+    s.hidden = vis === 0;
+    s.querySelector("h2 span").textContent = `${vis} chunk${vis === 1 ? "" : "s"}`;
+  }
+  document.getElementById("prog").innerHTML = `<strong>${done}</strong> / ${total} generated`;
+  document.getElementById("meter").style.width = (done / total * 100) + "%";
+}
+refresh();
+</script>
