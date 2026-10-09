@@ -32,42 +32,77 @@ Research date: 2026-10-09. View counts pulled from YouTube search for 24 related
 6. **Threat implied, disaster not shown.** The wave is *about to* hit, and the town is still dry. Tension works better than a picture of the disaster happening.
 7. **No faces needed.** None of the outliers here use a presenter's face, which suits a faceless narration channel.
 
-## 3. Angles from *this* script that competitors haven't used
+## 3. Ten thumbnail ideas (v2)
 
-- Sea higher than the houses (proven layout; safest bet). Script: "a quarter of the country lies below sea level"
-- **They flooded their own country on purpose** (1574 Leiden / 1672 Water Line). Script hook at 0:28. No competitor thumbnail uses this.
-- **A city on the bottom of a sea** (Almere / Flevoland). Script: "built a city on the bottom of a sea"
-- **8,000 new homes at the lowest point**, 22 ft (6.7 m) below the sea (2026 plan). Timely, and gives an argument to have in the comments.
+v1 (sea + dike + village + windmills + church + canals) had too many elements and looked generic. Each v2 idea has **one subject and one impossible detail**, and each comes from a line in the script.
 
-## 4. Image prompts (no text: add your own in the empty area)
+**Add this to the end of every prompt:**
+`16:9 YouTube thumbnail, ultra-detailed, photorealistic, cinematic lighting, high contrast, saturated colours, sharp focus on the main subject, simple uncluttered background. No text, no letters, no numbers, no logos, no watermark.`
+(Midjourney: `--ar 16:9 --style raw --v 7 --no text, letters, words, watermark`)
 
-All prompts reserve empty space for your text. Works with Midjourney, GPT-image, Ideogram, Flux, Imagen. For Midjourney, append `--ar 16:9 --style raw --v 7 --no text, letters, words, watermark, logo`.
+### 1. A ship sailing above the rooftops ★ top pick (this really happens in NL)
+```
+Eye-level street photograph in a quiet Dutch town: a row of narrow brick houses with red roofs and bicycles parked in front. Directly behind the houses, on top of a grassy dike, a gigantic red container ship is sailing past, its hull clearly HIGHER than the rooftops, as if floating in the sky above the town. Bright blue sky, soft afternoon sun. The ship is the main subject, filling the upper-middle of the frame. Leave the left third of the sky empty for a headline.
+```
+Text: "WHY IS THE SHIP ABOVE THE HOUSES?" · "THIS IS NORMAL HERE"
 
-### A. "The sea is higher than the town" (main pick, proven layout)
+### 2. Sleeping below the sea ★ (script: "Millions of people sleep every night behind walls")
 ```
-Hyper-realistic cinematic aerial photograph, 16:9. A massive grass-covered Dutch sea dike runs diagonally from bottom-left to top-right, dividing the frame. LEFT side: a dark, angry North Sea whose water surface is clearly HIGHER than the land, a huge wave cresting against the top of the dike, white spray in the air. RIGHT side: far below the waterline, a peaceful Dutch polder village of red-orange tiled roofs, a church spire, a few windmills, neat green fields and straight blue canals, sunlit and calm. The height difference between the sea and the village must be dramatic and obvious at a glance. Late-afternoon golden light on the village, stormy dark-blue sky over the sea. Saturated turquoise and deep blue water, vivid green fields, warm orange roofs, high contrast, sharp detail, drone shot from about 150 m, slight tilt-shift depth. Keep the upper-left third as clean sky and sea with no important detail, empty space reserved for a headline. No text, no letters, no numbers, no signs, no watermark.
+Cosy Dutch child's bedroom at night, warm lamp light, a child asleep in bed. The large window behind the bed shows not sky but deep ocean water filling the whole window, fish swimming past, the water line far above the top of the window, cold blue light glowing into the room. Strong contrast of warm orange inside vs cold blue sea outside. Calm, eerie, cinematic. Leave the upper-right area dark and empty for a headline.
 ```
-Text ideas: "HOW IS THIS NOT UNDERWATER?" · "7 METERS BELOW THE SEA" · "THIS SHOULDN'T EXIST"
+Text: "18 MILLION PEOPLE SLEEP HERE" · "BELOW THE SEA"
 
-### B. "They drowned their own land" (unique angle)
+### 3. Cyclist vs a wall of water ★ (script hook: "windmills, tulips and bicycles")
 ```
-Hyper-realistic cinematic painting-photo hybrid, 16:9, 1574 Netherlands. In the foreground, a breached earthen dike: a group of Dutch rebels in 16th-century clothing with shovels have just cut it open, and a powerful torrent of seawater is gushing through the gap onto green farmland. In the middle ground, flooding fields with a half-submerged farmhouse and windmill. In the far right background, a line of Spanish soldiers in steel morion helmets with pikes and banners stops at the water's edge, unable to advance. Dramatic overcast sky with a break of sunlight hitting the water. Colour palette: deep teal water, muddy brown earth, desaturated greens, glints of steel, high contrast. Epic historical film still, sharp detail, low-angle wide lens. Keep the top-left area as open sky, empty space reserved for a headline. No text, no letters, no flags with writing, no watermark.
+A Dutch woman cycling calmly on a straight road between bright red tulip fields, a windmill in the distance. On the left side of the road, a towering vertical wall of sea water 30 metres high, like the parted Red Sea, with a wave curling at the top and sunlight shining through the turquoise water. She doesn't notice it. Low-angle wide shot, the water wall dominates the left half. Leave the top-right sky empty for a headline.
 ```
-Text ideas: "THEY FLOODED THEIR OWN COUNTRY" · "ON PURPOSE"
+Text: "THEY'RE NOT WORRIED?" · "BELOW SEA LEVEL"
 
-### C. "A city on the bottom of a sea" (cutaway, uses the Venice layout)
+### 4. A city at the bottom of the sea (script: Almere / Flevoland)
 ```
-Hyper-realistic split-level cutaway illustration, 16:9. The frame is divided horizontally by a sea surface line about one-third from the top. ABOVE the line: an open grey-blue sea with a small sailing ship and waves, as it looked centuries ago. BELOW the line, as if seen through glass: a modern Dutch city on a dry former seabed, with apartment blocks, bike paths, canals, trees, people and cars, all sunlit. Faint ghostly outlines of old shipwrecks and seashells lie on the ground among the buildings to show it used to be the sea floor. Bright, saturated colours, turquoise water tint at the boundary, crisp detail, slightly elevated three-quarter view. Keep the right third of the upper sea area uncluttered, empty space reserved for a headline. No text, no letters, no signs, no watermark.
+Aerial drone view looking down at a modern city of apartments, parks and roads sitting dry at the bottom of an enormous square hole cut into the open sea. Vertical walls of deep blue sea water on all four sides, waves on the surface far above the rooftops, a small sailing boat at the water's edge looking down into the city. Bright daylight, vivid blue water, green parks. Leave the top area empty for a headline.
 ```
-Text ideas: "200,000 PEOPLE LIVE HERE" · "THIS WAS A SEA"
+Text: "200,000 PEOPLE LIVE ON THE SEA FLOOR"
 
-### D. "8,000 homes at the lowest point" (timely, works for the comment question)
+### 5. One crack
 ```
-Hyper-realistic aerial photograph, 16:9. A brand-new suburban housing development of neat rows of modern Dutch brick houses sits deep in a low green polder. Behind it, a tall dike holds back a wide river and sea whose waterline is clearly far above the rooftops; a small ship is sailing on the water at a height above the houses. A bright yellow vertical measuring line with arrowheads runs from the water surface down to the rooftops to show the height difference, with no numbers on it. Overcast dramatic sky with sun on the houses. Saturated colours: deep blue water, vivid green grass, red-brown roofs. Sharp detail, drone perspective. Keep the upper-left quarter as clean sky, empty space reserved for a headline. No text, no letters, no numbers, no watermark.
+Close-up of a huge old stone-and-clay sea dike, a single fresh crack spraying a jet of sea water outward. Behind and far below the dike, a tiny peaceful Dutch village with red roofs in soft focus. Stormy dark sky over the sea side, golden light on the village. Tense, ominous mood; the crack is the sharp focal point. Leave the left side empty for a headline.
 ```
-Text ideas: "6.7 m" next to the arrow + "WOULD YOU LIVE HERE?"
+Text: "IF THIS BREAKS…" · "ONE CRACK = 26% GONE"
 
-## 5. Text tips (when you add it)
+### 6. The Netherlands without its walls (map: works well in this niche)
+```
+Realistic satellite-style map of the Netherlands and its coast, viewed from above. The western half of the country is flooded with bright turquoise sea, with rooftops of drowned cities (Amsterdam, Rotterdam) faintly visible under the water; the eastern half is green land. A thin glowing red line marks the old coastline of dikes. Clean, high-contrast, bright colours, simple background. Leave the top-left area empty for a headline.
+```
+Text: "WITHOUT ITS WALLS" · "HALF THIS COUNTRY DISAPPEARS"
+
+### 7. Shipwreck under the airport (script: Schiphol = "ship hole")
+```
+Cross-section cutaway: at the top, a modern white passenger jet on an airport runway in bright daylight; directly underneath the runway, in a cutaway of dark soil and old lake mud, a giant ancient wooden sailing shipwreck lies buried, lit dramatically. A clear horizontal line separates the runway from the underground world. Leave the top-right sky empty for a headline.
+```
+Text: "WHAT'S UNDER THIS AIRPORT?"
+
+### 8. The soldier who couldn't cross (script: 1574 / 1672: "they drowned their own land")
+```
+Close-up of a 16th-century Spanish soldier in a steel morion helmet and armour, shocked expression, standing at the edge of endless flood water that stretches to the horizon where farmland used to be. A half-sunken farmhouse and a church tower stick out of the water behind him. Overcast dramatic sky, cold steel tones, teal water. His face is the focus, on the right third. Leave the left side empty for a headline.
+```
+Text: "THEY FLOODED THEIR OWN COUNTRY" · "ON PURPOSE"
+
+### 9. The giant hand
+```
+Surreal epic scene: an enormous hand made of earth, clay and grass rises from the coastline and holds back a colossal ocean wave towering over a tiny, peaceful Dutch village of red roofs and a windmill. Water spray around the fingers, sun breaking through the storm onto the village. Strong sense of scale, the hand and wave fill the left two-thirds. Leave the top-right area empty for a headline.
+```
+Text: "1,000 YEARS HOLDING BACK THE SEA"
+
+### 10. Bigger than the Eiffel Tower (script: Maeslantkering)
+```
+Aerial shot of two gigantic white steel floating storm-barrier arms swinging shut across a wide shipping channel during a storm, waves crashing. Lying on the land beside one arm, for scale, a full-size Eiffel Tower placed horizontally, the same length as the arm. Container ships waiting in the distance. Dramatic grey storm sky with a beam of sunlight. Leave the top-left area empty for a headline.
+```
+Text: "THE DUTCH BUILT A WALL THAT MOVES"
+
+**Test order:** 1 → 2 → 3 (strongest curiosity gap, closest to the proven "water above the houses" pattern, simplest to read at small size). Make 3–4 images per prompt and keep the one that still reads at 160×90 px. If you have YouTube's Test & Compare, A/B-test your top 3.
+
+## 4. Text tips (when you add it)
 - 2–5 words, all caps, heavy sans-serif (Montserrat Black / Anton), white with a dark stroke or a yellow highlight on one word.
 - Don't repeat the video title. Write the sceptical question the picture raises.
 - Add one number with a measuring arrow if possible (7 m, 22 ft, −6.7 m).
