@@ -102,6 +102,65 @@ Text: "THE DUTCH BUILT A WALL THAT MOVES"
 
 **Test order:** 1 → 2 → 3 (strongest curiosity gap, closest to the proven "water above the houses" pattern, simplest to read at small size). Make 3–4 images per prompt and keep the one that still reads at 160×90 px. If you have YouTube's Test & Compare, A/B-test your top 3.
 
+## 3b. "Ship above the town" series (v3, follows the version the user approved)
+
+Why the approved image works: a calm, completely normal Dutch street that looks like a real photo, plus **one real thing at an impossible height** (a ship above the rooftops). The grass dike quietly explains it, and empty sky on the left leaves room for text. Every variation below keeps that formula and changes just one thing.
+
+**Style block, add to every prompt:**
+`Realistic DSLR photograph, 35mm lens, eye level, sunny summer afternoon, clear blue sky with a few soft clouds, natural true-to-life colours, warm red-brown brick and orange roof tiles, vivid green dike grass, calm everyday atmosphere, sharp detail. 16:9. No text, no letters, no readable signs, no logos, no watermark.`
+
+### V1. Kid looking up (adds a person to show scale and curiosity)
+```
+A quiet Dutch brick street with red-tiled houses. In the foreground, a small boy with a bicycle stands with his back to the camera, looking up. Behind the houses, on top of a tall grass dike, a gigantic white cruise ship glides past, its hull and decks clearly higher than the rooftops, towering over the street. The boy is small, the ship is huge. Empty blue sky on the left for a headline.
+```
+
+### V2. Garden barbecue
+```
+A Dutch family back garden with a lawn, a barbecue and people relaxing on chairs, a small brick house to the right. Just behind the low garden fence rises a steep grass dike, and on top of it the giant red hull of a container ship is sliding past, higher than the house roof, filling the upper-right of the frame. Nobody is paying attention. Empty blue sky on the left for a headline.
+```
+
+### V3. Cows below the ship
+```
+Flat green Dutch polder meadow with black-and-white cows grazing and a narrow ditch of water, a small farmhouse with a red roof. Behind them, a long straight grass dike, and on top of it a massive blue container ship sailing past, its hull far above the cows and farmhouse. Low camera angle from the grass. Empty blue sky on the left for a headline.
+```
+
+### V4. Kitchen window
+```
+Inside a bright, cosy Dutch kitchen, a woman holding a cup of coffee at the sink, seen from behind. Through the big kitchen window, a steep grass dike is directly outside, and a huge container ship hull passes by at a height above the window, blocking part of the sky. Warm interior light, bright daylight outside. Empty wall/sky area on the left for a headline.
+```
+
+### V5. Cars driving under a boat (real: Veluwemeer aqueduct)
+```
+Driver's-eye view on a Dutch motorway as it dips down into a short concrete underpass. Directly above the road, crossing on a water bridge, a white sailing yacht with full sails is gliding over the cars. Water visible at the edges of the bridge, green banks and reeds on both sides. Bright sunny day. Empty blue sky on the left for a headline.
+```
+
+### V6. The sea-level line on the houses
+```
+A quiet Dutch brick street with red-tiled houses and bicycles. A bright blue horizontal line is painted along the house fronts at the height of the upper-floor windows, far above the front doors, showing where the sea level is. A woman pushing a pram walks below the line. At the end of the street a grass dike with a ship's bow visible at the same height as the blue line. Empty blue sky on the left for a headline.
+```
+
+### V7. Night version
+```
+The same quiet Dutch brick street at blue hour, warm yellow light glowing in the windows, bicycles leaning on the walls. Behind the houses on top of the dike, a huge cruise ship lit up like a floating city glides past, its glowing decks higher than the rooftops. Deep blue evening sky, warm vs cool contrast. Empty sky on the left for a headline.
+```
+
+### V8. Storm version (tension)
+```
+A Dutch brick street with red-tiled houses under a dark, stormy grey sky. Behind the houses, waves from the sea smash against the top of the grass dike and white spray flies higher than the rooftops. A lone cyclist rides down the street, unbothered. Dramatic cinematic light, a beam of sun on the houses. Empty dark sky on the left for a headline.
+```
+
+### V9. Church tower
+```
+A small Dutch village square with old brick houses and a historic church with a tall tower. Directly behind the church, on a high grass dike, a gigantic ship's hull passes at the same height as the top of the church tower. People sit at a café terrace in the square. Bright sunny day. Empty blue sky on the left for a headline.
+```
+
+### V10. Brand-new houses at the lowest point (script: 8,000 homes, 2026)
+```
+A brand-new Dutch housing estate of modern brick terraced houses with fresh lawns and young trees, sitting in a deep, very low green polder. On the high dike behind them, a large river barge and a container ship pass, their hulls far above the new rooftops. Clean, bright, slightly wide-angle view. Empty blue sky on the left for a headline.
+```
+
+**Tweaks for the approved image itself:** make the ship ~20% bigger and closer so it reads at 160×90 px, add one tiny person looking up (V1), and keep the sky top-left empty for text such as "HOW IS THIS POSSIBLE?" / "THE SEA IS ABOVE THEM".
+
 ## 4. Text tips (when you add it)
 - 2–5 words, all caps, heavy sans-serif (Montserrat Black / Anton), white with a dark stroke or a yellow highlight on one word.
 - Don't repeat the video title. Write the sceptical question the picture raises.
