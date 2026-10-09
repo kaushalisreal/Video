@@ -161,6 +161,24 @@ A brand-new Dutch housing estate of modern brick terraced houses with fresh lawn
 
 **Tweaks for the approved image itself:** make the ship ~20% bigger and closer so it reads at 160×90 px, add one tiny person looking up (V1), and keep the sky top-left empty for text such as "HOW IS THIS POSSIBLE?" / "THE SEA IS ABOVE THEM".
 
+## 3c. Edit prompts: show the water is higher than the ground (approved image: boy + cruise ship)
+
+Problem: in the approved image the ship sits on the grass, so it reads as "a ship on a hill", not "the sea is above the street". These edits make the water visible. Start every edit with the lock line, change one thing per edit, and keep the result that looks most real.
+
+**Lock line, put it first in every edit:**
+`Edit this image. Keep everything exactly the same: the boy and bicycle, the brick houses, the street, the cruise ship, the sky, the lighting, the colours and the camera angle. Only change the green dike area as described:`
+
+1. **Cutaway dike (top pick).** Cut a clean vertical cross-section into the left part of the green dike, like a slice taken out of a cake, revealing layers of grass, clay and sand, and behind them deep blue-green sea water. The water surface sits at the top of the dike, exactly at the cruise ship's waterline, far above the boy's head and the street. Realistic water with small waves and light shining through it.
+2. **Glass dike / aquarium.** Turn the green grass dike into a thick transparent glass wall, like a giant aquarium. Behind the glass, the sea fills it almost to the top, with turquoise water, light rays, seaweed and a few fish swimming. The water surface is level with the cruise ship's waterline, clearly higher than the street, the boy and the house doors.
+3. **Water at the top edge.** Make the top of the dike lower and flatter so a thin strip of blue sea water is visible right at the crest, with small waves lapping at the edge and the cruise ship floating in that water. A few splashes of spray come over the top onto the grass. The street and houses stay dry and far below the waterline.
+4. **Phantom water line.** Add a semi-transparent light-blue glowing horizontal band across the whole image at the height of the ship's waterline, passing over the houses at roof height, showing where the sea level is. Below the band, add a very faint ghost-blue tint over the street, as if showing where the water would be. Keep it subtle and realistic, like a documentary graphic.
+5. **Height arrow.** Add a bright yellow vertical double-headed measuring arrow beside the boy, running from the street up to the ship's waterline at the top of the dike, with a thin dashed yellow horizontal line extending from the waterline across the houses. No numbers, no text.
+6. **Wall of water.** Replace the left half of the grass dike with a perfectly vertical wall of clear turquoise sea water, like the parted Red Sea, with sunlight glowing through it. Its top is a calm sea surface where the cruise ship floats, level with the dike. The right half stays as the grass dike. The street at the bottom stays completely dry.
+7. **Waves breaking over the crest (tension).** Add dramatic sea waves crashing against the far side of the dike, with white spray rising above the crest and a little water trickling down the grass slope toward the street. The ship floats in rough water at the top of the dike. Keep the sky and sunlight the same.
+8. **Steps up to the sea.** Add a narrow stone staircase running up the grass dike from the street to the crest, with a railing. At the top of the stairs, blue sea water is visible right at the top step, with the cruise ship floating just beyond. It shows people walk UP to reach the sea.
+
+Best combo: 1 or 2 for the main effect, then 5 as a second edit so a number (e.g. "6.7 m") can be added next to the arrow.
+
 ## 4. Text tips (when you add it)
 - 2–5 words, all caps, heavy sans-serif (Montserrat Black / Anton), white with a dark stroke or a yellow highlight on one word.
 - Don't repeat the video title. Write the sceptical question the picture raises.
