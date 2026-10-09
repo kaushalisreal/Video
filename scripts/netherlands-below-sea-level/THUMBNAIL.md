@@ -184,3 +184,16 @@ Best combo: 1 or 2 for the main effect, then 5 as a second edit so a number (e.g
 - Don't repeat the video title. Write the sceptical question the picture raises.
 - Add one number with a measuring arrow if possible (7 m, 22 ft, −6.7 m).
 - Test at 160x90 px. If the sea-above-houses idea isn't obvious at that size, push the height difference further.
+
+## 5. Title
+
+Pick: **This Country Should Be at the Bottom of the Sea** (straight from the script's hook at 0:09)
+Thumbnail text pairing: "THE SEA IS ABOVE THEM". Title and thumbnail should add to each other, never repeat.
+
+A/B alternatives:
+- Why the Netherlands Should Be Underwater (But Isn't): includes the search keyword
+- How the Dutch Built a Country Below the Sea: mirrors the 20x outlier title
+- The Dutch Drowned Their Own Country to Win a War: history angle; use with the soldier thumbnail
+- How a Sinking Country Became One of the Richest on Earth: the "rich" angle hit 416x in research
+
+Avoid: "Why the Netherlands Isn't Underwater" (TED-Ed and Real Engineering already own it), and "18 million people live below sea level" (false: about a quarter of the land is below sea level, not the whole population).
