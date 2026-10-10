@@ -199,6 +199,23 @@ Variants:
 
 Manual fallback (exact control, free in Photopea): generate a version with the dike replaced by water (same prompt, but "replace the top half of the dike with sea water"). Put the water version underneath the original as two layers, add a layer mask to the original, and paint a soft black-to-white gradient over the top half of the dike at 40-60% opacity.
 
+## 3e. 45-degree drone view (sea + ship + town in one frame)
+
+Fresh generation:
+```
+Realistic drone photograph from a 45-degree high angle, looking down along a long, straight Dutch sea dike that runs diagonally from the bottom-left corner to the top-right of the frame.
+
+LEFT/TOP side of the dike: the open North Sea, deep blue-green with small waves. The water surface is almost at the top of the dike, only a thin strip of grass above it. A huge white cruise ship sails on the sea right next to the dike, floating normally with its whole white hull and all decks fully above the water; its waterline is level with the top of the dike.
+
+RIGHT/BOTTOM side of the dike: the land side drops down a long, steep green grass slope to a quiet Dutch village far below, with narrow brick houses with red-orange tiled roofs, a brick street, parked bicycles and a small boy with a bicycle on the street looking up at the ship. The village rooftops are clearly LOWER than the sea surface: the height difference between the sea and the street must be big and obvious, about 7 metres, with the dike as a wall between them. Long shadows from the dike fall onto the village.
+
+Sunny summer afternoon, soft clouds, natural true-to-life colours, sharp detail. The sea in the top-left forms a calm, simple area for a headline. 16:9. No text, no letters, no signs, no logos, no watermark.
+```
+
+Edit of the existing image: "Change the camera angle of this image to a drone view from 45 degrees above, behind and above the boy, so we can see over the dike..." (see chat for the full version).
+
+Common failure: the village comes out at the same level as the sea. Fix by adding "the village sits in a deep hollow far below the sea, like the bottom of a bathtub, and the sea is held up by the dike".
+
 ## 4. Text tips (when you add it)
 - 2–5 words, all caps, heavy sans-serif (Montserrat Black / Anton), white with a dark stroke or a yellow highlight on one word.
 - Don't repeat the video title. Write the sceptical question the picture raises.
