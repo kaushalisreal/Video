@@ -179,6 +179,26 @@ Problem: in the approved image the ship sits on the grass, so it reads as "a shi
 
 Best combo: 1 or 2 for the main effect, then 5 as a second edit so a number (e.g. "6.7 m") can be added next to the arrow.
 
+## 3d. Edit prompt: see-through dike (user's chosen approach)
+
+Main prompt:
+```
+Edit this image. Keep everything exactly the same: the boy and bicycle, the brick houses, the street, the cruise ship, the sky, the lighting, the colours and the camera angle.
+
+Only change the green grass dike on the left. Make the TOP HALF of the dike semi-transparent, about 40% opacity, like looking through frosted glass, so the sea behind it is visible through the grass. The bottom half of the dike stays solid green grass, with a soft gradient fade between the solid and the see-through part.
+
+Through the transparent part, show deep blue-green sea water filling the dike right up to its top edge. The water surface is a flat horizontal line exactly at the crest of the dike, at the same height as the cruise ship's waterline. The underwater part of the ship's white hull is visible through the water below that line, so it is clear the ship is floating. Sunlight makes soft rays and ripples in the water.
+
+The water is clearly higher than the street, the boy and the front doors of the houses, but it stays contained behind the dike: no water on the street, everything in front of the dike stays dry.
+```
+
+Variants:
+- Stronger effect: change "about 40% opacity" to "about 20% opacity" and add "a thin white glowing line marks the water surface along the dike crest".
+- Subtler and more realistic: change it to "about 60% opacity" and "the water is only faintly visible through the grass, like a ghost image".
+- If the boy or houses change, repeat "Do not change anything outside the green dike area." at the end of the prompt.
+
+Manual fallback (exact control, free in Photopea): generate a version with the dike replaced by water (same prompt, but "replace the top half of the dike with sea water"). Put the water version underneath the original as two layers, add a layer mask to the original, and paint a soft black-to-white gradient over the top half of the dike at 40-60% opacity.
+
 ## 4. Text tips (when you add it)
 - 2–5 words, all caps, heavy sans-serif (Montserrat Black / Anton), white with a dark stroke or a yellow highlight on one word.
 - Don't repeat the video title. Write the sceptical question the picture raises.
